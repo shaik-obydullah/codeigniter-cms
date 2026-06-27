@@ -1,0 +1,4 @@
+.env
+src/vendor/
+src/writable/
+db_data/
