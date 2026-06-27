@@ -1,0 +1,99 @@
+/*
+    Index
+    001. Evis Style
+    002. Login Page
+    003. Dashboard
+    004. File Manager
+*/
+
+/*001. Evis Style*/
+
+.breadcrumb {
+    padding: .3rem .3rem;
+    background-color: black;
+    border-radius: 0.4rem;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: white;
+}
+
+.breadcrumb-item.active {
+    color: white;
+}
+
+label{
+    margin-bottom: 0.3rem;
+}
+
+/*002. Login Page*/
+
+.login-body {
+    background: linear-gradient(to right, #eee, #a0ecc6);
+}
+
+.admin-login {
+    background-color: white;
+}
+
+/*003. Dashboard*/
+
+main,
+#sideNav {
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+    height: calc(100vh - 48px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: #2470dc;
+}
+
+.widget-name {
+    text-decoration: none;
+}
+
+.filter {
+    background-color: #f8f9fa;
+    border-radius: 1rem;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: black;
+}
+
+/*004. File Manager*/
+
+.file-manager {
+    margin-top: 1rem;
+}

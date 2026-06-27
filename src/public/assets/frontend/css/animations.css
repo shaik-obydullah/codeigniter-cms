@@ -1,0 +1,154 @@
+/* Gradient Background Animation */
+@keyframes gradientBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.header-bg {
+  background: linear-gradient(135deg, #000000, #333333);
+  background-size: 200% 200%;
+  animation: gradientBackground 10s ease infinite;
+}
+
+.header-overlay {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.header-content {
+  position: relative;
+  z-index: 20;
+}
+
+/* Circle Transition Effect */
+.circle-transition {
+  width: 200px;
+  height: 200px;
+  background: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fadeToWhite 15s infinite;
+  z-index: 10;
+}
+
+@keyframes fadeToWhite {
+  0% {
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  33% {
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  66% {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Matrix Canvas Styles */
+#matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: black; /* Fallback background */
+}
+
+.relative.z-10 {
+  z-index: 10;
+}
+
+/* Typing Animation */
+.typed-text::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Button Animations */
+#load-more-btn {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+#load-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#load-more-btn:active {
+  transform: translateY(1px);
+}
+
+#load-more-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.animate-moveBackground {
+  animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.animate-moveBackground {
+  animation: moveBackground 20s linear infinite;
+}
