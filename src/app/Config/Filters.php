@@ -54,11 +54,5 @@ class Filters extends BaseFilters
 
     public array $methods = [];
 
-    public array $filters = [
-        'session' => [
-            'before' => [
-                '/',
-            ],
-        ],
-    ];
+    public array $filters = [];
 }
