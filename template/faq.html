@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FAQ - Shaik Obydullah" />
+    <meta name="author" content="Shaik Obydullah" />
+    <title>FAQ - Shaik Obydullah</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+      details summary::-webkit-details-marker { display: none; }
+      details[open] summary .chevron { transform: rotate(180deg); }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-100 font-sans">
+    <div id="loading" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
+    </div>
+
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50 transition-all duration-300">
+      <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-xl font-bold text-white">Shaik Obydullah</a>
+        <ul class="hidden md:flex space-x-8 text-gray-300 font-medium">
+          <li><a href="about.html" class="hover:text-white transition">About</a></li>
+          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+          <li><a href="articles.html" class="hover:text-white transition">Articles</a></li>
+          <li><a href="faq.html" class="text-lime-500 transition">FAQ</a></li>
+          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+        </ul>
+        <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50">
+        <ul class="flex flex-col items-center space-y-4 py-6 text-gray-300 font-medium">
+          <li><a href="about.html" class="hover:text-white transition">About</a></li>
+          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+          <li><a href="articles.html" class="hover:text-white transition">Articles</a></li>
+          <li><a href="faq.html" class="text-lime-500 transition">FAQ</a></li>
+          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="pt-28 pb-20 bg-gray-900 min-h-screen">
+      <div class="w-full max-w-3xl mx-auto px-6">
+        <h1 class="text-4xl font-bold text-white text-center mb-4">Frequently Asked Questions</h1>
+        <p class="text-gray-400 text-center mb-12">Quick answers to common questions. Don't see yours? <a href="contact.html" class="text-lime-500 hover:text-lime-400 transition">Get in touch</a>.</p>
+
+        <div class="space-y-3">
+          <details class="bg-gray-800 rounded-xl group">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+              <span class="text-white font-medium">What technologies do you specialize in?</span>
+              <i class="fas fa-chevron-down text-gray-400 chevron transition-transform duration-200"></i>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-gray-300 leading-relaxed">I specialize in Laravel, Next.js, and MySQL. I'm also experienced with React, Vue.js, Docker, and various cloud platforms like AWS.</div>
+          </details>
+
+          <details class="bg-gray-800 rounded-xl group">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+              <span class="text-white font-medium">How can I hire you for a project?</span>
+              <i class="fas fa-chevron-down text-gray-400 chevron transition-transform duration-200"></i>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-gray-300 leading-relaxed">You can reach out via the <a href="contact.html" class="text-lime-500 hover:text-lime-400 transition">contact page</a> with details about your project. I'll review and get back to you within 24-48 hours with a proposal and timeline.</div>
+          </details>
+
+          <details class="bg-gray-800 rounded-xl group">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+              <span class="text-white font-medium">Do you offer ongoing maintenance or support?</span>
+              <i class="fas fa-chevron-down text-gray-400 chevron transition-transform duration-200"></i>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-gray-300 leading-relaxed">Yes, I offer maintenance packages for existing projects including bug fixes, updates, performance optimization, and feature enhancements. We can discuss a plan that fits your needs.</div>
+          </details>
+
+          <details class="bg-gray-800 rounded-xl group">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+              <span class="text-white font-medium">What is the typical project timeline?</span>
+              <i class="fas fa-chevron-down text-gray-400 chevron transition-transform duration-200"></i>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-gray-300 leading-relaxed">Timelines vary by project scope. A typical web application takes 4-12 weeks from concept to launch. I'll provide a detailed timeline during the proposal phase.</div>
+          </details>
+
+          <details class="bg-gray-800 rounded-xl group">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+              <span class="text-white font-medium">How do you handle revisions and feedback?</span>
+              <i class="fas fa-chevron-down text-gray-400 chevron transition-transform duration-200"></i>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-gray-300 leading-relaxed">I work in iterative cycles with regular check-ins. Feedback is incorporated at each stage, ensuring the final product aligns with your vision. Revision rounds are outlined in the project agreement.</div>
+          </details>
+
+          <details class="bg-gray-800 rounded-xl group">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+              <span class="text-white font-medium">Do you work with clients remotely?</span>
+              <i class="fas fa-chevron-down text-gray-400 chevron transition-transform duration-200"></i>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-gray-300 leading-relaxed">Absolutely. I work remotely with clients worldwide. Communication happens via email, Slack, Zoom, or any platform you prefer. Time zone differences are never a problem.</div>
+          </details>
+
+          <details class="bg-gray-800 rounded-xl group">
+            <summary class="flex items-center justify-between p-5 cursor-pointer list-none">
+              <span class="text-white font-medium">What is your pricing model?</span>
+              <i class="fas fa-chevron-down text-gray-400 chevron transition-transform duration-200"></i>
+            </summary>
+            <div class="px-5 pb-5 text-sm text-gray-300 leading-relaxed">I offer both fixed-price and hourly rates depending on the project. Fixed-price works best for well-defined projects, while hourly is ideal for ongoing work or evolving requirements.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-6 text-center">
+      <p class="text-sm">&copy; 2024 Shaik Obydullah. All Rights Reserved.</p>
+      <div class="flex justify-center gap-4 mt-2 text-xs text-gray-500">
+        <a href="privacy.html" class="hover:text-gray-300 transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-gray-300 transition">Terms of Service</a>
+      </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-white text-gray-900 p-3 rounded-full shadow-lg hover:bg-gray-200 transition hidden">&uarr;</button>
+
+    <script>
+      window.addEventListener("load", () => { document.getElementById("loading").style.display = "none"; });
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuToggle.addEventListener("click", () => { mobileMenu.classList.toggle("hidden"); });
+      mobileMenu.querySelectorAll("a").forEach((l) => { l.addEventListener("click", () => { mobileMenu.classList.add("hidden"); }); });
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => { navbar.classList.toggle("bg-gray-900/95", window.scrollY > 50); });
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => { backToTopButton.classList.toggle("hidden", window.scrollY <= 300); });
+      backToTopButton.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Terms of Service - Shaik Obydullah" />
+    <meta name="author" content="Shaik Obydullah" />
+    <title>Terms of Service - Shaik Obydullah</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body class="bg-gray-900 text-gray-100 font-sans">
+    <div id="loading" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
+    </div>
+
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50 transition-all duration-300">
+      <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-xl font-bold text-white">Shaik Obydullah</a>
+        <ul class="hidden md:flex space-x-8 text-gray-300 font-medium">
+          <li><a href="about.html" class="hover:text-white transition">About</a></li>
+          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+          <li><a href="articles.html" class="hover:text-white transition">Articles</a></li>
+          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+        </ul>
+        <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50">
+        <ul class="flex flex-col items-center space-y-4 py-6 text-gray-300 font-medium">
+          <li><a href="about.html" class="hover:text-white transition">About</a></li>
+          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+          <li><a href="articles.html" class="hover:text-white transition">Articles</a></li>
+          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="pt-28 pb-20 bg-gray-900 min-h-screen">
+      <div class="w-full max-w-3xl mx-auto px-6">
+        <h1 class="text-4xl font-bold text-white mb-4">Terms of Service</h1>
+        <p class="text-sm text-gray-500 mb-8">Last updated: June 30, 2026</p>
+
+        <div class="text-sm text-gray-300 leading-relaxed space-y-6">
+          <p>These Terms of Service govern your use of the Shaik Obydullah portfolio website. By accessing or using this site, you agree to be bound by these terms.</p>
+
+          <h2 class="text-xl font-bold text-white mt-8">Use of Content</h2>
+          <p>All content on this website, including text, images, code samples, and project descriptions, is my intellectual property unless otherwise stated. You may not reproduce, distribute, or modify any content without prior written permission.</p>
+
+          <h2 class="text-xl font-bold text-white mt-8">Third-Party Links</h2>
+          <p>This site may contain links to third-party websites. I am not responsible for the content, privacy policies, or practices of any third-party sites.</p>
+
+          <h2 class="text-xl font-bold text-white mt-8">Project Inquiries</h2>
+          <p>Submitting a contact form or inquiry does not create a client-provider relationship. A formal agreement must be signed before any work begins. Project timelines, deliverables, and pricing are quoted on a per-project basis.</p>
+
+          <h2 class="text-xl font-bold text-white mt-8">Limitation of Liability</h2>
+          <p>I am not liable for any damages arising from the use or inability to use this website or the content provided. The site is offered "as is" without warranties of any kind.</p>
+
+          <h2 class="text-xl font-bold text-white mt-8">Code Samples</h2>
+          <p>Code samples shared on this site are provided for educational purposes. You are free to use them in your own projects, but I make no guarantees about their suitability for production use.</p>
+
+          <h2 class="text-xl font-bold text-white mt-8">Changes to Terms</h2>
+          <p>I reserve the right to update these terms at any time. Changes will be posted on this page with an updated date. Continued use of the site after changes constitutes acceptance of the new terms.</p>
+
+          <h2 class="text-xl font-bold text-white mt-8">Governing Law</h2>
+          <p>These terms shall be governed by and construed in accordance with the laws of Bangladesh.</p>
+
+          <h2 class="text-xl font-bold text-white mt-8">Contact</h2>
+          <p>If you have any questions about these Terms of Service, please <a href="contact.html" class="text-lime-500 hover:text-lime-400 transition">reach out</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-6 text-center">
+      <p class="text-sm">&copy; 2024 Shaik Obydullah. All Rights Reserved.</p>
+      <div class="flex justify-center gap-4 mt-2 text-xs text-gray-500">
+        <a href="privacy.html" class="hover:text-gray-300 transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-gray-300 transition">Terms of Service</a>
+      </div>
+    </footer>
+
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-white text-gray-900 p-3 rounded-full shadow-lg hover:bg-gray-200 transition hidden">&uarr;</button>
+
+    <script>
+      window.addEventListener("load", () => { document.getElementById("loading").style.display = "none"; });
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      menuToggle.addEventListener("click", () => { mobileMenu.classList.toggle("hidden"); });
+      mobileMenu.querySelectorAll("a").forEach((l) => { l.addEventListener("click", () => { mobileMenu.classList.add("hidden"); }); });
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => { navbar.classList.toggle("bg-gray-900/95", window.scrollY > 50); });
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => { backToTopButton.classList.toggle("hidden", window.scrollY <= 300); });
+      backToTopButton.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
+    </script>
+  </body>
+</html>

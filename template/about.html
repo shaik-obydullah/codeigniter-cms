@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About - Shaik Obydullah" />
+    <meta name="author" content="Shaik Obydullah" />
+    <title>About - Shaik Obydullah</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body class="bg-gray-900 text-gray-100 font-sans">
+    <!-- Loading Animation -->
+    <div id="loading" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
+    </div>
+
+    <!-- Fixed Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50 transition-all duration-300">
+      <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-xl font-bold text-white">Shaik Obydullah</a>
+        <ul class="hidden md:flex space-x-8 text-gray-300 font-medium">
+          <li><a href="about.html" class="text-lime-500 transition">About</a></li>
+          <li><a href="index.html#skills" class="hover:text-white transition">Skills</a></li>
+          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+          <li><a href="articles.html" class="hover:text-white transition">Articles</a></li>
+          <li><a href="index.html#contact" class="hover:text-white transition">Contact</a></li>
+        </ul>
+        <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50">
+        <ul class="flex flex-col items-center space-y-4 py-6 text-gray-300 font-medium">
+          <li><a href="about.html" class="text-lime-500 transition">About</a></li>
+          <li><a href="index.html#skills" class="hover:text-white transition">Skills</a></li>
+          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+          <li><a href="articles.html" class="hover:text-white transition">Articles</a></li>
+          <li><a href="index.html#contact" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- About / CV Section -->
+    <section class="pt-28 pb-20 bg-gray-900 min-h-screen">
+      <div class="w-full max-w-4xl mx-auto px-6">
+
+        <!-- CV Card -->
+        <div class="bg-gray-800 rounded-2xl shadow-2xl p-8 md:p-10">
+
+          <!-- Header -->
+          <div class="border-b border-gray-700 pb-6 mb-8">
+            <div class="flex justify-between items-start">
+              <div>
+                <h1 class="text-4xl font-bold text-white">Shaik Obydullah</h1>
+                <p class="text-lg text-lime-500 mt-1">Software Engineer</p>
+                <p class="text-sm text-gray-400 mt-1">Dhaka, Bangladesh | contact@obydullah.com | +880 1700-000000</p>
+                <p class="text-sm text-gray-400">linkedin.com/in/obydullah | github.com/obydullah</p>
+              </div>
+              <a href="#" onclick="window.print()" class="shrink-0 bg-lime-500 text-gray-900 px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-lime-400 transition flex items-center gap-2"><i class="fas fa-download"></i> Download PDF</a>
+            </div>
+          </div>
+
+          <!-- Professional Summary -->
+          <div class="mb-8">
+            <h2 class="text-lg font-bold text-white border-b border-gray-700 pb-2 mb-3">Professional Summary</h2>
+            <p class="text-sm text-gray-300 leading-relaxed">Passionate software engineer with over 5 years of experience designing and building scalable web applications. Specializing in Laravel, Next.js, and MySQL, with a proven track record of delivering high-quality solutions that drive business growth. Adept at leading development teams, architecting RESTful APIs, and optimizing database performance.</p>
+          </div>
+
+          <!-- Skills -->
+          <div class="mb-8">
+            <h2 class="text-lg font-bold text-white border-b border-gray-700 pb-2 mb-3">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
+              <div><span class="text-gray-400">Backend:</span> <span class="text-gray-200">Laravel, PHP, REST APIs, Livewire</span></div>
+              <div><span class="text-gray-400">Frontend:</span> <span class="text-gray-200">Next.js, React, Vue.js, Tailwind CSS</span></div>
+              <div><span class="text-gray-400">Database:</span> <span class="text-gray-200">MySQL, MongoDB, Redis</span></div>
+              <div><span class="text-gray-400">DevOps:</span> <span class="text-gray-200">Docker, Nginx, CI/CD, AWS</span></div>
+              <div><span class="text-gray-400">Tools:</span> <span class="text-gray-200">Git, GitHub Actions, Stripe, PayPal</span></div>
+            </div>
+          </div>
+
+          <!-- Experience -->
+          <div class="mb-8">
+            <h2 class="text-lg font-bold text-white border-b border-gray-700 pb-2 mb-3">Work Experience</h2>
+
+            <div class="mb-6">
+              <div class="flex justify-between items-start flex-wrap">
+                <div>
+                  <h3 class="font-semibold text-white">Senior Software Engineer</h3>
+                  <p class="text-sm text-lime-500">TechCorp Solutions</p>
+                </div>
+                <p class="text-xs text-gray-500 whitespace-nowrap">2023 - Present</p>
+              </div>
+              <ul class="mt-2 text-sm text-gray-300 list-disc pl-5 space-y-1">
+                <li>Led development of a microservices-based platform serving 50k+ users.</li>
+                <li>Architected RESTful APIs and optimized database queries, reducing response times by 40%.</li>
+                <li>Mentored 3 junior developers through code reviews and pair programming.</li>
+              </ul>
+            </div>
+
+            <div class="mb-6">
+              <div class="flex justify-between items-start flex-wrap">
+                <div>
+                  <h3 class="font-semibold text-white">Software Engineer</h3>
+                  <p class="text-sm text-lime-500">WebStudio Agency</p>
+                </div>
+                <p class="text-xs text-gray-500 whitespace-nowrap">2020 - 2023</p>
+              </div>
+              <ul class="mt-2 text-sm text-gray-300 list-disc pl-5 space-y-1">
+                <li>Built 10+ client-facing web applications using Laravel and Next.js.</li>
+                <li>Integrated payment gateways (Stripe, PayPal) and third-party APIs.</li>
+                <li>Implemented CI/CD pipelines reducing deployment time by 60%.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-start flex-wrap">
+                <div>
+                  <h3 class="font-semibold text-white">Junior Developer</h3>
+                  <p class="text-sm text-lime-500">StartupHub</p>
+                </div>
+                <p class="text-xs text-gray-500 whitespace-nowrap">2019 - 2020</p>
+              </div>
+              <ul class="mt-2 text-sm text-gray-300 list-disc pl-5 space-y-1">
+                <li>Developed and maintained company's flagship SaaS product.</li>
+                <li>Wrote unit and integration tests achieving 85% code coverage.</li>
+                <li>Contributed to the frontend migration from jQuery to React.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="mb-8">
+            <h2 class="text-lg font-bold text-white border-b border-gray-700 pb-2 mb-3">Education</h2>
+
+            <div class="mb-4">
+              <div class="flex justify-between items-start flex-wrap">
+                <div>
+                  <h3 class="font-semibold text-white">B.Tech in Computer Science</h3>
+                  <p class="text-sm text-lime-500">University of Hyderabad</p>
+                </div>
+                <p class="text-xs text-gray-500 whitespace-nowrap">2015 - 2019</p>
+              </div>
+              <p class="mt-1 text-sm text-gray-300">Graduated with Distinction (CGPA: 8.7/10). Specialized in software engineering and database systems.</p>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-start flex-wrap">
+                <div>
+                  <h3 class="font-semibold text-white">Higher Secondary (XII)</h3>
+                  <p class="text-sm text-lime-500">Sri Chaitanya College</p>
+                </div>
+                <p class="text-xs text-gray-500 whitespace-nowrap">2013 - 2015</p>
+              </div>
+              <p class="mt-1 text-sm text-gray-300">Science stream with Mathematics. Scored 92%.</p>
+            </div>
+          </div>
+
+          <!-- Certifications -->
+          <div>
+            <h2 class="text-lg font-bold text-white border-b border-gray-700 pb-2 mb-3">Certifications</h2>
+            <ul class="text-sm text-gray-300 list-disc pl-5 space-y-1">
+              <li>AWS Certified Developer &ndash; Associate (2024)</li>
+              <li>Laravel Certified Developer (2023)</li>
+              <li>MongoDB Associate Developer (2022)</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 text-center">
+      <p class="text-sm">&copy; 2024 Shaik Obydullah. All Rights Reserved.</p>
+      <div class="flex justify-center gap-4 mt-2 text-xs text-gray-500">
+        <a href="privacy.html" class="hover:text-gray-300 transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-gray-300 transition">Terms of Service</a>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-white text-gray-900 p-3 rounded-full shadow-lg hover:bg-gray-200 transition hidden">&uarr;</button>
+
+    <script>
+      window.addEventListener("load", () => {
+        document.getElementById("loading").style.display = "none";
+      });
+
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("bg-gray-900/95");
+        } else {
+          navbar.classList.remove("bg-gray-900/95");
+        }
+      });
+
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.remove("hidden");
+        } else {
+          backToTopButton.classList.add("hidden");
+        }
+      });
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Article Details - Shaik Obydullah" />
+    <meta name="author" content="Shaik Obydullah" />
+    <title>Article Details - Shaik Obydullah</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body class="bg-gray-900 text-gray-100 font-sans">
+    <!-- Loading Animation -->
+    <div id="loading" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
+    </div>
+
+    <!-- Fixed Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50 transition-all duration-300">
+      <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="text-xl font-bold text-white">Shaik Obydullah</a>
+        <ul class="hidden md:flex space-x-8 text-gray-300 font-medium">
+          <li><a href="about.html" class="hover:text-white transition">About</a></li>
+          <li><a href="index.html#skills" class="hover:text-white transition">Skills</a></li>
+          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+          <li><a href="articles.html" class="text-lime-500 transition">Articles</a></li>
+          <li><a href="index.html#contact" class="hover:text-white transition">Contact</a></li>
+        </ul>
+        <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+      <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50">
+        <ul class="flex flex-col items-center space-y-4 py-6 text-gray-300 font-medium">
+          <li><a href="about.html" class="hover:text-white transition">About</a></li>
+          <li><a href="index.html#skills" class="hover:text-white transition">Skills</a></li>
+          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+          <li><a href="articles.html" class="text-lime-500 transition">Articles</a></li>
+          <li><a href="index.html#contact" class="hover:text-white transition">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Article Detail -->
+    <section class="pt-28 pb-20 bg-gray-900 min-h-screen">
+      <div class="w-full max-w-7xl mx-auto px-6">
+        <div class="flex flex-col lg:flex-row gap-10">
+
+          <!-- Main Content -->
+          <div class="flex-1 min-w-0">
+            <!-- Breadcrumb -->
+            <nav class="text-sm text-gray-400 mb-6">
+              <a href="index.html" class="hover:text-lime-500 transition">Home</a>
+              <span class="mx-2">/</span>
+              <a href="articles.html" class="hover:text-lime-500 transition">Articles</a>
+              <span class="mx-2">/</span>
+              <span class="text-gray-300">Activity Diagram Overview</span>
+            </nav>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">UML</span>
+              <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Diagrams</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Activity Diagram Overview</h1>
+
+            <!-- Meta -->
+            <div class="flex items-center text-gray-400 text-sm mb-8">
+              <span><i class="far fa-calendar-alt mr-2"></i>June 15, 2026</span>
+              <span class="mx-4">|</span>
+              <span><i class="far fa-clock mr-2"></i>5 min read</span>
+              <span class="mx-4">|</span>
+              <span><i class="far fa-user mr-2"></i>Shaik Obydullah</span>
+            </div>
+
+            <!-- Featured Image -->
+            <img src="https://placehold.co/1200x600/4A5568/FFFFFF/png?text=Activity+Diagram+Overview" alt="Activity Diagram Overview" class="w-full h-72 md:h-96 object-cover rounded-xl mb-8" />
+
+            <!-- Article Content -->
+            <div class="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-6">
+              <p class="text-lg">Activity diagrams are a powerful tool in UML (Unified Modeling Language) used to model the workflow of a system. They illustrate the flow of control from one activity to another, making them ideal for visualizing business processes, use case workflows, and software logic.</p>
+
+              <h2 class="text-2xl font-bold text-white mt-10 mb-4">What is an Activity Diagram?</h2>
+              <p>An activity diagram is essentially a flowchart that represents the flow from one activity to another. Activities are actions or operations that result in a change in the state of the system. These diagrams are particularly useful for modeling the dynamic aspects of a system.</p>
+              <p>They can be used to model both sequential and concurrent flows, making them versatile for a wide range of applications. Activity diagrams are often used in conjunction with other UML diagrams like use case diagrams and sequence diagrams.</p>
+
+              <h2 class="text-2xl font-bold text-white mt-10 mb-4">Key Components</h2>
+              <ul class="list-disc pl-6 space-y-2">
+                <li><strong class="text-white">Initial Node:</strong> The starting point of the activity flow.</li>
+                <li><strong class="text-white">Activity Node:</strong> Represents an action or step in the workflow.</li>
+                <li><strong class="text-white">Decision Node:</strong> A branching point where the flow splits based on a condition.</li>
+                <li><strong class="text-white">Merge Node:</strong> Combines multiple flows back into one.</li>
+                <li><strong class="text-white">Fork Node:</strong> Splits a single flow into concurrent flows.</li>
+                <li><strong class="text-white">Join Node:</strong> Synchronizes concurrent flows back into one.</li>
+                <li><strong class="text-white">Final Node:</strong> The end point of the activity flow.</li>
+              </ul>
+
+              <h2 class="text-2xl font-bold text-white mt-10 mb-4">Creating an Activity Diagram</h2>
+              <p>To create an activity diagram, start by identifying the activities and the order in which they occur. Use rectangles for activities, arrows for transitions, diamonds for decisions, and solid bars for forks and joins.</p>
+              <p>Tools like Lucidchart, Draw.io, and StarUML make it easy to create professional activity diagrams. Many of these tools offer pre-built templates to get you started quickly.</p>
+
+              <h2 class="text-2xl font-bold text-white mt-10 mb-4">Best Practices</h2>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Keep diagrams simple and focused on a single process.</li>
+                <li>Use clear and concise labels for activities.</li>
+                <li>Limit the number of decision nodes to avoid complexity.</li>
+                <li>Use swimlanes to separate responsibilities across actors or systems.</li>
+                <li>Validate the diagram with stakeholders to ensure accuracy.</li>
+              </ul>
+
+              <h2 class="text-2xl font-bold text-white mt-10 mb-4">Conclusion</h2>
+              <p>Activity diagrams are an essential tool for software engineers and business analysts alike. They provide a clear visual representation of workflows, helping teams understand, communicate, and optimize processes. Mastering activity diagrams will make you a more effective developer and communicator.</p>
+            </div>
+
+            <!-- Share -->
+            <div class="flex items-center gap-4 mt-10 pt-8 border-t border-gray-700">
+              <span class="text-gray-400 font-medium">Share:</span>
+              <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+              <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+              <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="w-full lg:w-80 shrink-0">
+            <div class="sticky top-28 space-y-8">
+              <!-- Search -->
+              <div class="bg-gray-800 rounded-xl p-5">
+                <h3 class="text-lg font-semibold text-white mb-4">Search</h3>
+                <div class="relative">
+                  <input type="text" placeholder="Search articles..." class="w-full bg-gray-700 text-white rounded-lg px-4 py-2.5 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 placeholder-gray-400" />
+                  <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                </div>
+              </div>
+
+              <!-- Categories -->
+              <div class="bg-gray-800 rounded-xl p-5">
+                <h3 class="text-lg font-semibold text-white mb-4">Categories</h3>
+                <ul class="space-y-2">
+                  <li><a href="#" class="text-gray-400 hover:text-lime-500 transition flex justify-between"><span>UML</span><span class="text-gray-500">(3)</span></a></li>
+                  <li><a href="#" class="text-gray-400 hover:text-lime-500 transition flex justify-between"><span>Laravel</span><span class="text-gray-500">(2)</span></a></li>
+                  <li><a href="#" class="text-gray-400 hover:text-lime-500 transition flex justify-between"><span>Next.js</span><span class="text-gray-500">(1)</span></a></li>
+                  <li><a href="#" class="text-gray-400 hover:text-lime-500 transition flex justify-between"><span>MySQL</span><span class="text-gray-500">(1)</span></a></li>
+                  <li><a href="#" class="text-gray-400 hover:text-lime-500 transition flex justify-between"><span>React</span><span class="text-gray-500">(1)</span></a></li>
+                </ul>
+              </div>
+
+              <!-- Related Articles -->
+              <div class="bg-gray-800 rounded-xl p-5">
+                <h3 class="text-lg font-semibold text-white mb-4">Related Articles</h3>
+                <ul class="space-y-4">
+                  <li>
+                    <a href="#" class="group flex gap-3">
+                      <img src="https://placehold.co/80x80/4A5568/FFFFFF/png?text=Collab" alt="Collaboration Diagram" class="w-16 h-16 rounded-lg object-cover shrink-0" />
+                      <div>
+                        <h4 class="text-sm font-medium text-white group-hover:text-lime-500 transition leading-tight">Collaboration Diagram Overview</h4>
+                        <span class="text-xs text-gray-500">Jun 10, 2026</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="group flex gap-3">
+                      <img src="https://placehold.co/80x80/4A5568/FFFFFF/png?text=Sequence" alt="Sequence Diagram" class="w-16 h-16 rounded-lg object-cover shrink-0" />
+                      <div>
+                        <h4 class="text-sm font-medium text-white group-hover:text-lime-500 transition leading-tight">Sequence Diagram Overview</h4>
+                        <span class="text-xs text-gray-500">Jun 5, 2026</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="group flex gap-3">
+                      <img src="https://placehold.co/80x80/4A5568/FFFFFF/png?text=Laravel" alt="Laravel" class="w-16 h-16 rounded-lg object-cover shrink-0" />
+                      <div>
+                        <h4 class="text-sm font-medium text-white group-hover:text-lime-500 transition leading-tight">Getting Started with Laravel</h4>
+                        <span class="text-xs text-gray-500">May 28, 2026</span>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="group flex gap-3">
+                      <img src="https://placehold.co/80x80/4A5568/FFFFFF/png?text=Next.js" alt="Next.js" class="w-16 h-16 rounded-lg object-cover shrink-0" />
+                      <div>
+                        <h4 class="text-sm font-medium text-white group-hover:text-lime-500 transition leading-tight">Next.js for Beginners</h4>
+                        <span class="text-xs text-gray-500">May 20, 2026</span>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Tags Cloud -->
+              <div class="bg-gray-800 rounded-xl p-5">
+                <h3 class="text-lg font-semibold text-white mb-4">Tags</h3>
+                <div class="flex flex-wrap gap-2">
+                  <a href="#" class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm hover:bg-lime-500 hover:text-gray-900 transition">UML</a>
+                  <a href="#" class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm hover:bg-lime-500 hover:text-gray-900 transition">Diagrams</a>
+                  <a href="#" class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm hover:bg-lime-500 hover:text-gray-900 transition">Laravel</a>
+                  <a href="#" class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm hover:bg-lime-500 hover:text-gray-900 transition">Next.js</a>
+                  <a href="#" class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm hover:bg-lime-500 hover:text-gray-900 transition">MySQL</a>
+                  <a href="#" class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm hover:bg-lime-500 hover:text-gray-900 transition">Tutorial</a>
+                  <a href="#" class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm hover:bg-lime-500 hover:text-gray-900 transition">React</a>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 text-center">
+      <p class="text-sm">&copy; 2024 Shaik Obydullah. All Rights Reserved.</p>
+      <div class="flex justify-center gap-4 mt-2 text-xs text-gray-500">
+        <a href="privacy.html" class="hover:text-gray-300 transition">Privacy Policy</a>
+        <a href="terms.html" class="hover:text-gray-300 transition">Terms of Service</a>
+      </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-white text-gray-900 p-3 rounded-full shadow-lg hover:bg-gray-200 transition hidden">&uarr;</button>
+
+    <script>
+      window.addEventListener("load", () => {
+        document.getElementById("loading").style.display = "none";
+      });
+
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+        });
+      });
+
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add("bg-gray-900/95");
+        } else {
+          navbar.classList.remove("bg-gray-900/95");
+        }
+      });
+
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.remove("hidden");
+        } else {
+          backToTopButton.classList.add("hidden");
+        }
+      });
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
