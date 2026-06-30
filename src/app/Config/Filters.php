@@ -25,8 +25,6 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
-        'auth'          => \App\Filters\AuthFilter::class,
-        'guest'         => \App\Filters\GuestFilter::class,
     ];
 
     public array $required = [
@@ -52,18 +50,5 @@ class Filters extends BaseFilters
 
     public array $methods = [];
 
-    public array $filters = [
-        'auth' => [
-            'before' => [
-                '/dashboard',
-                '/dashboard/*'
-            ]
-        ],
-        'guest' => [
-            'before' => [
-                '/login',
-                '/auth'
-            ]
-        ]
-    ];
+    public array $filters = [];
 }
