@@ -1,46 +1,6 @@
-<?= view('layout/header', ['activeNav' => 'home', 'extraStyles' => '
-<style>
-@keyframes gradientBackground {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-.header-bg {
-  background: linear-gradient(135deg, #000000, #333333);
-  background-size: 200% 200%;
-  animation: gradientBackground 10s ease infinite;
-}
-.header-overlay { background: rgba(0, 0, 0, 0.7); }
-.header-content { position: relative; z-index: 20; }
-.circle-transition {
-  width: 200px; height: 200px;
-  background: black; border-radius: 50%;
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  animation: fadeToWhite 15s infinite;
-  z-index: 10;
-}
-@keyframes fadeToWhite {
-  0% { background: rgba(0,0,0,1); box-shadow: 0 0 0 rgba(255,255,255,0); }
-  33% { background: rgba(0,0,0,1); box-shadow: 0 0 0 rgba(255,255,255,0); }
-  66% { background: rgba(255,255,255,0.5); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
-  100% { background: rgba(255,255,255,0.5); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
-}
-#matrix-canvas {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%; z-index: 0;
-  background: black;
-}
-.typed-text::after { content: "|"; animation: blink 1s infinite; }
-@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-@keyframes moveBackground {
-  0% { background-position: 0 0; }
-  100% { background-position: 100% 100%; }
-}
-.animate-moveBackground { animation: moveBackground 20s linear infinite; }
-</style>
-']) ?>
+<?= view('layout/header', ['activeNav' => 'home']) ?>
 
-<header class="header-bg relative pt-36 pb-32 text-center text-white overflow-hidden" style="margin-top: 3rem;">
+<header class="header-bg header-wrapper relative pt-36 pb-32 text-center text-white overflow-hidden">
     <div class="header-overlay absolute inset-0"></div>
     <div class="circle-transition"></div>
     <div class="absolute inset-0 flex items-center justify-center">
@@ -295,14 +255,6 @@
 
 <?= view('layout/footer', ['extraScripts' => '
 <script>
-document.querySelectorAll("a[href^=\"#\"]").forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        if (target) target.scrollIntoView({ behavior: "smooth" });
-    });
-});
-
 const projectFilterBtns = document.querySelectorAll(".project-filter-btn");
 const projectCards = document.querySelectorAll(".project-card");
 projectFilterBtns.forEach((btn) => {
@@ -357,12 +309,6 @@ if (matrixCanvas) {
     }
     setInterval(drawMatrix, 50);
     window.addEventListener("resize", () => { matrixCanvas.width = window.innerWidth; matrixCanvas.height = window.innerHeight; });
-}
-
-const typedTextSpan = document.querySelector(".typed-text");
-if (typedTextSpan) {
-    const textArray = ["Software Engineer", "Laravel Developer", "Next.js Expert", "MySQL Specialist"];
-    let textArrayIndex = 0, charIndex = 0;
 }
 </script>
 ']) ?>

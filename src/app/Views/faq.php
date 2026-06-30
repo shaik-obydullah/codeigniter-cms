@@ -1,9 +1,4 @@
-<?= view('layout/header', ['title' => 'FAQ - Shaik Obydullah', 'activeNav' => 'faq', 'extraStyles' => '
-<style>
-details summary::-webkit-details-marker { display: none; }
-details[open] summary .chevron { transform: rotate(180deg); }
-</style>
-']) ?>
+<?= view('layout/header', ['title' => 'FAQ - Shaik Obydullah', 'activeNav' => 'faq']) ?>
 
 <section class="pt-28 pb-20 bg-gray-900 min-h-screen">
     <div class="w-full max-w-3xl mx-auto px-6">

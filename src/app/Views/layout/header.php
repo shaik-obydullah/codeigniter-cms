@@ -10,12 +10,13 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <?php if (isset($extraStyles)) echo $extraStyles; ?>
+    <link rel="stylesheet" href="/assets/frontend/css/base.css" />
+    <link rel="stylesheet" href="/assets/frontend/css/theme.css" />
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans">
 
-<div id="loading" class="fixed inset-0 bg-gray-900 flex items-center justify-center z-50">
-    <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
+<div id="loading">
+    <div class="spinner"></div>
 </div>
 
 <nav id="navbar" class="fixed top-0 left-0 w-full z-40 bg-gray-900/90 backdrop-blur-md border-b border-gray-700/50 transition-all duration-300">
