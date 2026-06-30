@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills - Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+    <div class="flex h-screen overflow-hidden">
+        <aside class="w-64 bg-gray-800 border-r border-gray-700 flex flex-col shrink-0">
+            <div class="p-5 border-b border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-lime-500 rounded-lg flex items-center justify-center"><i class="fas fa-shield-halved text-sm text-gray-900"></i></div>
+                    <div><h1 class="text-white font-bold text-sm">AdminPanel</h1><p class="text-gray-500 text-xs">v1.0.0</p></div>
+                </div>
+            </div>
+            <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+                <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-chart-pie w-5 text-center"></i><span>Dashboard</span></a>
+                <a href="articles.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-newspaper w-5 text-center"></i><span>Articles</span></a>
+                <a href="projects.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-diagram-project w-5 text-center"></i><span>Projects</span></a>
+                <a href="users.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-users w-5 text-center"></i><span>Users</span></a>
+                <a href="categories.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-folder w-5 text-center"></i><span>Categories</span></a>
+                <a href="tags.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-tags w-5 text-center"></i><span>Tags</span></a>
+                <a href="comments.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-comments w-5 text-center"></i><span>Comments</span></a>
+                <div class="pt-4 pb-2"><p class="px-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Settings</p></div>
+                <a href="site-settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-gear w-5 text-center"></i><span>Site Settings</span></a>
+                <a href="roles.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-shield w-5 text-center"></i><span>Roles & Permissions</span></a>
+                <a href="activities.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-clock-rotate-left w-5 text-center"></i><span>Activities</span></a>
+                <a href="notifications.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-bell w-5 text-center"></i><span>Notifications</span></a>
+                <a href="skills.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-lime-500 text-gray-900 font-medium text-sm"><i class="fas fa-code w-5 text-center"></i><span>Skills</span></a>
+            </nav>
+            <div class="p-3 border-t border-gray-700">
+                <a href="login.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-red-400 hover:bg-gray-700 transition text-sm"><i class="fas fa-right-from-bracket w-5 text-center"></i><span>Logout</span></a>
+            </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col min-w-0">
+            <header class="bg-gray-800 border-b border-gray-700 px-6 py-3 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-4">
+                    <button class="text-gray-400 hover:text-white lg:hidden"><i class="fas fa-bars text-xl"></i></button>
+                    <h2 class="text-white font-semibold text-lg">Skills</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="text-gray-400 hover:text-white relative"><i class="fas fa-bell text-lg"></i><span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] flex items-center justify-center text-white font-medium">3</span></button>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-sm font-medium text-white">SO</div>
+                        <div class="hidden sm:block"><p class="text-sm text-white font-medium leading-tight">Shaik Obydullah</p><p class="text-xs text-gray-500">Super Admin</p></div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-6">
+
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                    <div class="relative w-full sm:w-72">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fas fa-search text-sm"></i></span>
+                        <input type="text" placeholder="Search skills..."
+                            class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
+                    </div>
+                    <button id="addSkillBtn" class="flex items-center gap-2 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm shrink-0"><i class="fas fa-plus"></i> Add Skill</button>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gray-800 rounded-xl border border-gray-700 p-5 flex items-start gap-4 group hover:border-lime-500/30 transition">
+                        <div class="w-12 h-12 bg-lime-500/10 rounded-lg flex items-center justify-center text-xl text-lime-400 shrink-0"><i class="fab fa-laravel"></i></div>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-start justify-between gap-2">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">Laravel</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5 line-clamp-2">PHP framework for web artisans with elegant syntax and powerful tools.</p>
+                                </div>
+                                <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
+                                    <button class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition edit-skill" title="Edit"><i class="fas fa-pen text-xs"></i></button>
+                                    <button class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-xl border border-gray-700 p-5 flex items-start gap-4 group hover:border-lime-500/30 transition">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center text-xl text-blue-400 shrink-0"><i class="fab fa-js"></i></div>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-start justify-between gap-2">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">JavaScript</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5 line-clamp-2">Dynamic programming language for interactive web applications.</p>
+                                </div>
+                                <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
+                                    <button class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition edit-skill" title="Edit"><i class="fas fa-pen text-xs"></i></button>
+                                    <button class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-xl border border-gray-700 p-5 flex items-start gap-4 group hover:border-lime-500/30 transition">
+                        <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center text-xl text-blue-500 shrink-0"><i class="fab fa-react"></i></div>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-start justify-between gap-2">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">Next.js</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5 line-clamp-2">React framework for production-grade applications with SSR and SSG.</p>
+                                </div>
+                                <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
+                                    <button class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition edit-skill" title="Edit"><i class="fas fa-pen text-xs"></i></button>
+                                    <button class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-xl border border-gray-700 p-5 flex items-start gap-4 group hover:border-lime-500/30 transition">
+                        <div class="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center text-xl text-orange-400 shrink-0"><i class="fas fa-database"></i></div>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-start justify-between gap-2">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">MySQL</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5 line-clamp-2">Relational database management system for structured data storage.</p>
+                                </div>
+                                <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
+                                    <button class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition edit-skill" title="Edit"><i class="fas fa-pen text-xs"></i></button>
+                                    <button class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-xl border border-gray-700 p-5 flex items-start gap-4 group hover:border-lime-500/30 transition">
+                        <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center text-xl text-green-400 shrink-0"><i class="fab fa-node-js"></i></div>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-start justify-between gap-2">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">Node.js</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5 line-clamp-2">JavaScript runtime built on Chrome's V8 engine for server-side apps.</p>
+                                </div>
+                                <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
+                                    <button class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition edit-skill" title="Edit"><i class="fas fa-pen text-xs"></i></button>
+                                    <button class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-800 rounded-xl border border-gray-700 p-5 flex items-start gap-4 group hover:border-lime-500/30 transition">
+                        <div class="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center text-xl text-cyan-400 shrink-0"><i class="fas fa-code"></i></div>
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-start justify-between gap-2">
+                                <div>
+                                    <h4 class="text-white font-medium text-sm">TypeScript</h4>
+                                    <p class="text-xs text-gray-400 mt-0.5 line-clamp-2">Typed superset of JavaScript that compiles to plain JavaScript.</p>
+                                </div>
+                                <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
+                                    <button class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition edit-skill" title="Edit"><i class="fas fa-pen text-xs"></i></button>
+                                    <button class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
+                    <h3 class="text-white font-semibold text-sm mb-4" id="formTitle">Add New Skill</h3>
+                    <form class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="skillIcon" class="block text-sm font-medium text-gray-300 mb-1.5">Icon</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="skillIcon" placeholder="fab fa-laravel"
+                                    class="flex-1 bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
+                                <button type="button" class="w-10 h-10 bg-gray-700 border border-gray-600 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:border-lime-500 transition" title="Pick Icon"><i class="fas fa-icons"></i></button>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">e.g. <code class="text-lime-400">fab fa-laravel</code>, <code class="text-lime-400">fas fa-database</code></p>
+                        </div>
+                        <div>
+                            <label for="skillName" class="block text-sm font-medium text-gray-300 mb-1.5">Name</label>
+                            <input type="text" id="skillName" placeholder="Laravel"
+                                class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
+                        </div>
+                        <div>
+                            <label for="skillDescription" class="block text-sm font-medium text-gray-300 mb-1.5">Description</label>
+                            <textarea id="skillDescription" rows="1" placeholder="PHP framework for web artisans..."
+                                class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500 resize-none"></textarea>
+                        </div>
+                        <div class="md:col-span-3 flex items-center gap-3 pt-2">
+                            <button type="submit" class="bg-lime-500 text-gray-900 font-semibold px-6 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm">Save Skill</button>
+                            <button type="reset" class="bg-gray-700 text-gray-300 font-medium px-6 py-2.5 rounded-lg hover:bg-gray-600 transition text-sm">Reset</button>
+                        </div>
+                    </form>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
