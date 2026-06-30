@@ -29,6 +29,7 @@ class Filters extends BaseFilters
         'performance'   => PerformanceMetrics::class,
         'session'       => SessionAuth::class,
         'chain'         => ChainAuth::class,
+        'admin-access'  => \App\Filters\AdminAccess::class,
     ];
 
     public array $required = [
