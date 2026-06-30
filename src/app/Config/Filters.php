@@ -12,6 +12,8 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
+use CodeIgniter\Shield\Filters\ChainAuth;
+use CodeIgniter\Shield\Filters\SessionAuth;
 
 class Filters extends BaseFilters
 {
@@ -25,6 +27,8 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'session'       => SessionAuth::class,
+        'chain'         => ChainAuth::class,
     ];
 
     public array $required = [
@@ -50,5 +54,11 @@ class Filters extends BaseFilters
 
     public array $methods = [];
 
-    public array $filters = [];
+    public array $filters = [
+        'session' => [
+            'before' => [
+                '/',
+            ],
+        ],
+    ];
 }

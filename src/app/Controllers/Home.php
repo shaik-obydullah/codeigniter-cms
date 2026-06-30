@@ -6,6 +6,12 @@ class Home extends BaseController
 {
     public function index()
     {
-        return 'Hello World';
+        if (!auth()->loggedIn()) {
+            return redirect()->to('login');
+        }
+
+        $user = auth()->user();
+
+        return 'Hello World, ' . $user->email;
     }
 }
