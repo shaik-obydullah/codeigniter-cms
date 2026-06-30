@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects - Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+
+    <div class="flex h-screen overflow-hidden">
+
+        <aside class="w-64 bg-gray-800 border-r border-gray-700 flex flex-col shrink-0">
+            <div class="p-5 border-b border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-lime-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shield-halved text-sm text-gray-900"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-white font-bold text-sm">AdminPanel</h1>
+                        <p class="text-gray-500 text-xs">v1.0.0</p>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="flex-1 overflow-y-auto p-3 space-y-1">
+                <a href="dashboard.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm">
+                    <i class="fas fa-chart-pie w-5 text-center"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="articles.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm">
+                    <i class="fas fa-newspaper w-5 text-center"></i>
+                    <span>Articles</span>
+                </a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-lime-500 text-gray-900 font-medium text-sm">
+                    <i class="fas fa-diagram-project w-5 text-center"></i>
+                    <span>Projects</span>
+                </a>
+                <a href="users.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm">
+                    <i class="fas fa-users w-5 text-center"></i>
+                    <span>Users</span>
+                </a>
+                <a href="categories.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-folder w-5 text-center"></i><span>Categories</span></a>
+                <a href="tags.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-tags w-5 text-center"></i><span>Tags</span></a>
+                <a href="comments.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm">
+                    <i class="fas fa-comments w-5 text-center"></i>
+                    <span>Comments</span>
+                </a>
+
+                <div class="pt-4 pb-2"><p class="px-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Settings</p></div>
+                <a href="site-settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-gear w-5 text-center"></i><span>Site Settings</span></a>
+                <a href="roles.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-shield w-5 text-center"></i><span>Roles & Permissions</span></a>
+                <a href="activities.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm"><i class="fas fa-clock-rotate-left w-5 text-center"></i><span>Activities</span></a>
+            </nav>
+
+            <div class="p-3 border-t border-gray-700">
+                <a href="login.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:text-red-400 hover:bg-gray-700 transition text-sm">
+                    <i class="fas fa-right-from-bracket w-5 text-center"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="flex-1 flex flex-col min-w-0">
+
+            <header class="bg-gray-800 border-b border-gray-700 px-6 py-3 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-4">
+                    <button class="text-gray-400 hover:text-white lg:hidden">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    <h2 class="text-white font-semibold text-lg">Projects</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="text-gray-400 hover:text-white relative">
+                        <i class="fas fa-bell text-lg"></i>
+                        <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] flex items-center justify-center text-white font-medium">3</span>
+                    </button>
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-sm font-medium text-white">SO</div>
+                        <div class="hidden sm:block">
+                            <p class="text-sm text-white font-medium leading-tight">Shaik Obydullah</p>
+                            <p class="text-xs text-gray-500">Super Admin</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="flex-1 overflow-y-auto p-6">
+
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                    <div class="relative w-full sm:w-72">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+                            <i class="fas fa-search text-sm"></i>
+                        </span>
+                        <input type="text" placeholder="Search projects..."
+                            class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
+                    </div>
+                    <a href="project-add.html" class="flex items-center gap-2 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm shrink-0">
+                        <i class="fas fa-plus"></i>
+                        New Project
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <button class="px-3 py-1.5 rounded-lg bg-lime-500 text-gray-900 text-sm font-medium">All</button>
+                    <button class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm border border-gray-700">Published</button>
+                    <button class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm border border-gray-700">Drafts</button>
+                    <span class="text-gray-600 text-sm ml-auto hidden sm:inline">Showing 1-6 of 24</span>
+                </div>
+
+                <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-gray-700 bg-gray-800/50">
+                                    <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">
+                                        <label class="flex items-center gap-2 cursor-pointer">
+                                            <input type="checkbox" class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
+                                            Title
+                                        </label>
+                                    </th>
+                                    <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Technologies</th>
+                                    <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Status</th>
+                                    <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Date</th>
+                                    <th class="text-right px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-700">
+                                <tr class="hover:bg-gray-700/50 transition">
+                                    <td class="px-5 py-4">
+                                        <label class="flex items-center gap-3 cursor-pointer">
+                                            <input type="checkbox" class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
+                                            <span class="text-white font-medium">E-Commerce Platform</span>
+                                        </label>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Laravel</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">MySQL</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Payment</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400">Published</span></td>
+                                    <td class="px-5 py-4 text-gray-400 whitespace-nowrap">Mar 18, 2026</td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="Edit"><i class="fas fa-pen text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="View"><i class="fas fa-eye text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-red-400 hover:bg-gray-700 rounded-lg transition" title="Delete"><i class="fas fa-trash text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-700/50 transition">
+                                    <td class="px-5 py-4">
+                                        <label class="flex items-center gap-3 cursor-pointer">
+                                            <input type="checkbox" class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
+                                            <span class="text-white font-medium">Blog CMS</span>
+                                        </label>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Next.js</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Laravel</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Markdown</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400">Published</span></td>
+                                    <td class="px-5 py-4 text-gray-400 whitespace-nowrap">Mar 14, 2026</td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="Edit"><i class="fas fa-pen text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="View"><i class="fas fa-eye text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-red-400 hover:bg-gray-700 rounded-lg transition" title="Delete"><i class="fas fa-trash text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-700/50 transition">
+                                    <td class="px-5 py-4">
+                                        <label class="flex items-center gap-3 cursor-pointer">
+                                            <input type="checkbox" class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
+                                            <span class="text-white font-medium">Task Management App</span>
+                                        </label>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Next.js</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">MySQL</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Drag &amp; Drop</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400">Published</span></td>
+                                    <td class="px-5 py-4 text-gray-400 whitespace-nowrap">Mar 10, 2026</td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="Edit"><i class="fas fa-pen text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="View"><i class="fas fa-eye text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-red-400 hover:bg-gray-700 rounded-lg transition" title="Delete"><i class="fas fa-trash text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-700/50 transition">
+                                    <td class="px-5 py-4">
+                                        <label class="flex items-center gap-3 cursor-pointer">
+                                            <input type="checkbox" class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
+                                            <span class="text-white font-medium">Inventory Management System</span>
+                                        </label>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Laravel</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Livewire</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">MySQL</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-medium bg-yellow-500/10 text-yellow-400">Draft</span></td>
+                                    <td class="px-5 py-4 text-gray-400 whitespace-nowrap">Mar 8, 2026</td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="Edit"><i class="fas fa-pen text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="View"><i class="fas fa-eye text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-red-400 hover:bg-gray-700 rounded-lg transition" title="Delete"><i class="fas fa-trash text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-700/50 transition">
+                                    <td class="px-5 py-4">
+                                        <label class="flex items-center gap-3 cursor-pointer">
+                                            <input type="checkbox" class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
+                                            <span class="text-white font-medium">Real Estate Portal</span>
+                                        </label>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Next.js</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Laravel</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Map API</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400">Published</span></td>
+                                    <td class="px-5 py-4 text-gray-400 whitespace-nowrap">Mar 5, 2026</td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="Edit"><i class="fas fa-pen text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="View"><i class="fas fa-eye text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-red-400 hover:bg-gray-700 rounded-lg transition" title="Delete"><i class="fas fa-trash text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-700/50 transition">
+                                    <td class="px-5 py-4">
+                                        <label class="flex items-center gap-3 cursor-pointer">
+                                            <input type="checkbox" class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
+                                            <span class="text-white font-medium">Analytics Dashboard</span>
+                                        </label>
+                                    </td>
+                                    <td class="px-5 py-4">
+                                        <div class="flex flex-wrap gap-1.5">
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">React</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Chart.js</span>
+                                            <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300">Laravel</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-5 py-4"><span class="px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400">Published</span></td>
+                                    <td class="px-5 py-4 text-gray-400 whitespace-nowrap">Feb 28, 2026</td>
+                                    <td class="px-5 py-4 text-right">
+                                        <div class="flex items-center justify-end gap-1">
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="Edit"><i class="fas fa-pen text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="View"><i class="fas fa-eye text-sm"></i></button>
+                                            <button class="p-1.5 text-gray-500 hover:text-red-400 hover:bg-gray-700 rounded-lg transition" title="Delete"><i class="fas fa-trash text-sm"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="px-5 py-3 border-t border-gray-700 flex items-center justify-between">
+                        <p class="text-sm text-gray-500">Page 1 of 4</p>
+                        <div class="flex items-center gap-1">
+                            <button class="px-3 py-1.5 rounded-lg bg-gray-700 text-gray-400 text-sm hover:bg-gray-600 transition" disabled>Prev</button>
+                            <button class="px-3 py-1.5 rounded-lg bg-lime-500 text-gray-900 text-sm font-medium">1</button>
+                            <button class="px-3 py-1.5 rounded-lg bg-gray-700 text-gray-400 text-sm hover:bg-gray-600 transition">2</button>
+                            <button class="px-3 py-1.5 rounded-lg bg-gray-700 text-gray-400 text-sm hover:bg-gray-600 transition">3</button>
+                            <span class="px-2 text-gray-600">...</span>
+                            <button class="px-3 py-1.5 rounded-lg bg-gray-700 text-gray-400 text-sm hover:bg-gray-600 transition">4</button>
+                            <button class="px-3 py-1.5 rounded-lg bg-gray-700 text-gray-400 text-sm hover:bg-gray-600 transition">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
