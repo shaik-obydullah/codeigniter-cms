@@ -10,7 +10,7 @@ $routes->get('/projects', 'Pages::projects');
 $routes->get('/projects/(:any)', 'Pages::projectDetails/$1');
 $routes->get('/articles', 'Pages::articles');
 $routes->get('/articles/(:any)', 'Pages::articleDetails/$1');
-$routes->get('/contact', 'Pages::contact');
+$routes->match(['get', 'post'], '/contact', 'Pages::contact');
 $routes->get('/faq', 'Pages::faq');
 $routes->get('/privacy', 'Pages::privacy');
 $routes->get('/terms', 'Pages::terms');
@@ -58,6 +58,7 @@ $routes->group('/admin', ['filter' => 'admin-access'], static function ($routes)
 
     $routes->get('tags', '\App\Controllers\Admin\Tags::index');
     $routes->post('tags', '\App\Controllers\Admin\Tags::store');
+    $routes->post('tags/(:num)', '\App\Controllers\Admin\Tags::update/$1');
     $routes->post('tags/(:num)/delete', '\App\Controllers\Admin\Tags::delete/$1');
 
     $routes->get('comments', '\App\Controllers\Admin\Comments::index');

@@ -6,31 +6,39 @@
 
         <div class="flex flex-wrap justify-center gap-3 mb-12">
             <button data-filter="all" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-lime-500 text-gray-900">All</button>
-            <button data-filter="UML" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">UML</button>
-            <button data-filter="Laravel" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">Laravel</button>
-            <button data-filter="Next.js" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">Next.js</button>
-            <button data-filter="MySQL" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">MySQL</button>
-            <button data-filter="Tutorial" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">Tutorial</button>
-            <button data-filter="React" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">React</button>
-            <button data-filter="Vue.js" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">Vue.js</button>
-            <button data-filter="API" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">API</button>
+            <?php if (!empty($categories)): ?>
+                <?php foreach ($categories as $cat): ?>
+                <button data-filter="<?= esc($cat->name) ?>" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600"><?= esc($cat->name) ?></button>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <?php if (!empty($tags)): ?>
+                <?php foreach ($tags as $tag): ?>
+                <button data-filter="<?= esc($tag->name) ?>" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600"><?= esc($tag->name) ?></button>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
 
         <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <?php for ($i = 1; $i <= 9; $i++): ?>
-            <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="Laravel,Tutorial">
-                <div class="p-6">
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Laravel</span>
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Tutorial</span>
+            <?php if (!empty($articles)): ?>
+                <?php foreach ($articles as $article): ?>
+                <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="">
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm"><?= esc($article->category_name ?? 'Article') ?></span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2"><?= esc($article->title) ?></h3>
+                        <p class="text-gray-300 mb-4"><?= esc($article->excerpt ?? '') ?></p>
+                        <a href="/articles/<?= esc($article->slug) ?>" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Article Title <?= $i ?></h3>
-                    <p class="text-gray-300 mb-4">Article description goes here.</p>
-                    <a href="#" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
-                </div>
-            </article>
-            <?php endfor; ?>
+                </article>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-span-full text-center text-gray-500 py-12">No articles published yet.</div>
+            <?php endif; ?>
         </div>
+        <?php if ($pager): ?>
+        <div class="mt-10 flex justify-center"><?= $pager->links() ?></div>
+        <?php endif; ?>
     </div>
 </section>
 

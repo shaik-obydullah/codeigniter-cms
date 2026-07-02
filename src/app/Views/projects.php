@@ -17,21 +17,33 @@
         </div>
 
         <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <?php for ($i = 1; $i <= 9; $i++): ?>
-            <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform" data-tags="Laravel,Next.js">
-                <img src="https://placehold.co/400x200/4A5568/FFFFFF/png?text=Project+<?= $i ?>" alt="Project <?= $i ?>" class="w-full h-48 object-cover" />
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Project <?= $i ?></h3>
-                    <p class="text-gray-300 mb-4">A sample project description goes here.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Laravel</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Next.js</span>
+            <?php if (!empty($projects)): ?>
+                <?php foreach ($projects as $project): ?>
+                <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform"
+                     data-tags="<?= esc(implode(',', array_map(function($t) { return $t->name; }, $projectTechnologies[$project->id] ?? []))) ?>">
+                    <img src="<?= esc($project->featured_image ?? 'https://placehold.co/400x200/4A5568/FFFFFF/png?text=' . urlencode($project->title)) ?>"
+                         alt="<?= esc($project->title) ?>" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2"><?= esc($project->title) ?></h3>
+                        <p class="text-gray-300 mb-4"><?= esc($project->excerpt ?? $project->description ?? '') ?></p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <?php if (!empty($projectTechnologies[$project->id])): ?>
+                                <?php foreach ($projectTechnologies[$project->id] as $tech): ?>
+                                <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm"><?= esc($tech->name) ?></span>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                        <a href="/projects/<?= esc($project->slug) ?>" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
                     </div>
-                    <a href="#" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
                 </div>
-            </div>
-            <?php endfor; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-span-full text-center text-gray-500 py-12">No projects published yet.</div>
+            <?php endif; ?>
         </div>
+        <?php if ($pager): ?>
+        <div class="mt-10 flex justify-center"><?= $pager->links() ?></div>
+        <?php endif; ?>
     </div>
 </section>
 

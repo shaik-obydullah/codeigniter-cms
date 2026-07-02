@@ -18,7 +18,7 @@ class Categories extends BaseController
     {
         $rules = [
             'name' => 'required|min_length[2]',
-            'slug' => 'required|is_unique[categories.slug]',
+            'slug' => 'is_unique[categories.slug]',
         ];
 
         if (!$this->validate($rules)) {
@@ -56,7 +56,7 @@ class Categories extends BaseController
 
         $rules = [
             'name' => 'required|min_length[2]',
-            'slug' => "required|is_unique[categories.slug,id,{$id}]",
+            'slug' => "is_unique[categories.slug,id,{$id}]",
         ];
 
         if (!$this->validate($rules)) {

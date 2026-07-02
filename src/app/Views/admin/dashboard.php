@@ -23,7 +23,7 @@
                     <div class="mb-4 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm"><?= esc(session('error')) ?></div>
                 <?php endif; ?>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
                     <div class="bg-gray-800 rounded-xl p-5 border border-gray-700">
                         <div class="flex items-center justify-between mb-3">
                             <span class="text-gray-400 text-sm font-medium">Total Users</span>
@@ -36,14 +36,21 @@
                             <span class="text-gray-400 text-sm font-medium">Articles</span>
                             <span class="w-9 h-9 bg-lime-500/10 rounded-lg flex items-center justify-center"><i class="fas fa-newspaper text-lime-400 text-sm"></i></span>
                         </div>
-                        <p class="text-2xl font-bold text-white">48</p>
+                        <p class="text-2xl font-bold text-white"><?= $totalArticles ?? 0 ?></p>
                     </div>
                     <div class="bg-gray-800 rounded-xl p-5 border border-gray-700">
                         <div class="flex items-center justify-between mb-3">
                             <span class="text-gray-400 text-sm font-medium">Projects</span>
                             <span class="w-9 h-9 bg-purple-500/10 rounded-lg flex items-center justify-center"><i class="fas fa-diagram-project text-purple-400 text-sm"></i></span>
                         </div>
-                        <p class="text-2xl font-bold text-white">24</p>
+                        <p class="text-2xl font-bold text-white"><?= $totalProjects ?? 0 ?></p>
+                    </div>
+                    <div class="bg-gray-800 rounded-xl p-5 border border-gray-700">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-gray-400 text-sm font-medium">Skills</span>
+                            <span class="w-9 h-9 bg-cyan-500/10 rounded-lg flex items-center justify-center"><i class="fas fa-code text-cyan-400 text-sm"></i></span>
+                        </div>
+                        <p class="text-2xl font-bold text-white"><?= $totalSkills ?? 0 ?></p>
                     </div>
                     <div class="bg-gray-800 rounded-xl p-5 border border-gray-700">
                         <div class="flex items-center justify-between mb-3">

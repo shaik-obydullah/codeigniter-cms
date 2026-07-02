@@ -13,7 +13,7 @@ abstract class BaseController extends Controller
 {
     protected $request;
 
-    protected $helpers = ['auth', 'setting'];
+    protected $helpers = ['auth', 'setting', 'app'];
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {

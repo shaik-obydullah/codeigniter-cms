@@ -26,26 +26,17 @@
     <div class="container mx-auto px-6">
         <h2 class="text-4xl font-bold text-white mb-6 text-center">Skills</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-gray-700 p-6 rounded-lg shadow-md text-center hover:scale-105 transition-transform">
-                <i class="fab fa-laravel text-4xl text-white"></i>
-                <h3 class="text-xl font-semibold mt-4 text-white">Laravel</h3>
-                <p class="text-gray-300 mt-2">Expert in building robust backend systems with Laravel.</p>
-            </div>
-            <div class="bg-gray-700 p-6 rounded-lg shadow-md text-center hover:scale-105 transition-transform">
-                <i class="fab fa-js-square text-4xl text-white"></i>
-                <h3 class="text-xl font-semibold mt-4 text-white">Next.js</h3>
-                <p class="text-gray-300 mt-2">Proficient in building fast, SEO-friendly frontends with Next.js.</p>
-            </div>
-            <div class="bg-gray-700 p-6 rounded-lg shadow-md text-center hover:scale-105 transition-transform">
-                <i class="fas fa-database text-4xl text-white"></i>
-                <h3 class="text-xl font-semibold mt-4 text-white">MySQL</h3>
-                <p class="text-gray-300 mt-2">Skilled in designing and optimizing MySQL databases.</p>
-            </div>
-            <div class="bg-gray-700 p-6 rounded-lg shadow-md text-center hover:scale-105 transition-transform">
-                <i class="fab fa-react text-4xl text-white"></i>
-                <h3 class="text-xl font-semibold mt-4 text-white">React</h3>
-                <p class="text-gray-300 mt-2">Experienced in building dynamic user interfaces with React.</p>
-            </div>
+            <?php if (!empty($skills)): ?>
+                <?php foreach ($skills as $skill): ?>
+                <div class="bg-gray-700 p-6 rounded-lg shadow-md text-center hover:scale-105 transition-transform">
+                    <i class="<?= esc($skill->icon ?? 'fas fa-code') ?> text-4xl text-white"></i>
+                    <h3 class="text-xl font-semibold mt-4 text-white"><?= esc($skill->name) ?></h3>
+                    <p class="text-gray-300 mt-2"><?= esc($skill->description ?? '') ?></p>
+                </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-span-full text-center text-gray-500 py-12">No skills added yet.</div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
@@ -64,84 +55,29 @@
             <button data-filter="Tailwind" class="project-filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">Tailwind</button>
         </div>
         <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform" data-tags="Laravel,MySQL,Payment Gateway">
-                <img src="https://placehold.co/400x200/4A5568/FFFFFF/png?text=E-Commerce+Platform" alt="E-Commerce Platform" class="w-full h-48 object-cover" />
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">E-Commerce Platform</h3>
-                    <p class="text-gray-300 mb-4">Built with Laravel and MySQL. Features include product management, cart, and payment integration.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Laravel</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">MySQL</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Payment Gateway</span>
+            <?php if (!empty($projects)): ?>
+                <?php foreach ($projects as $project): ?>
+                <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform"
+                     data-tags="<?= esc(implode(',', array_map(function($t) { return $t->name; }, $projectTechnologies[$project->id] ?? []))) ?>">
+                    <img src="<?= esc($project->featured_image ?? 'https://placehold.co/400x200/4A5568/FFFFFF/png?text=' . urlencode($project->title)) ?>"
+                         alt="<?= esc($project->title) ?>" class="w-full h-48 object-cover" />
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-2"><?= esc($project->title) ?></h3>
+                        <p class="text-gray-300 mb-4"><?= esc($project->excerpt ?? $project->description ?? '') ?></p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <?php if (!empty($projectTechnologies[$project->id])): ?>
+                                <?php foreach ($projectTechnologies[$project->id] as $tech): ?>
+                                <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm"><?= esc($tech->name) ?></span>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                        <a href="/projects/<?= esc($project->slug) ?>" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
                     </div>
-                    <a href="/projects/e-commerce-platform" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
                 </div>
-            </div>
-            <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform" data-tags="Next.js,Laravel,Markdown">
-                <img src="https://placehold.co/400x200/4A5568/FFFFFF/png?text=Blog+CMS" alt="Blog CMS" class="w-full h-48 object-cover" />
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Blog CMS</h3>
-                    <p class="text-gray-300 mb-4">A content management system built with Next.js and Laravel.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Next.js</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Laravel</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Markdown</span>
-                    </div>
-                    <a href="/projects/blog-cms" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
-                </div>
-            </div>
-            <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform" data-tags="Next.js,MySQL,Drag & Drop">
-                <img src="https://placehold.co/400x200/4A5568/FFFFFF/png?text=Task+Management+App" alt="Task Management App" class="w-full h-48 object-cover" />
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Task Management App</h3>
-                    <p class="text-gray-300 mb-4">A task management tool built with Next.js and MySQL.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Next.js</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">MySQL</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Drag & Drop</span>
-                    </div>
-                    <a href="/projects/task-management-app" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
-                </div>
-            </div>
-            <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform" data-tags="Laravel,Livewire,MySQL">
-                <img src="https://placehold.co/400x200/4A5568/FFFFFF/png?text=Inventory+System" alt="Inventory System" class="w-full h-48 object-cover" />
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Inventory Management System</h3>
-                    <p class="text-gray-300 mb-4">Real-time inventory tracking with Laravel and Livewire.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Laravel</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Livewire</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">MySQL</span>
-                    </div>
-                    <a href="/projects/inventory-system" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
-                </div>
-            </div>
-            <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform" data-tags="Next.js,Laravel,Map API">
-                <img src="https://placehold.co/400x200/4A5568/FFFFFF/png?text=Real+Estate+Portal" alt="Real Estate Portal" class="w-full h-48 object-cover" />
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Real Estate Portal</h3>
-                    <p class="text-gray-300 mb-4">Property listing platform with search, filters, and map integration.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Next.js</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Laravel</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Map API</span>
-                    </div>
-                    <a href="/projects/real-estate-portal" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
-                </div>
-            </div>
-            <div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform" data-tags="React,Chart.js,Laravel">
-                <img src="https://placehold.co/400x200/4A5568/FFFFFF/png?text=Analytics+Dashboard" alt="Analytics Dashboard" class="w-full h-48 object-cover" />
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-white mb-2">Analytics Dashboard</h3>
-                    <p class="text-gray-300 mb-4">Data visualization dashboard with real-time charts and reporting.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">React</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Chart.js</span>
-                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">Laravel</span>
-                    </div>
-                    <a href="/projects/analytics-dashboard" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
-                </div>
-            </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-span-full text-center text-gray-500 py-12">No projects published yet.</div>
+            <?php endif; ?>
         </div>
         <div class="text-center mt-10">
             <a href="/projects" class="bg-gray-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-600 transition">View All Projects</a>
@@ -163,72 +99,22 @@
             <button data-filter="React" class="article-filter-btn px-4 py-2 rounded-full text-sm font-medium transition bg-gray-700 text-white hover:bg-gray-600">React</button>
         </div>
         <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="UML,Diagrams">
-                <div class="p-6">
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">UML</span>
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Diagrams</span>
+            <?php if (!empty($articles)): ?>
+                <?php foreach ($articles as $article): ?>
+                <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="">
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm"><?= esc($article->category_name ?? 'Article') ?></span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2"><?= esc($article->title) ?></h3>
+                        <p class="text-gray-300 mb-4"><?= esc($article->excerpt ?? '') ?></p>
+                        <a href="/articles/<?= esc($article->slug) ?>" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
                     </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Activity Diagram Overview</h3>
-                    <p class="text-gray-300 mb-4">Learn how to create activity diagrams for your projects.</p>
-                    <a href="/articles/activity-diagram-overview" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
-                </div>
-            </article>
-            <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="UML,Diagrams">
-                <div class="p-6">
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">UML</span>
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Diagrams</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Collaboration Diagram Overview</h3>
-                    <p class="text-gray-300 mb-4">Understand collaboration diagrams in UML.</p>
-                    <a href="/articles/collaboration-diagram-overview" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
-                </div>
-            </article>
-            <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="UML,Diagrams">
-                <div class="p-6">
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">UML</span>
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Diagrams</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Sequence Diagram Overview</h3>
-                    <p class="text-gray-300 mb-4">Explore sequence diagrams and their uses.</p>
-                    <a href="/articles/sequence-diagram-overview" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
-                </div>
-            </article>
-            <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="Laravel,Tutorial">
-                <div class="p-6">
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Laravel</span>
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Tutorial</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Getting Started with Laravel</h3>
-                    <p class="text-gray-300 mb-4">A beginner-friendly guide to building your first Laravel application.</p>
-                    <a href="/articles/getting-started-with-laravel" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
-                </div>
-            </article>
-            <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="Next.js,Tutorial">
-                <div class="p-6">
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Next.js</span>
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Tutorial</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Next.js for Beginners</h3>
-                    <p class="text-gray-300 mb-4">Learn the fundamentals of Next.js and server-side rendering.</p>
-                    <a href="/articles/nextjs-for-beginners" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
-                </div>
-            </article>
-            <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="MySQL,Tutorial">
-                <div class="p-6">
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">MySQL</span>
-                        <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Tutorial</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">MySQL Query Optimization</h3>
-                    <p class="text-gray-300 mb-4">Tips and techniques for writing faster MySQL queries.</p>
-                    <a href="/articles/mysql-query-optimization" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
-                </div>
-            </article>
+                </article>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <div class="col-span-full text-center text-gray-500 py-12">No articles published yet.</div>
+            <?php endif; ?>
         </div>
         <div class="text-center mt-10">
             <a href="/articles" class="bg-gray-700 text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-600 transition">View All Articles</a>

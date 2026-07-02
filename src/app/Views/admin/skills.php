@@ -45,7 +45,12 @@
                                     <p class="text-xs text-gray-400 mt-0.5 line-clamp-2"><?= esc($skill->description ?? '') ?></p>
                                 </div>
                                 <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
-                                    <a href="<?= site_url('/admin/skills/' . $skill->id . '/edit') ?>" class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition" title="Edit"><i class="fas fa-pen text-xs"></i></a>
+                                    <button type="button" class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition" title="Edit"
+                                        data-modal-toggle="editSkillModal"
+                                        data-id="<?= $skill->id ?>"
+                                        data-name="<?= esc($skill->name) ?>"
+                                        data-icon="<?= esc($skill->icon ?? '') ?>"
+                                        data-description="<?= esc($skill->description ?? '') ?>"><i class="fas fa-pen text-xs"></i></button>
                                     <form method="post" action="<?= site_url('/admin/skills/' . $skill->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
                                         <?= csrf_field() ?>
                                         <button type="submit" class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
@@ -57,12 +62,9 @@
                     <?php endforeach; ?>
                 </div>
 
-                <?php if ($pager): ?>
-                <div class="mb-4 flex items-center justify-between">
-                    <p class="text-sm text-gray-500"><?= $pager->getTotal() ?> total</p>
-                    <?= $pager->links() ?>
+                <div class="mb-4">
+                    <p class="text-sm text-gray-500"><?= count($skills) ?> total</p>
                 </div>
-                <?php endif; ?>
 
                 <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
                     <h3 class="text-white font-semibold text-sm mb-4">Add New Skill</h3>
@@ -94,5 +96,78 @@
         </div>
     </div>
 
+    <div id="editSkillModal" class="fixed inset-0 z-50 hidden bg-black/60 flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-xl border border-gray-700 w-full max-w-lg p-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-white font-semibold">Edit Skill</h3>
+                <button type="button" class="text-gray-500 hover:text-white transition" data-modal-close="editSkillModal"><i class="fas fa-times"></i></button>
+            </div>
+            <form method="post" action="" id="editSkillForm" class="space-y-4">
+                <?= csrf_field() ?>
+                <input type="hidden" name="_method" value="PUT">
+                <div>
+                    <label for="edit-icon" class="block text-sm font-medium text-gray-300 mb-1.5">Icon</label>
+                    <input type="text" id="edit-icon" name="icon" placeholder="fab fa-laravel"
+                        class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
+                    <p class="text-xs text-gray-500 mt-1">e.g. <code class="text-lime-400">fab fa-laravel</code>, <code class="text-lime-400">fas fa-database</code></p>
+                </div>
+                <div>
+                    <label for="edit-name" class="block text-sm font-medium text-gray-300 mb-1.5">Name</label>
+                    <input type="text" id="edit-name" name="name" placeholder="Laravel" required
+                        class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
+                </div>
+                <div>
+                    <label for="edit-description" class="block text-sm font-medium text-gray-300 mb-1.5">Description</label>
+                    <textarea id="edit-description" name="description" rows="2" placeholder="PHP framework for web artisans..."
+                        class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500 resize-none"></textarea>
+                </div>
+                <div class="flex items-center gap-3 pt-2">
+                    <button type="submit" class="bg-lime-500 text-gray-900 font-semibold px-6 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm">Update Skill</button>
+                    <button type="button" class="bg-gray-700 text-gray-300 font-medium px-6 py-2.5 rounded-lg hover:bg-gray-600 transition text-sm" data-modal-close="editSkillModal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('editSkillModal');
+        const form = document.getElementById('editSkillForm');
+        const nameInput = document.getElementById('edit-name');
+        const iconInput = document.getElementById('edit-icon');
+        const descInput = document.getElementById('edit-description');
+
+        function openModal(btn) {
+            const id = btn.dataset.id;
+            form.action = '/admin/skills/' + id;
+            nameInput.value = btn.dataset.name || '';
+            iconInput.value = btn.dataset.icon || '';
+            descInput.value = btn.dataset.description || '';
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+        }
+
+        document.querySelectorAll('[data-modal-toggle="editSkillModal"]').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                openModal(this);
+            });
+        });
+
+        document.querySelectorAll('[data-modal-close="editSkillModal"]').forEach(function(btn) {
+            btn.addEventListener('click', closeModal);
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        });
+    });
+    </script>
 </body>
 </html>
