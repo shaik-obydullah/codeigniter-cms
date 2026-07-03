@@ -30,7 +30,7 @@ class Skills extends BaseController
             'description' => $this->request->getPost('description'),
         ]);
 
-        return redirect()->to('/admin/skills')->with('message', 'Skill created successfully.');
+        return redirect()->to('/dashboard/skills')->with('message', 'Skill created successfully.');
     }
 
     public function update(int $id)
@@ -55,7 +55,7 @@ class Skills extends BaseController
             'description' => $this->request->getPost('description'),
         ]);
 
-        return redirect()->to('/admin/skills')->with('message', 'Skill updated successfully.');
+        return redirect()->to('/dashboard/skills')->with('message', 'Skill updated successfully.');
     }
 
     public function delete(int $id)
@@ -68,6 +68,6 @@ class Skills extends BaseController
 
         model('SkillModel')->delete($id);
 
-        return redirect()->to('/admin/skills')->with('message', 'Skill deleted successfully.');
+        return redirect()->to('/dashboard/skills')->with('message', 'Skill deleted successfully.');
     }
 }

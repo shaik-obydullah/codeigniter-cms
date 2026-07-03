@@ -34,7 +34,7 @@ class Tags extends BaseController
             'color' => $this->request->getPost('color'),
         ]);
 
-        return redirect()->to('/admin/tags')->with('message', 'Tag created successfully.');
+        return redirect()->to('/dashboard/tags')->with('message', 'Tag created successfully.');
     }
 
     public function update(int $id)
@@ -62,7 +62,7 @@ class Tags extends BaseController
             'color' => $this->request->getPost('color'),
         ]);
 
-        return redirect()->to('/admin/tags')->with('message', 'Tag updated successfully.');
+        return redirect()->to('/dashboard/tags')->with('message', 'Tag updated successfully.');
     }
 
     public function delete(int $id)
@@ -75,6 +75,6 @@ class Tags extends BaseController
 
         model('TagModel')->delete($id);
 
-        return redirect()->to('/admin/tags')->with('message', 'Tag deleted successfully.');
+        return redirect()->to('/dashboard/tags')->with('message', 'Tag deleted successfully.');
     }
 }

@@ -4,7 +4,7 @@
         <h2 class="text-white font-semibold text-lg"><?= $pageTitle ?></h2>
     </div>
     <div class="flex items-center gap-4">
-        <a href="<?= site_url('/admin/notifications') ?>" class="text-gray-400 hover:text-white relative">
+        <a href="<?= site_url('/dashboard/notifications') ?>" class="text-gray-400 hover:text-white relative">
             <i class="fas fa-bell text-lg"></i>
             <?php if ($unreadCount > 0): ?>
                 <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] flex items-center justify-center text-white font-medium"><?= $unreadCount ?></span>

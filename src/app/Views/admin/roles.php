@@ -23,7 +23,7 @@
                     <div class="mb-4 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm"><?= esc(session('error')) ?></div>
                 <?php endif; ?>
 
-                <form method="post" action="<?= site_url('/admin/roles') ?>">
+                <form method="post" action="<?= site_url('/dashboard/roles') ?>">
                     <?= csrf_field() ?>
 
                     <?php foreach ($groups as $group => $info): ?>

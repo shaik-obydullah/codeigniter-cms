@@ -25,7 +25,7 @@
                         <button class="px-3 py-1.5 rounded-lg bg-lime-500 text-gray-900 text-sm font-medium">All</button>
                         <button class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm border border-gray-700">Unread (<?= $unreadCount ?>)</button>
                     </div>
-                    <form method="post" action="<?= site_url('/admin/notifications/read-all') ?>">
+                    <form method="post" action="<?= site_url('/dashboard/notifications/read-all') ?>">
                         <?= csrf_field() ?>
                         <button type="submit" class="text-sm text-gray-400 hover:text-white transition"><i class="fas fa-check-double mr-1.5"></i>Mark All as Read</button>
                     </form>
@@ -45,7 +45,7 @@
                                 <p class="text-xs text-gray-400 mt-0.5"><?= esc($notification->message) ?></p>
                             </div>
                             <?php if (!$notification->is_read): ?>
-                            <form method="post" action="<?= site_url('/admin/notifications/' . $notification->id . '/read') ?>">
+                            <form method="post" action="<?= site_url('/dashboard/notifications/' . $notification->id . '/read') ?>">
                                 <?= csrf_field() ?>
                                 <button type="submit" class="text-gray-600 hover:text-white transition shrink-0" title="Mark Read"><i class="fas fa-check text-xs"></i></button>
                             </form>

@@ -75,7 +75,7 @@ class Articles extends BaseController
             $articleId
         );
 
-        return redirect()->to('/admin/articles')->with('message', 'Article created successfully.');
+        return redirect()->to('/dashboard/articles')->with('message', 'Article created successfully.');
     }
 
     public function edit(int $id)
@@ -158,7 +158,7 @@ class Articles extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/articles')->with('message', 'Article updated successfully.');
+        return redirect()->to('/dashboard/articles')->with('message', 'Article updated successfully.');
     }
 
     public function delete(int $id)
@@ -180,6 +180,6 @@ class Articles extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/articles')->with('message', 'Article deleted successfully.');
+        return redirect()->to('/dashboard/articles')->with('message', 'Article deleted successfully.');
     }
 }

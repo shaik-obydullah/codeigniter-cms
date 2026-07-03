@@ -55,7 +55,7 @@
                                     data-slug="<?= esc($category->slug) ?>"
                                     data-icon="<?= esc($category->icon ?? '') ?>"
                                     data-description="<?= esc($category->description ?? '') ?>"><i class="fas fa-pen text-xs"></i></button>
-                                <form method="post" action="<?= site_url('/admin/categories/' . $category->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
+                                <form method="post" action="<?= site_url('/dashboard/categories/' . $category->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
                                     <?= csrf_field() ?>
                                     <button type="submit" class="p-1.5 text-gray-500 hover:text-red-400 hover:bg-gray-700 rounded-lg transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
                                 </form>
@@ -72,7 +72,7 @@
 
                 <div class="mt-6 bg-gray-800 rounded-xl border border-gray-700 p-5">
                     <h3 class="text-white font-semibold text-sm mb-4">Add New Category</h3>
-                    <form method="post" action="<?= site_url('/admin/categories') ?>">
+                    <form method="post" action="<?= site_url('/dashboard/categories') ?>">
                         <?= csrf_field() ?>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
@@ -154,7 +154,7 @@
         const descInput = document.getElementById('edit-cat-description');
 
         function openModal(btn) {
-            form.action = '/admin/categories/' + btn.dataset.id;
+            form.action = '/dashboard/categories/' + btn.dataset.id;
             nameInput.value = btn.dataset.name || '';
             slugInput.value = btn.dataset.slug || '';
             iconInput.value = btn.dataset.icon || '';

@@ -17,9 +17,8 @@ $routes->get('/terms', 'Pages::terms');
 
 service('auth')->routes($routes);
 
-$routes->group('/admin', ['filter' => 'admin-access'], static function ($routes) {
+$routes->group('/dashboard', ['filter' => 'admin-access'], static function ($routes) {
     $routes->get('', '\App\Controllers\Admin\Dashboard::index');
-    $routes->get('dashboard', '\App\Controllers\Admin\Dashboard::index');
 
     $routes->get('users', '\App\Controllers\Admin\Users::index');
     $routes->get('users/create', '\App\Controllers\Admin\Users::create');

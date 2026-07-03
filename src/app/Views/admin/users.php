@@ -28,7 +28,7 @@
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fas fa-search text-sm"></i></span>
                         <input type="text" placeholder="Search users..." class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
                     </div>
-                    <a href="<?= site_url('/admin/users/create') ?>" class="flex items-center gap-2 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm shrink-0"><i class="fas fa-plus"></i> New User</a>
+                    <a href="<?= site_url('/dashboard/users/create') ?>" class="flex items-center gap-2 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm shrink-0"><i class="fas fa-plus"></i> New User</a>
                 </div>
 
                 <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
@@ -68,8 +68,8 @@
                                     <td class="px-5 py-4 text-gray-400 whitespace-nowrap"><?= $userItem->created_at ? date('M j, Y', strtotime($userItem->created_at)) : '—' ?></td>
                                     <td class="px-5 py-4 text-right">
                                         <div class="flex items-center justify-end gap-1">
-                                            <a href="<?= site_url('/admin/users/' . $userItem->id . '/edit') ?>" class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="Edit"><i class="fas fa-pen text-sm"></i></a>
-                                            <form method="post" action="<?= site_url('/admin/users/' . $userItem->id . '/delete') ?>" onsubmit="return confirm('Delete this user?')" class="inline">
+                                            <a href="<?= site_url('/dashboard/users/' . $userItem->id . '/edit') ?>" class="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition" title="Edit"><i class="fas fa-pen text-sm"></i></a>
+                                            <form method="post" action="<?= site_url('/dashboard/users/' . $userItem->id . '/delete') ?>" onsubmit="return confirm('Delete this user?')" class="inline">
                                                 <?= csrf_field() ?>
                                                 <button type="submit" class="p-1.5 text-gray-500 hover:text-red-400 hover:bg-gray-700 rounded-lg transition" title="Delete"><i class="fas fa-trash text-sm"></i></button>
                                             </form>

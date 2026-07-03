@@ -43,7 +43,7 @@ class Comments extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/comments')->with('message', 'Comment approved.');
+        return redirect()->to('/dashboard/comments')->with('message', 'Comment approved.');
     }
 
     public function delete(int $id)
@@ -64,6 +64,6 @@ class Comments extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/comments')->with('message', 'Comment deleted successfully.');
+        return redirect()->to('/dashboard/comments')->with('message', 'Comment deleted successfully.');
     }
 }

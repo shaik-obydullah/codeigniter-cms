@@ -61,7 +61,7 @@ class Users extends BaseController
             $userId
         );
 
-        return redirect()->to('/admin/users')->with('message', 'User created successfully.');
+        return redirect()->to('/dashboard/users')->with('message', 'User created successfully.');
     }
 
     public function edit(int $id)
@@ -128,7 +128,7 @@ class Users extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/users')->with('message', 'User updated successfully.');
+        return redirect()->to('/dashboard/users')->with('message', 'User updated successfully.');
     }
 
     public function delete(int $id)
@@ -149,6 +149,6 @@ class Users extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/users')->with('message', 'User deleted successfully.');
+        return redirect()->to('/dashboard/users')->with('message', 'User deleted successfully.');
     }
 }

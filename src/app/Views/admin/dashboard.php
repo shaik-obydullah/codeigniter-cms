@@ -65,7 +65,7 @@
                     <div class="lg:col-span-2 bg-gray-800 rounded-xl border border-gray-700">
                         <div class="px-5 py-4 border-b border-gray-700 flex items-center justify-between">
                             <h3 class="text-white font-semibold">Recent Activity</h3>
-                            <a href="<?= site_url('/admin/activities') ?>" class="text-lime-500 text-sm hover:text-lime-400 transition">View All</a>
+                            <a href="<?= site_url('/dashboard/activities') ?>" class="text-lime-500 text-sm hover:text-lime-400 transition">View All</a>
                         </div>
                         <div class="divide-y divide-gray-700">
                             <?php if (!empty($recentActivity)): ?>
@@ -84,10 +84,10 @@
                     <div class="bg-gray-800 rounded-xl border border-gray-700">
                         <div class="px-5 py-4 border-b border-gray-700"><h3 class="text-white font-semibold">Quick Actions</h3></div>
                         <div class="p-5 space-y-3">
-                            <a href="<?= site_url('/admin/articles/create') ?>" class="flex items-center gap-3 px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"><i class="fas fa-plus text-lime-400 text-sm w-5 text-center"></i><span class="text-sm text-white">New Article</span></a>
-                            <a href="<?= site_url('/admin/projects/create') ?>" class="flex items-center gap-3 px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"><i class="fas fa-plus text-blue-400 text-sm w-5 text-center"></i><span class="text-sm text-white">New Project</span></a>
-                            <a href="<?= site_url('/admin/users/create') ?>" class="flex items-center gap-3 px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"><i class="fas fa-user-plus text-purple-400 text-sm w-5 text-center"></i><span class="text-sm text-white">Add User</span></a>
-                            <a href="<?= site_url('/admin/site-settings') ?>" class="flex items-center gap-3 px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"><i class="fas fa-gear text-amber-400 text-sm w-5 text-center"></i><span class="text-sm text-white">Site Settings</span></a>
+                            <a href="<?= site_url('/dashboard/articles/create') ?>" class="flex items-center gap-3 px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"><i class="fas fa-plus text-lime-400 text-sm w-5 text-center"></i><span class="text-sm text-white">New Article</span></a>
+                            <a href="<?= site_url('/dashboard/projects/create') ?>" class="flex items-center gap-3 px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"><i class="fas fa-plus text-blue-400 text-sm w-5 text-center"></i><span class="text-sm text-white">New Project</span></a>
+                            <a href="<?= site_url('/dashboard/users/create') ?>" class="flex items-center gap-3 px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"><i class="fas fa-user-plus text-purple-400 text-sm w-5 text-center"></i><span class="text-sm text-white">Add User</span></a>
+                            <a href="<?= site_url('/dashboard/site-settings') ?>" class="flex items-center gap-3 px-4 py-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition"><i class="fas fa-gear text-amber-400 text-sm w-5 text-center"></i><span class="text-sm text-white">Site Settings</span></a>
                         </div>
                     </div>
                 </div>

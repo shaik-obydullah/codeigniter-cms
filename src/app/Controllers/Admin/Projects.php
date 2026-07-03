@@ -69,7 +69,7 @@ class Projects extends BaseController
             $projectId
         );
 
-        return redirect()->to('/admin/projects')->with('message', 'Project created successfully.');
+        return redirect()->to('/dashboard/projects')->with('message', 'Project created successfully.');
     }
 
     public function edit(int $id)
@@ -140,7 +140,7 @@ class Projects extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/projects')->with('message', 'Project updated successfully.');
+        return redirect()->to('/dashboard/projects')->with('message', 'Project updated successfully.');
     }
 
     public function delete(int $id)
@@ -162,6 +162,6 @@ class Projects extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/projects')->with('message', 'Project deleted successfully.');
+        return redirect()->to('/dashboard/projects')->with('message', 'Project deleted successfully.');
     }
 }

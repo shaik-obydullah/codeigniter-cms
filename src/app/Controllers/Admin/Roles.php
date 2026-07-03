@@ -57,6 +57,6 @@ class Roles extends BaseController
             null
         );
 
-        return redirect()->to('/admin/roles')->with('message', 'Permissions updated successfully.');
+        return redirect()->to('/dashboard/roles')->with('message', 'Permissions updated successfully.');
     }
 }

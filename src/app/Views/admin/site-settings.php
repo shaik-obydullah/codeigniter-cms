@@ -23,7 +23,7 @@
                     <div class="mb-4 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm"><?= esc(session('error')) ?></div>
                 <?php endif; ?>
 
-                <form method="post" action="<?= site_url('/admin/site-settings') ?>" class="max-w-3xl space-y-6">
+                <form method="post" action="<?= site_url('/dashboard/site-settings') ?>" class="max-w-3xl space-y-6">
                     <?= csrf_field() ?>
 
                     <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">

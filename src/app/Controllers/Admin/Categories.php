@@ -43,7 +43,7 @@ class Categories extends BaseController
             model('CategoryModel')->getInsertID()
         );
 
-        return redirect()->to('/admin/categories')->with('message', 'Category created successfully.');
+        return redirect()->to('/dashboard/categories')->with('message', 'Category created successfully.');
     }
 
     public function update(int $id)
@@ -81,7 +81,7 @@ class Categories extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/categories')->with('message', 'Category updated successfully.');
+        return redirect()->to('/dashboard/categories')->with('message', 'Category updated successfully.');
     }
 
     public function delete(int $id)
@@ -102,6 +102,6 @@ class Categories extends BaseController
             $id
         );
 
-        return redirect()->to('/admin/categories')->with('message', 'Category deleted successfully.');
+        return redirect()->to('/dashboard/categories')->with('message', 'Category deleted successfully.');
     }
 }

@@ -27,12 +27,12 @@
                 <?php endif; ?>
 
                 <div class="flex items-center gap-2 text-sm text-gray-500 mb-5">
-                    <a href="<?= site_url('/admin/articles') ?>" class="hover:text-lime-400 transition">Articles</a>
+                    <a href="<?= site_url('/dashboard/articles') ?>" class="hover:text-lime-400 transition">Articles</a>
                     <i class="fas fa-chevron-right text-[10px]"></i>
                     <span class="text-gray-300"><?= isset($editArticle) ? 'Edit Article' : 'New Article' ?></span>
                 </div>
 
-                <form method="post" action="<?= site_url('/admin/articles' . (isset($editArticle) ? '/' . $editArticle->id : '')) ?>" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <form method="post" action="<?= site_url('/dashboard/articles' . (isset($editArticle) ? '/' . $editArticle->id : '')) ?>" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <?= csrf_field() ?>
                     <?php if (isset($editArticle)): ?><input type="hidden" name="_method" value="PUT"><?php endif; ?>
 

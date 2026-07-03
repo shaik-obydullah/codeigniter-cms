@@ -51,7 +51,7 @@
                                         data-name="<?= esc($skill->name) ?>"
                                         data-icon="<?= esc($skill->icon ?? '') ?>"
                                         data-description="<?= esc($skill->description ?? '') ?>"><i class="fas fa-pen text-xs"></i></button>
-                                    <form method="post" action="<?= site_url('/admin/skills/' . $skill->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
+                                    <form method="post" action="<?= site_url('/dashboard/skills/' . $skill->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
                                         <?= csrf_field() ?>
                                         <button type="submit" class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
                                     </form>
@@ -68,7 +68,7 @@
 
                 <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
                     <h3 class="text-white font-semibold text-sm mb-4">Add New Skill</h3>
-                    <form method="post" action="<?= site_url('/admin/skills') ?>" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <form method="post" action="<?= site_url('/dashboard/skills') ?>" class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <?= csrf_field() ?>
                         <div>
                             <label for="icon" class="block text-sm font-medium text-gray-300 mb-1.5">Icon</label>
@@ -139,7 +139,7 @@
 
         function openModal(btn) {
             const id = btn.dataset.id;
-            form.action = '/admin/skills/' + id;
+            form.action = '/dashboard/skills/' + id;
             nameInput.value = btn.dataset.name || '';
             iconInput.value = btn.dataset.icon || '';
             descInput.value = btn.dataset.description || '';

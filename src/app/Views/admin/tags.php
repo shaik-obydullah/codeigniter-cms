@@ -45,7 +45,7 @@
                             data-name="<?= esc($tag->name) ?>"
                             data-slug="<?= esc($tag->slug) ?>"
                             data-color="<?= esc($tag->color ?? '') ?>"><i class="fas fa-pen text-xs"></i></button>
-                        <form method="post" action="<?= site_url('/admin/tags/' . $tag->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
+                        <form method="post" action="<?= site_url('/dashboard/tags/' . $tag->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
                             <?= csrf_field() ?>
                             <button type="submit" class="hover:text-red-400 transition"><i class="fas fa-xmark text-xs"></i></button>
                         </form>
@@ -59,7 +59,7 @@
 
                 <div class="mt-6 bg-gray-800 rounded-xl border border-gray-700 p-5">
                     <h3 class="text-white font-semibold text-sm mb-4">Add New Tag</h3>
-                    <form method="post" action="<?= site_url('/admin/tags') ?>">
+                    <form method="post" action="<?= site_url('/dashboard/tags') ?>">
                         <?= csrf_field() ?>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div>
@@ -150,7 +150,7 @@
         if (addColorInput && addColorHexInput) syncColor(addColorInput, addColorHexInput);
 
         function openModal(btn) {
-            form.action = '/admin/tags/' + btn.dataset.id;
+            form.action = '/dashboard/tags/' + btn.dataset.id;
             nameInput.value = btn.dataset.name || '';
             slugInput.value = btn.dataset.slug || '';
             const c = btn.dataset.color || '#3b82f6';

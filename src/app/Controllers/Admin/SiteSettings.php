@@ -47,6 +47,6 @@ class SiteSettings extends BaseController
             null
         );
 
-        return redirect()->to('/admin/site-settings')->with('message', 'Settings updated successfully.');
+        return redirect()->to('/dashboard/site-settings')->with('message', 'Settings updated successfully.');
     }
 }

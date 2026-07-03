@@ -51,12 +51,12 @@
                                 <div class="flex items-center gap-2">
                                     <span class="text-xs text-gray-600"><?= time_elapsed_string($comment->created_at) ?></span>
                                     <?php if ($comment->status === 'pending'): ?>
-                                    <form method="post" action="<?= site_url('/admin/comments/' . $comment->id . '/approve') ?>" class="inline">
+                                    <form method="post" action="<?= site_url('/dashboard/comments/' . $comment->id . '/approve') ?>" class="inline">
                                         <?= csrf_field() ?>
                                         <button type="submit" class="p-1 text-gray-500 hover:text-green-400 transition" title="Approve"><i class="fas fa-check text-xs"></i></button>
                                     </form>
                                     <?php endif; ?>
-                                    <form method="post" action="<?= site_url('/admin/comments/' . $comment->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
+                                    <form method="post" action="<?= site_url('/dashboard/comments/' . $comment->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
                                         <?= csrf_field() ?>
                                         <button type="submit" class="p-1 text-gray-500 hover:text-red-400 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
                                     </form>

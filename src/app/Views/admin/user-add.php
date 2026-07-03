@@ -27,12 +27,12 @@
                 <?php endif; ?>
 
                 <div class="flex items-center gap-2 text-sm text-gray-500 mb-5">
-                    <a href="<?= site_url('/admin/users') ?>" class="hover:text-lime-400 transition">Users</a>
+                    <a href="<?= site_url('/dashboard/users') ?>" class="hover:text-lime-400 transition">Users</a>
                     <i class="fas fa-chevron-right text-[10px]"></i>
                     <span class="text-gray-300"><?= isset($editUser) ? 'Edit User' : 'New User' ?></span>
                 </div>
 
-                <form method="post" action="<?= site_url('/admin/users' . (isset($editUser) ? '/' . $editUser->id : '')) ?>" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <form method="post" action="<?= site_url('/dashboard/users' . (isset($editUser) ? '/' . $editUser->id : '')) ?>" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <?= csrf_field() ?>
                     <?php if (isset($editUser)): ?><input type="hidden" name="_method" value="PUT"><?php endif; ?>
 
@@ -97,7 +97,7 @@
 
                         <div class="flex gap-2">
                             <button type="submit" class="flex-1 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm">Save</button>
-                            <a href="<?= site_url('/admin/users') ?>" class="flex-1 bg-gray-700 text-gray-300 font-medium px-4 py-2.5 rounded-lg hover:bg-gray-600 transition text-sm text-center">Cancel</a>
+                            <a href="<?= site_url('/dashboard/users') ?>" class="flex-1 bg-gray-700 text-gray-300 font-medium px-4 py-2.5 rounded-lg hover:bg-gray-600 transition text-sm text-center">Cancel</a>
                         </div>
                     </div>
                 </form>
