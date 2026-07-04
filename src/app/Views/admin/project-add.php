@@ -88,6 +88,11 @@
                                     <input type="date" name="published_at" value="<?= old('published_at', isset($editProject->published_at) ? date('Y-m-d', strtotime($editProject->published_at)) : date('Y-m-d')) ?>"
                                         class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent" />
                                 </div>
+                                <div>
+                                    <label class="text-xs text-gray-500 block mb-1">Serial</label>
+                                    <input type="number" name="serial" value="<?= old('serial', $editProject->serial ?? 0) ?>" min="0"
+                                        class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent" />
+                                </div>
                             </div>
                             <div class="flex gap-2 mt-4">
                                 <button type="submit" class="flex-1 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm">Save</button>

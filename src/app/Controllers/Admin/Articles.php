@@ -24,7 +24,7 @@ class Articles extends BaseController
                 ->groupEnd();
         }
 
-        $articles = $model->orderBy('created_at', 'DESC')->paginate(15);
+        $articles = $model->orderBy('serial', 'ASC')->paginate(15);
 
         $pager = $model->pager;
         $pager->only(['status', 'search']);
@@ -76,6 +76,7 @@ class Articles extends BaseController
             'published_at'     => $this->request->getPost('published_at'),
             'meta_title'       => $this->request->getPost('meta_title'),
             'meta_description' => $this->request->getPost('meta_description'),
+            'serial'           => $this->request->getPost('serial') ?? 0,
         ]);
 
         $articleId = $articleModel->getInsertID();
@@ -181,6 +182,7 @@ class Articles extends BaseController
             'published_at'     => $this->request->getPost('published_at'),
             'meta_title'       => $this->request->getPost('meta_title'),
             'meta_description' => $this->request->getPost('meta_description'),
+            'serial'           => $this->request->getPost('serial') ?? 0,
         ]);
 
         $categories = $this->request->getPost('categories');

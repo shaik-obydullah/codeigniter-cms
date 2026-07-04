@@ -49,6 +49,7 @@
                         <table class="w-full text-sm">
                             <thead>
                                 <tr class="border-b border-gray-700 bg-gray-800/50">
+                                    <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider w-12">#</th>
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Title</th>
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Category</th>
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Status</th>
@@ -59,6 +60,7 @@
                             <tbody class="divide-y divide-gray-700">
                                 <?php foreach ($articles as $article): ?>
                                 <tr class="hover:bg-gray-700/50 transition">
+                                    <td class="px-5 py-4 text-gray-400"><?= $article->serial ?></td>
                                     <td class="px-5 py-4"><span class="text-white font-medium"><?= esc($article->title) ?></span></td>
                                     <td class="px-5 py-4 text-gray-400"><?= esc($article->category_name ?? '') ?></td>
                                     <td class="px-5 py-4">

@@ -13,7 +13,7 @@ class ProjectModel extends Model
     protected $allowedFields = [
         'user_id', 'title', 'slug', 'description', 'excerpt',
         'url', 'featured_image', 'status', 'published_at',
-        'meta_title', 'meta_description',
+        'meta_title', 'meta_description', 'serial',
     ];
 
     public function getCategories(int $projectId)

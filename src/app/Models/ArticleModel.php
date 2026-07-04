@@ -13,7 +13,7 @@ class ArticleModel extends Model
     protected $allowedFields = [
         'user_id', 'title', 'slug', 'content', 'excerpt',
         'featured_image', 'status', 'published_at',
-        'meta_title', 'meta_description',
+        'meta_title', 'meta_description', 'serial',
     ];
 
     public function getCategories(int $articleId)

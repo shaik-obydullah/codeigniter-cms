@@ -47,6 +47,7 @@
                         <table class="w-full text-sm">
                             <thead>
                                 <tr class="border-b border-gray-700 bg-gray-800/50">
+                                    <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider w-12">#</th>
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Title</th>
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Status</th>
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Date</th>
@@ -56,6 +57,7 @@
                             <tbody class="divide-y divide-gray-700">
                                 <?php foreach ($projects as $project): ?>
                                 <tr class="hover:bg-gray-700/50 transition">
+                                    <td class="px-5 py-4 text-gray-400"><?= $project->serial ?></td>
                                     <td class="px-5 py-4"><span class="text-white font-medium"><?= esc($project->title) ?></span></td>
                                     <td class="px-5 py-4">
                                         <?php $statusColors = ['published' => 'bg-green-500/10 text-green-400', 'draft' => 'bg-yellow-500/10 text-yellow-400']; ?>

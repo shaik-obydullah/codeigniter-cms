@@ -24,7 +24,7 @@ class Projects extends BaseController
                 ->groupEnd();
         }
 
-        $projects = $model->orderBy('created_at', 'DESC')->paginate(15);
+        $projects = $model->orderBy('serial', 'ASC')->paginate(15);
 
         $pager = $model->pager;
         $pager->only(['status', 'search']);
@@ -75,6 +75,7 @@ class Projects extends BaseController
             'published_at'     => $this->request->getPost('published_at'),
             'meta_title'       => $this->request->getPost('meta_title'),
             'meta_description' => $this->request->getPost('meta_description'),
+            'serial'           => $this->request->getPost('serial') ?? 0,
         ]);
 
         $projectId = $projectModel->getInsertID();
@@ -181,6 +182,7 @@ class Projects extends BaseController
             'published_at'     => $this->request->getPost('published_at'),
             'meta_title'       => $this->request->getPost('meta_title'),
             'meta_description' => $this->request->getPost('meta_description'),
+            'serial'           => $this->request->getPost('serial') ?? 0,
         ]);
 
         $categories = $this->request->getPost('categories');

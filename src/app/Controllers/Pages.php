@@ -14,7 +14,7 @@ class Pages extends BaseController
 
     public function projects()
     {
-        $projects = model(ProjectModel::class)->where('status', 'published')->orderBy('created_at', 'DESC')->paginate(12);
+        $projects = model(ProjectModel::class)->where('status', 'published')->orderBy('serial', 'ASC')->paginate(12);
 
         return view('projects', [
             'projects' => $projects,
@@ -37,7 +37,7 @@ class Pages extends BaseController
 
     public function articles()
     {
-        $articles    = model(ArticleModel::class)->where('status', 'published')->orderBy('created_at', 'DESC')->paginate(12);
+        $articles    = model(ArticleModel::class)->where('status', 'published')->orderBy('serial', 'ASC')->paginate(12);
         $categories  = model('CategoryModel')->orderBy('name', 'ASC')->findAll();
         $tags        = model('TagModel')->orderBy('name', 'ASC')->findAll();
 
