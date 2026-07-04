@@ -14,16 +14,10 @@ class Home extends BaseController
         $projects = model(ProjectModel::class)->where('status', 'published')->orderBy('created_at', 'DESC')->findAll(6);
         $articles = model(ArticleModel::class)->where('status', 'published')->orderBy('created_at', 'DESC')->findAll(6);
 
-        $projectTechnologies = [];
-        foreach ($projects as $project) {
-            $projectTechnologies[$project->id] = model(ProjectModel::class)->getTechnologies($project->id);
-        }
-
         return view('home', [
-            'skills'              => $skills,
-            'projects'            => $projects,
-            'projectTechnologies' => $projectTechnologies,
-            'articles'            => $articles,
+            'skills'   => $skills,
+            'projects' => $projects,
+            'articles' => $articles,
         ]);
     }
 }

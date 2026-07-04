@@ -16,15 +16,9 @@ class Pages extends BaseController
     {
         $projects = model(ProjectModel::class)->where('status', 'published')->orderBy('created_at', 'DESC')->paginate(12);
 
-        $projectTechnologies = [];
-        foreach ($projects as $project) {
-            $projectTechnologies[$project->id] = model(ProjectModel::class)->getTechnologies($project->id);
-        }
-
         return view('projects', [
-            'projects'            => $projects,
-            'projectTechnologies' => $projectTechnologies,
-            'pager'               => model(ProjectModel::class)->pager,
+            'projects' => $projects,
+            'pager'    => model(ProjectModel::class)->pager,
         ]);
     }
 
@@ -36,11 +30,8 @@ class Pages extends BaseController
             return redirect()->to('/projects')->with('error', 'Project not found.');
         }
 
-        $technologies = model(ProjectModel::class)->getTechnologies($project->id);
-
         return view('project_details', [
-            'project'      => $project,
-            'technologies' => $technologies,
+            'project' => $project,
         ]);
     }
 

@@ -11,13 +11,6 @@
                     <span class="mx-2">/</span>
                     <span class="text-gray-300"><?= esc($project->title) ?></span>
                 </nav>
-                <?php if (!empty($technologies)): ?>
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <?php foreach ($technologies as $tech): ?>
-                    <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm"><?= esc($tech->name) ?></span>
-                    <?php endforeach; ?>
-                </div>
-                <?php endif; ?>
                 <h1 class="text-4xl md:text-5xl font-bold text-white mb-4"><?= esc($project->title) ?></h1>
                 <div class="flex items-center text-gray-400 text-sm mb-8 flex-wrap gap-x-4">
                     <span><i class="far fa-calendar-alt mr-2"></i><?= date('M j, Y', strtotime($project->created_at)) ?></span>
@@ -47,16 +40,7 @@
                             <?php endif; ?>
                         </ul>
                     </div>
-                    <?php if (!empty($technologies)): ?>
-                    <div class="bg-gray-800 rounded-xl p-5">
-                        <h3 class="text-lg font-semibold text-white mb-4">Tech Stack</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <?php foreach ($technologies as $tech): ?>
-                            <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm"><?= esc($tech->name) ?></span>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                    <?php endif; ?>
+
                 </div>
             </aside>
         </div>
