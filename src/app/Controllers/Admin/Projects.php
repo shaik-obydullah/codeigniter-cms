@@ -8,22 +8,45 @@ class Projects extends BaseController
 {
     public function index()
     {
-        $projects = model(ProjectModel::class)->orderBy('created_at', 'DESC')->paginate(15);
+        $status = $this->request->getGet('status');
+        $search = $this->request->getGet('search');
+
+        $model = model(ProjectModel::class);
+
+        if ($status && in_array($status, ['published', 'draft'])) {
+            $model->where('status', $status);
+        }
+
+        if ($search) {
+            $model->groupStart()
+                ->like('title', $search)
+                ->orLike('description', $search)
+                ->groupEnd();
+        }
+
+        $projects = $model->orderBy('created_at', 'DESC')->paginate(15);
+
+        $pager = $model->pager;
+        $pager->only(['status', 'search']);
 
         return $this->adminView('projects', [
-            'pageTitle' => 'Projects',
-            'projects'  => $projects,
-            'pager'     => model(ProjectModel::class)->pager,
+            'pageTitle'     => 'Projects',
+            'projects'      => $projects,
+            'pager'         => $pager,
+            'currentStatus' => $status,
+            'search'        => $search,
         ]);
     }
 
     public function create()
     {
-        $technologies = model('TechnologyModel')->findAll();
+        $categories = model('CategoryModel')->findAll();
+        $tags       = model('TagModel')->findAll();
 
         return $this->adminView('project-add', [
-            'pageTitle'    => 'New Project',
-            'technologies' => $technologies,
+            'pageTitle'  => 'New Project',
+            'categories' => $categories,
+            'tags'       => $tags,
         ]);
     }
 
@@ -44,10 +67,10 @@ class Projects extends BaseController
             'user_id'          => auth()->id(),
             'title'            => $this->request->getPost('title'),
             'slug'             => $this->request->getPost('slug'),
-            'description'      => $this->request->getPost('description'),
+            'description'      => $this->request->getPost('content'),
             'excerpt'          => $this->request->getPost('excerpt'),
             'url'              => $this->request->getPost('url'),
-            'featured_image'   => $this->request->getPost('featured_image'),
+            'featured_image'   => $this->handleFeaturedImageUpload(),
             'status'           => $this->request->getPost('status') ?? 'draft',
             'published_at'     => $this->request->getPost('published_at'),
             'meta_title'       => $this->request->getPost('meta_title'),
@@ -56,9 +79,14 @@ class Projects extends BaseController
 
         $projectId = $projectModel->getInsertID();
 
-        $technologies = $this->request->getPost('technologies');
-        if (is_array($technologies)) {
-            $projectModel->syncTechnologies($projectId, $technologies);
+        $categories = $this->request->getPost('categories');
+        if (is_array($categories)) {
+            $projectModel->syncCategories($projectId, $categories);
+        }
+
+        $tags = $this->request->getPost('tags');
+        if (is_array($tags)) {
+            $projectModel->syncTags($projectId, $tags);
         }
 
         $this->activityModel->log(
@@ -81,18 +109,26 @@ class Projects extends BaseController
             return redirect()->back()->with('error', 'Project not found.');
         }
 
-        $technologies        = model('TechnologyModel')->findAll();
-        $projectTechnologies = $projectModel->getTechnologies($id);
+        $categories        = model('CategoryModel')->findAll();
+        $projectCategories = $projectModel->getCategories($id);
+        $tags              = model('TagModel')->findAll();
+        $projectTags       = $projectModel->getTags($id);
 
-        $selectedTechnologies = array_map(function ($tech) {
-            return $tech->id;
-        }, $projectTechnologies);
+        $selectedCategories = array_map(function ($cat) {
+            return $cat->id;
+        }, $projectCategories);
+
+        $selectedTags = array_map(function ($tag) {
+            return $tag->id;
+        }, $projectTags);
 
         return $this->adminView('project-add', [
-            'pageTitle'          => 'Edit Project',
-            'editProject'        => $project,
-            'technologies'       => $technologies,
-            'projectTechnologies' => $selectedTechnologies,
+            'pageTitle'         => 'Edit Project',
+            'editProject'       => $project,
+            'categories'        => $categories,
+            'projectCategories' => $selectedCategories,
+            'tags'              => $tags,
+            'projectTags'       => $selectedTags,
         ]);
     }
 
@@ -114,22 +150,47 @@ class Projects extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
+        $featuredImage = $this->handleFeaturedImageUpload();
+
+        if (!$featuredImage) {
+            $file = $this->request->getFile('featured_image');
+            $existing = $this->request->getPost('existing_featured_image');
+
+            if ($file && !$file->isValid() && $file->getError() !== UPLOAD_ERR_NO_FILE) {
+                $featuredImage = $project->featured_image;
+            } else {
+                $featuredImage = $existing !== '' ? $existing : null;
+            }
+        }
+
+        if ($project->featured_image && $featuredImage !== $project->featured_image) {
+            $oldPath = FCPATH . $project->featured_image;
+            if (file_exists($oldPath)) {
+                unlink($oldPath);
+            }
+        }
+
         $projectModel->update($id, [
             'title'            => $this->request->getPost('title'),
             'slug'             => $this->request->getPost('slug'),
-            'description'      => $this->request->getPost('description'),
+            'description'      => $this->request->getPost('content'),
             'excerpt'          => $this->request->getPost('excerpt'),
             'url'              => $this->request->getPost('url'),
-            'featured_image'   => $this->request->getPost('featured_image'),
+            'featured_image'   => $featuredImage,
             'status'           => $this->request->getPost('status') ?? 'draft',
             'published_at'     => $this->request->getPost('published_at'),
             'meta_title'       => $this->request->getPost('meta_title'),
             'meta_description' => $this->request->getPost('meta_description'),
         ]);
 
-        $technologies = $this->request->getPost('technologies');
-        if (is_array($technologies)) {
-            $projectModel->syncTechnologies($id, $technologies);
+        $categories = $this->request->getPost('categories');
+        if (is_array($categories)) {
+            $projectModel->syncCategories($id, $categories);
+        }
+
+        $tags = $this->request->getPost('tags');
+        if (is_array($tags)) {
+            $projectModel->syncTags($id, $tags);
         }
 
         $this->activityModel->log(
@@ -143,6 +204,21 @@ class Projects extends BaseController
         return redirect()->to('/dashboard/projects')->with('message', 'Project updated successfully.');
     }
 
+    private function handleFeaturedImageUpload(): ?string
+    {
+        $file = $this->request->getFile('featured_image');
+
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            if (str_starts_with($file->getMimeType(), 'image/') && $file->getSizeByUnit('mb') <= 2) {
+                $newName = $file->getRandomName();
+                $file->move(FCPATH . 'uploads/projects', $newName);
+                return 'uploads/projects/' . $newName;
+            }
+        }
+
+        return null;
+    }
+
     public function delete(int $id)
     {
         $projectModel = model(ProjectModel::class);
@@ -150,6 +226,13 @@ class Projects extends BaseController
 
         if (!$project) {
             return redirect()->back()->with('error', 'Project not found.');
+        }
+
+        if ($project->featured_image) {
+            $path = FCPATH . $project->featured_image;
+            if (file_exists($path)) {
+                unlink($path);
+            }
         }
 
         $projectModel->delete($id);

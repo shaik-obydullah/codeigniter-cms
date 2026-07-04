@@ -8,12 +8,33 @@ class Articles extends BaseController
 {
     public function index()
     {
-        $articles = model(ArticleModel::class)->orderBy('created_at', 'DESC')->paginate(15);
+        $status = $this->request->getGet('status');
+        $search = $this->request->getGet('search');
+
+        $model = model(ArticleModel::class);
+
+        if ($status && in_array($status, ['published', 'draft', 'scheduled'])) {
+            $model->where('status', $status);
+        }
+
+        if ($search) {
+            $model->groupStart()
+                ->like('title', $search)
+                ->orLike('content', $search)
+                ->groupEnd();
+        }
+
+        $articles = $model->orderBy('created_at', 'DESC')->paginate(15);
+
+        $pager = $model->pager;
+        $pager->only(['status', 'search']);
 
         return $this->adminView('articles', [
-            'pageTitle' => 'Articles',
-            'articles'  => $articles,
-            'pager'     => model(ArticleModel::class)->pager,
+            'pageTitle'     => 'Articles',
+            'articles'      => $articles,
+            'pager'         => $pager,
+            'currentStatus' => $status,
+            'search'        => $search,
         ]);
     }
 
@@ -42,13 +63,15 @@ class Articles extends BaseController
 
         $articleModel = model(ArticleModel::class);
 
+        $featuredImage = $this->handleFeaturedImageUpload();
+
         $articleModel->insert([
             'user_id'          => auth()->id(),
             'title'            => $this->request->getPost('title'),
             'slug'             => $this->request->getPost('slug'),
             'content'          => $this->request->getPost('content'),
             'excerpt'          => $this->request->getPost('excerpt'),
-            'featured_image'   => $this->request->getPost('featured_image'),
+            'featured_image'   => $featuredImage,
             'status'           => $this->request->getPost('status') ?? 'draft',
             'published_at'     => $this->request->getPost('published_at'),
             'meta_title'       => $this->request->getPost('meta_title'),
@@ -128,12 +151,32 @@ class Articles extends BaseController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
+        $featuredImage = $this->handleFeaturedImageUpload();
+
+        if (!$featuredImage) {
+            $file = $this->request->getFile('featured_image');
+            $existing = $this->request->getPost('existing_featured_image');
+
+            if ($file && !$file->isValid() && $file->getError() !== UPLOAD_ERR_NO_FILE) {
+                $featuredImage = $article->featured_image;
+            } else {
+                $featuredImage = $existing !== '' ? $existing : null;
+            }
+        }
+
+        if ($article->featured_image && $featuredImage !== $article->featured_image) {
+            $oldPath = FCPATH . $article->featured_image;
+            if (file_exists($oldPath)) {
+                unlink($oldPath);
+            }
+        }
+
         $articleModel->update($id, [
             'title'            => $this->request->getPost('title'),
             'slug'             => $this->request->getPost('slug'),
             'content'          => $this->request->getPost('content'),
             'excerpt'          => $this->request->getPost('excerpt'),
-            'featured_image'   => $this->request->getPost('featured_image'),
+            'featured_image'   => $featuredImage,
             'status'           => $this->request->getPost('status') ?? 'draft',
             'published_at'     => $this->request->getPost('published_at'),
             'meta_title'       => $this->request->getPost('meta_title'),
@@ -161,6 +204,21 @@ class Articles extends BaseController
         return redirect()->to('/dashboard/articles')->with('message', 'Article updated successfully.');
     }
 
+    private function handleFeaturedImageUpload(): ?string
+    {
+        $file = $this->request->getFile('featured_image');
+
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            if (str_starts_with($file->getMimeType(), 'image/') && $file->getSizeByUnit('mb') <= 2) {
+                $newName = $file->getRandomName();
+                $file->move(FCPATH . 'uploads/articles', $newName);
+                return 'uploads/articles/' . $newName;
+            }
+        }
+
+        return null;
+    }
+
     public function delete(int $id)
     {
         $articleModel = model(ArticleModel::class);
@@ -168,6 +226,13 @@ class Articles extends BaseController
 
         if (!$article) {
             return redirect()->back()->with('error', 'Article not found.');
+        }
+
+        if ($article->featured_image) {
+            $path = FCPATH . $article->featured_image;
+            if (file_exists($path)) {
+                unlink($path);
+            }
         }
 
         $articleModel->delete($id);

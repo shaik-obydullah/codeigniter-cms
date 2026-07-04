@@ -24,18 +24,21 @@
                 <?php endif; ?>
 
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-                    <div class="relative w-full sm:w-72">
+                    <form method="get" action="<?= site_url('/dashboard/projects') ?>" class="relative w-full sm:w-72">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500"><i class="fas fa-search text-sm"></i></span>
-                        <input type="text" placeholder="Search projects..."
+                        <input type="text" name="search" placeholder="Search projects..." value="<?= esc($search ?? '') ?>"
                             class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
-                    </div>
+                    </form>
                     <a href="<?= site_url('/dashboard/projects/create') ?>" class="flex items-center gap-2 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm shrink-0"><i class="fas fa-plus"></i> New Project</a>
                 </div>
 
+                <?php $allActive = !$currentStatus ? 'bg-lime-500 text-gray-900' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700'; ?>
+                <?php $pubActive = $currentStatus === 'published' ? 'bg-lime-500 text-gray-900' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700'; ?>
+                <?php $draftActive = $currentStatus === 'draft' ? 'bg-lime-500 text-gray-900' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700'; ?>
                 <div class="flex flex-wrap items-center gap-2 mb-4">
-                    <button class="px-3 py-1.5 rounded-lg bg-lime-500 text-gray-900 text-sm font-medium">All</button>
-                    <button class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm border border-gray-700">Published</button>
-                    <button class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm border border-gray-700">Drafts</button>
+                    <a href="<?= site_url('/dashboard/projects') ?>" class="px-3 py-1.5 rounded-lg text-sm font-medium transition <?= $allActive ?>">All</a>
+                    <a href="<?= site_url('/dashboard/projects?status=published') ?>" class="px-3 py-1.5 rounded-lg text-sm font-medium transition <?= $pubActive ?>">Published</a>
+                    <a href="<?= site_url('/dashboard/projects?status=draft') ?>" class="px-3 py-1.5 rounded-lg text-sm font-medium transition <?= $draftActive ?>">Drafts</a>
                     <span class="text-gray-600 text-sm ml-auto hidden sm:inline"><?= $pager ? $pager->getTotal() . ' total' : '' ?></span>
                 </div>
 
@@ -45,7 +48,6 @@
                             <thead>
                                 <tr class="border-b border-gray-700 bg-gray-800/50">
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Title</th>
-                                    <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Technologies</th>
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Status</th>
                                     <th class="text-left px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Date</th>
                                     <th class="text-right px-5 py-3.5 text-gray-400 font-medium text-xs uppercase tracking-wider">Actions</th>
@@ -55,15 +57,6 @@
                                 <?php foreach ($projects as $project): ?>
                                 <tr class="hover:bg-gray-700/50 transition">
                                     <td class="px-5 py-4"><span class="text-white font-medium"><?= esc($project->title) ?></span></td>
-                                    <td class="px-5 py-4">
-                                        <div class="flex flex-wrap gap-1.5">
-                                            <?php if (!empty($project->technologies)): ?>
-                                                <?php foreach ($project->technologies as $tech): ?>
-                                                    <span class="px-2 py-0.5 rounded text-xs bg-gray-700 text-gray-300"><?= esc($tech) ?></span>
-                                                <?php endforeach; ?>
-                                            <?php endif; ?>
-                                        </div>
-                                    </td>
                                     <td class="px-5 py-4">
                                         <?php $statusColors = ['published' => 'bg-green-500/10 text-green-400', 'draft' => 'bg-yellow-500/10 text-yellow-400']; ?>
                                         <span class="px-2.5 py-1 rounded-full text-xs font-medium <?= $statusColors[$project->status] ?? 'bg-gray-500/10 text-gray-400' ?>"><?= esc(ucfirst($project->status)) ?></span>

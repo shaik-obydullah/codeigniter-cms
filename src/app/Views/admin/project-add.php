@@ -6,6 +6,7 @@
     <title><?= $pageTitle ?> - Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <script src="https://cdn.tiny.cloud/1/aj9gbow0nmvhy0xkztehf7xdc6xk9pq13ojnykygqkuncalz/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans">
 
@@ -32,7 +33,7 @@
                     <span class="text-gray-300"><?= isset($editProject) ? 'Edit Project' : 'New Project' ?></span>
                 </div>
 
-                <form method="post" action="<?= site_url('/dashboard/projects' . (isset($editProject) ? '/' . $editProject->id : '')) ?>" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <form method="post" action="<?= site_url('/dashboard/projects' . (isset($editProject) ? '/' . $editProject->id : '')) ?>" class="grid grid-cols-1 lg:grid-cols-3 gap-6" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <?php if (isset($editProject)): ?><input type="hidden" name="_method" value="PUT"><?php endif; ?>
 
@@ -54,9 +55,7 @@
 
                         <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
                             <label for="content" class="block text-sm font-medium text-gray-300 mb-1.5">Description</label>
-                            <textarea id="content" name="content" rows="12" placeholder="Describe your project..."
-                                class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500 resize-y"><?= old('content', $editProject->content ?? '') ?></textarea>
-                            <p class="text-xs text-gray-500 mt-1.5">Supports Markdown formatting</p>
+                            <textarea id="content" name="content"><?= old('content', $editProject->content ?? '') ?></textarea>
                         </div>
 
                         <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
@@ -97,14 +96,28 @@
                         </div>
 
                         <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
-                            <h3 class="text-white font-semibold text-sm mb-3">Technologies</h3>
+                            <h3 class="text-white font-semibold text-sm mb-3">Categories</h3>
                             <div class="space-y-2">
-                                <?php foreach ($technologies as $tech): ?>
+                                <?php foreach ($categories as $cat): ?>
                                 <label class="flex items-center gap-2.5 cursor-pointer">
-                                    <input type="checkbox" name="technologies[]" value="<?= $tech->id ?>"
-                                        <?= in_array($tech->id, $projectTechnologies ?? []) ? 'checked' : '' ?>
+                                    <input type="checkbox" name="categories[]" value="<?= $cat->id ?>"
+                                        <?= in_array($cat->id, $projectCategories ?? []) ? 'checked' : '' ?>
                                         class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
-                                    <span class="text-sm text-gray-300"><?= esc($tech->name) ?></span>
+                                    <span class="text-sm text-gray-300"><?= esc($cat->name) ?></span>
+                                </label>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
+                            <h3 class="text-white font-semibold text-sm mb-3">Tags</h3>
+                            <div class="space-y-2">
+                                <?php foreach ($tags as $tag): ?>
+                                <label class="flex items-center gap-2.5 cursor-pointer">
+                                    <input type="checkbox" name="tags[]" value="<?= $tag->id ?>"
+                                        <?= in_array($tag->id, $projectTags ?? []) ? 'checked' : '' ?>
+                                        class="w-4 h-4 rounded bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
+                                    <span class="text-sm text-gray-300"><?= esc($tag->name) ?></span>
                                 </label>
                                 <?php endforeach; ?>
                             </div>
@@ -112,11 +125,19 @@
 
                         <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
                             <h3 class="text-white font-semibold text-sm mb-3">Featured Image</h3>
-                            <div class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center hover:border-lime-500 transition cursor-pointer">
+                            <div class="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center hover:border-lime-500 transition cursor-pointer" id="featuredImageBox" onclick="document.getElementById('featuredImageInput').click()">
                                 <i class="fas fa-cloud-upload-alt text-2xl text-gray-500 mb-2"></i>
                                 <p class="text-sm text-gray-500">Click to upload</p>
                                 <p class="text-xs text-gray-600 mt-1">PNG, JPG up to 2MB</p>
                             </div>
+                            <input type="file" id="featuredImageInput" name="featured_image" accept="image/png,image/jpeg,image/gif,image/webp" class="hidden" onchange="previewFeaturedImage(this)" />
+                            <?php if (isset($editProject) && $editProject->featured_image): ?>
+                            <div class="mt-3 relative inline-block">
+                                <img src="<?= base_url($editProject->featured_image) ?>" alt="Featured" class="w-full h-32 object-cover rounded-lg" />
+                                <button type="button" onclick="removeFeaturedImage(this)" class="absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-500">&times;</button>
+                            </div>
+                            <input type="hidden" name="existing_featured_image" value="<?= $editProject->featured_image ?>" />
+                            <?php endif; ?>
                         </div>
 
                         <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
@@ -140,5 +161,96 @@
         </div>
     </div>
 
+<script>
+function slugify(text) {
+    return text.toString().toLowerCase()
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+}
+
+(function() {
+    let titleInput = document.getElementById('title');
+    let slugInput = document.getElementById('slug');
+    let slugEdited = slugInput.value.length > 0;
+
+    if (titleInput && slugInput) {
+        slugInput.addEventListener('input', function() {
+            slugEdited = true;
+        });
+
+        titleInput.addEventListener('input', function() {
+            if (!slugEdited) {
+                slugInput.value = slugify(this.value);
+            }
+        });
+    }
+})();
+
+function previewFeaturedImage(input) {
+    let box = document.getElementById('featuredImageBox');
+    let container = box.parentElement;
+    let existing = container.querySelector('.mt-3');
+
+    if (existing) existing.remove();
+
+    if (input.files && input.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let preview = document.createElement('div');
+            preview.className = 'mt-3 relative inline-block';
+            preview.innerHTML = '<img src="' + e.target.result + '" alt="Preview" class="w-full h-32 object-cover rounded-lg" />' +
+                '<button type="button" onclick="this.parentElement.remove(); document.getElementById(\'featuredImageInput\').value=\'\'" class="absolute top-1 right-1 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-500">&times;</button>';
+            container.appendChild(preview);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function removeFeaturedImage(btn) {
+    btn.closest('.mt-3').remove();
+    let hidden = document.querySelector('input[name="existing_featured_image"]');
+    if (hidden) hidden.value = '';
+}
+
+tinymce.init({
+    selector: '#content',
+    plugins: 'code table link image lists',
+    toolbar: 'undo redo | styles | bold italic underline | bullist numlist | alignleft aligncenter alignright | link image | code',
+    skin: 'oxide-dark',
+    content_css: 'dark',
+    height: 500,
+    branding: false,
+    promotion: false,
+    file_picker_callback: function (callback, value, meta) {
+        if (meta.filetype === 'image') {
+            let url = '<?= site_url('/dashboard/media/browse') ?>';
+            fetch(url)
+                .then(r => r.json())
+                .then(items => {
+                    let picker = window.open('', 'mediaPicker', 'width=900,height=600');
+                    let html = '<!DOCTYPE html><html><head><title>Media Library</title>';
+                    html += '<script src=\"https://cdn.tailwindcss.com\"><\/script>';
+                    html += '<style>body{background:#111;color:#ccc;padding:20px;}';
+                    html += '.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;}';
+                    html += '.item{border:1px solid #333;border-radius:8px;overflow:hidden;cursor:pointer;transition:.2s;}';
+                    html += '.item:hover{border-color:#84cc16;}.item img{width:100%;aspect-ratio:1;object-fit:cover;}';
+                    html += '.item p{padding:6px 8px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0;}</style><\/head><body>';
+                    html += '<h2 class=\"text-lg font-semibold mb-4 text-white\">Select an Image</h2><div class=\"grid\">';
+                    items.forEach(function(item) {
+                        html += '<div class=\"item\" onclick=\"opener.tinymce.activeEditor.execCommand(\'mceInsertContent\',false,\'<img src=' + item.url + ' alt=\\\'\\\' />\');window.close();\">';
+                        html += '<img src=\"' + item.url + '\" alt=\"\" /><p>' + item.name + '</p></div>';
+                    });
+                    html += '</div></body></html>';
+                    picker.document.write(html);
+                    picker.document.close();
+                });
+        }
+    }
+});
+</script>
 </body>
 </html>

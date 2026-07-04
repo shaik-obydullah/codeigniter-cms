@@ -16,27 +16,51 @@ class ProjectModel extends Model
         'meta_title', 'meta_description',
     ];
 
-    public function getTechnologies(int $projectId)
+    public function getCategories(int $projectId)
     {
-        return $this->db->table('project_technologies')
-            ->select('technologies.*')
-            ->join('technologies', 'technologies.id = project_technologies.technology_id')
-            ->where('project_technologies.project_id', $projectId)
+        return $this->db->table('project_categories')
+            ->select('categories.*')
+            ->join('categories', 'categories.id = project_categories.category_id')
+            ->where('project_categories.project_id', $projectId)
             ->get()
             ->getResult();
     }
 
-    public function syncTechnologies(int $projectId, array $technologyIds): void
+    public function syncCategories(int $projectId, array $categoryIds): void
     {
-        $this->db->table('project_technologies')->where('project_id', $projectId)->delete();
+        $this->db->table('project_categories')->where('project_id', $projectId)->delete();
 
         $data = [];
-        foreach ($technologyIds as $technologyId) {
-            $data[] = ['project_id' => $projectId, 'technology_id' => $technologyId];
+        foreach ($categoryIds as $categoryId) {
+            $data[] = ['project_id' => $projectId, 'category_id' => $categoryId];
         }
 
         if (!empty($data)) {
-            $this->db->table('project_technologies')->insertBatch($data);
+            $this->db->table('project_categories')->insertBatch($data);
+        }
+    }
+
+    public function getTags(int $projectId)
+    {
+        return $this->db->table('project_tags')
+            ->select('tags.*')
+            ->join('tags', 'tags.id = project_tags.tag_id')
+            ->where('project_tags.project_id', $projectId)
+            ->get()
+            ->getResult();
+    }
+
+    public function syncTags(int $projectId, array $tagIds): void
+    {
+        $this->db->table('project_tags')->where('project_id', $projectId)->delete();
+
+        $data = [];
+        foreach ($tagIds as $tagId) {
+            $data[] = ['project_id' => $projectId, 'tag_id' => $tagId];
+        }
+
+        if (!empty($data)) {
+            $this->db->table('project_tags')->insertBatch($data);
         }
     }
 }

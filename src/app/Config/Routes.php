@@ -40,14 +40,14 @@ $routes->group('/dashboard', ['filter' => 'admin-access'], static function ($rou
     $routes->get('articles/create', '\App\Controllers\Admin\Articles::create');
     $routes->post('articles', '\App\Controllers\Admin\Articles::store');
     $routes->get('articles/(:num)/edit', '\App\Controllers\Admin\Articles::edit/$1');
-    $routes->post('articles/(:num)', '\App\Controllers\Admin\Articles::update/$1');
+    $routes->match(['post', 'put'], 'articles/(:num)', '\App\Controllers\Admin\Articles::update/$1');
     $routes->post('articles/(:num)/delete', '\App\Controllers\Admin\Articles::delete/$1');
 
     $routes->get('projects', '\App\Controllers\Admin\Projects::index');
     $routes->get('projects/create', '\App\Controllers\Admin\Projects::create');
     $routes->post('projects', '\App\Controllers\Admin\Projects::store');
     $routes->get('projects/(:num)/edit', '\App\Controllers\Admin\Projects::edit/$1');
-    $routes->post('projects/(:num)', '\App\Controllers\Admin\Projects::update/$1');
+    $routes->match(['post', 'put'], 'projects/(:num)', '\App\Controllers\Admin\Projects::update/$1');
     $routes->post('projects/(:num)/delete', '\App\Controllers\Admin\Projects::delete/$1');
 
     $routes->get('categories', '\App\Controllers\Admin\Categories::index');
@@ -71,4 +71,9 @@ $routes->group('/dashboard', ['filter' => 'admin-access'], static function ($rou
     $routes->post('skills', '\App\Controllers\Admin\Skills::store');
     $routes->post('skills/(:num)', '\App\Controllers\Admin\Skills::update/$1');
     $routes->post('skills/(:num)/delete', '\App\Controllers\Admin\Skills::delete/$1');
+
+    $routes->get('media', '\App\Controllers\Admin\Media::index');
+    $routes->post('media/upload', '\App\Controllers\Admin\Media::upload');
+    $routes->post('media/(:num)/delete', '\App\Controllers\Admin\Media::delete/$1');
+    $routes->get('media/browse', '\App\Controllers\Admin\Media::browse');
 });
