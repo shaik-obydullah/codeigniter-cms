@@ -2,5 +2,5 @@
 src/vendor/
 src/writable/
 db_data/
-src/public/uploads/
+src/public/uploads/*
 refactor/
