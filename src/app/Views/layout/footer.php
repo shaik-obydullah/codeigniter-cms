@@ -16,8 +16,16 @@ window.addEventListener("load", () => { document.getElementById("loading").style
 const menuToggle = document.getElementById("menu-toggle");
 const mobileMenu = document.getElementById("mobile-menu");
 if (menuToggle) {
-    menuToggle.addEventListener("click", () => { mobileMenu.classList.toggle("hidden"); });
-    mobileMenu.querySelectorAll("a").forEach((l) => { l.addEventListener("click", () => { mobileMenu.classList.add("hidden"); }); });
+    menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
+        menuToggle.classList.toggle("active");
+    });
+    mobileMenu.querySelectorAll("a").forEach((l) => {
+        l.addEventListener("click", () => {
+            mobileMenu.classList.remove("open");
+            menuToggle.classList.remove("active");
+        });
+    });
 }
 
 const navbar = document.getElementById("navbar");

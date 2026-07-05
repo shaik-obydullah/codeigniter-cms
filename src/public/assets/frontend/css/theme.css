@@ -133,3 +133,135 @@ details[open] summary .chevron {
 .animate-fade-in-up {
   animation: fadeInUp 0.3s ease-out forwards;
 }
+
+/* ======================================================
+    9. Article Content Overrides
+====================================================== */
+
+.prose {
+  --prose-spacing: 1.75rem;
+}
+
+.prose > * + * {
+  margin-top: var(--prose-spacing) !important;
+}
+
+.prose h2 {
+  margin-top: 2.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  margin-top: 2.25rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.prose p {
+  line-height: 1.8;
+  margin-bottom: 0;
+}
+
+.prose code {
+  background: #1e293b;
+  color: #fbbf24;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  background: #0f172a !important;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem !important;
+  margin-top: var(--prose-spacing) !important;
+  margin-bottom: var(--prose-spacing) !important;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose pre code {
+  background: none !important;
+  padding: 0;
+}
+
+.prose blockquote {
+  border-left-color: #84cc16;
+  background: rgba(132, 204, 22, 0.06);
+  padding: 1rem 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-top: var(--prose-spacing) !important;
+  margin-bottom: var(--prose-spacing) !important;
+}
+
+.prose blockquote p {
+  font-style: italic;
+}
+
+.prose ul,
+.prose ol {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.prose li {
+  margin-bottom: 0.4rem;
+}
+
+.prose hr {
+  margin-top: 2.5rem !important;
+  margin-bottom: 2.5rem !important;
+}
+
+.prose img {
+  margin-top: var(--prose-spacing) !important;
+  margin-bottom: var(--prose-spacing) !important;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ======================================================
+    10. Mobile Menu
+====================================================== */
+
+#mobile-menu.open {
+  max-height: 400px;
+}
+
+.menu-bar {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.menu-bar.top { top: 2px; }
+.menu-bar.middle { top: 50%; transform: translateY(-50%); }
+.menu-bar.bottom { bottom: 2px; }
+
+#menu-toggle.active .menu-bar.top {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+#menu-toggle.active .menu-bar.middle {
+  opacity: 0;
+}
+
+#menu-toggle.active .menu-bar.bottom {
+  bottom: 50%;
+  transform: translateY(50%) rotate(-45deg);
+}

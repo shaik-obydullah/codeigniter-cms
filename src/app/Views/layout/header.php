@@ -29,11 +29,13 @@
             <li><a href="/articles" class="<?= $activeNav === 'articles' ? 'text-lime-500' : 'hover:text-white' ?> transition">Articles</a></li>
             <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
         </ul>
-        <button id="menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
-            <i class="fas fa-bars text-2xl"></i>
+        <button id="menu-toggle" class="md:hidden text-white focus:outline-none relative w-6 h-6" aria-label="Toggle menu">
+            <span class="menu-bar top"></span>
+            <span class="menu-bar middle"></span>
+            <span class="menu-bar bottom"></span>
         </button>
     </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50">
+    <div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50">
         <ul class="flex flex-col items-center space-y-4 py-6 text-gray-300 font-medium">
             <li><a href="/about" class="<?= $activeNav === 'about' ? 'text-lime-500' : 'hover:text-white' ?> transition">About</a></li>
             <li><a href="/#skills" class="hover:text-white transition">Skills</a></li>

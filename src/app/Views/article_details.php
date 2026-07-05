@@ -1,6 +1,6 @@
 <?= view('layout/header', ['title' => esc($article->title) . ' - Shaik Obydullah', 'metaKeywords' => 'articles, tutorials', 'activeNav' => 'articles']) ?>
 
-<section class="pt-28 pb-20 bg-gray-900 min-h-screen">
+<section class="pt-28 pb-20 bg-gray-900 min-h-screen overflow-x-hidden">
     <div class="w-full max-w-7xl mx-auto px-6">
         <div class="flex flex-col lg:flex-row gap-10">
             <div class="flex-1 min-w-0">
@@ -31,7 +31,7 @@
                 <?php if ($article->featured_image): ?>
                 <img src="<?= esc($article->featured_image) ?>" alt="<?= esc($article->title) ?>" class="w-full h-72 md:h-96 object-cover rounded-xl mb-8" />
                 <?php endif; ?>
-                <div class="prose prose-invert max-w-none text-gray-300 leading-relaxed space-y-6">
+                <div class="prose prose-invert max-w-none">
                     <?= $article->content ?>
                 </div>
                 <div class="flex items-center gap-4 mt-10 pt-8 border-t border-gray-700">
