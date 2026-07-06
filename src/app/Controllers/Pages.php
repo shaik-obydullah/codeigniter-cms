@@ -29,11 +29,25 @@ class Pages extends BaseController
             }
         }
 
+        $allProjects = $projectModel->where('status', 'published')->orderBy('serial', 'ASC')->findAll();
+        if (!empty($allProjects)) {
+            $allIds = array_map(function ($p) {
+                return $p->id;
+            }, $allProjects);
+            $allCats = $projectModel->getCategoriesForProjects($allIds);
+            $allTagsData = $projectModel->getTagsForProjects($allIds);
+            foreach ($allProjects as $p) {
+                $p->category_name = $allCats[$p->id] ?? '';
+                $p->tags_str = $allTagsData[$p->id] ?? '';
+            }
+        }
+
         $allCategories = model('CategoryModel')->orderBy('name', 'ASC')->findAll();
         $allTags       = model('TagModel')->orderBy('name', 'ASC')->findAll();
 
         return view('projects', [
             'projects'    => $projects,
+            'allProjects' => $allProjects,
             'categories'  => $allCategories,
             'tags'        => $allTags,
             'pager'       => $projectModel->pager,
@@ -76,14 +90,28 @@ class Pages extends BaseController
             }
         }
 
+        $allArticles = $articleModel->where('status', 'published')->orderBy('serial', 'ASC')->findAll();
+        if (!empty($allArticles)) {
+            $allIds = array_map(function ($a) {
+                return $a->id;
+            }, $allArticles);
+            $allCats = $articleModel->getCategoriesForArticles($allIds);
+            $allTagsData = $articleModel->getTagsForArticles($allIds);
+            foreach ($allArticles as $a) {
+                $a->category_name = $allCats[$a->id] ?? '';
+                $a->tags_str = $allTagsData[$a->id] ?? '';
+            }
+        }
+
         $allCategories = model('CategoryModel')->orderBy('name', 'ASC')->findAll();
         $allTags       = model('TagModel')->orderBy('name', 'ASC')->findAll();
 
         return view('articles', [
-            'articles'   => $articles,
-            'categories' => $allCategories,
-            'tags'       => $allTags,
-            'pager'      => $articleModel->pager,
+            'articles'     => $articles,
+            'allArticles'  => $allArticles,
+            'categories'   => $allCategories,
+            'tags'         => $allTags,
+            'pager'        => $articleModel->pager,
         ]);
     }
 
