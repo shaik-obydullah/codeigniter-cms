@@ -62,6 +62,11 @@ class Articles extends BaseController
 
     public function store()
     {
+        $slug = $this->request->getPost('slug');
+        if (empty($slug)) {
+            $slug = url_title($this->request->getPost('title'), '-', true);
+        }
+
         $rules = [
             'title' => 'required|min_length[3]',
             'slug'  => 'required|is_unique[articles.slug]',
@@ -78,7 +83,7 @@ class Articles extends BaseController
         $articleModel->insert([
             'user_id'          => auth()->id(),
             'title'            => $this->request->getPost('title'),
-            'slug'             => $this->request->getPost('slug'),
+            'slug'             => $slug,
             'content'          => $this->request->getPost('content'),
             'excerpt'          => $this->request->getPost('excerpt'),
             'featured_image'   => $featuredImage,
@@ -153,6 +158,11 @@ class Articles extends BaseController
             return redirect()->back()->with('error', 'Article not found.');
         }
 
+        $slug = $this->request->getPost('slug');
+        if (empty($slug)) {
+            $slug = url_title($this->request->getPost('title'), '-', true);
+        }
+
         $rules = [
             'title' => 'required|min_length[3]',
             'slug'  => "required|is_unique[articles.slug,id,{$id}]",
@@ -184,7 +194,7 @@ class Articles extends BaseController
 
         $articleModel->update($id, [
             'title'            => $this->request->getPost('title'),
-            'slug'             => $this->request->getPost('slug'),
+            'slug'             => $slug,
             'content'          => $this->request->getPost('content'),
             'excerpt'          => $this->request->getPost('excerpt'),
             'featured_image'   => $featuredImage,

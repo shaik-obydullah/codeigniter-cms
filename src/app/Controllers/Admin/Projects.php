@@ -52,6 +52,11 @@ class Projects extends BaseController
 
     public function store()
     {
+        $slug = $this->request->getPost('slug');
+        if (empty($slug)) {
+            $slug = url_title($this->request->getPost('title'), '-', true);
+        }
+
         $rules = [
             'title' => 'required|min_length[3]',
             'slug'  => 'required|is_unique[projects.slug]',
@@ -66,7 +71,7 @@ class Projects extends BaseController
         $projectModel->insert([
             'user_id'          => auth()->id(),
             'title'            => $this->request->getPost('title'),
-            'slug'             => $this->request->getPost('slug'),
+            'slug'             => $slug,
             'description'      => $this->request->getPost('content'),
             'excerpt'          => $this->request->getPost('excerpt'),
             'url'              => $this->request->getPost('url'),
@@ -142,6 +147,11 @@ class Projects extends BaseController
             return redirect()->back()->with('error', 'Project not found.');
         }
 
+        $slug = $this->request->getPost('slug');
+        if (empty($slug)) {
+            $slug = url_title($this->request->getPost('title'), '-', true);
+        }
+
         $rules = [
             'title' => 'required|min_length[3]',
             'slug'  => "required|is_unique[projects.slug,id,{$id}]",
@@ -173,7 +183,7 @@ class Projects extends BaseController
 
         $projectModel->update($id, [
             'title'            => $this->request->getPost('title'),
-            'slug'             => $this->request->getPost('slug'),
+            'slug'             => $slug,
             'description'      => $this->request->getPost('content'),
             'excerpt'          => $this->request->getPost('excerpt'),
             'url'              => $this->request->getPost('url'),

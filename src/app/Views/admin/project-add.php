@@ -180,17 +180,10 @@ function slugify(text) {
 (function() {
     let titleInput = document.getElementById('title');
     let slugInput = document.getElementById('slug');
-    let slugEdited = slugInput.value.length > 0;
 
     if (titleInput && slugInput) {
-        slugInput.addEventListener('input', function() {
-            slugEdited = true;
-        });
-
         titleInput.addEventListener('input', function() {
-            if (!slugEdited) {
-                slugInput.value = slugify(this.value);
-            }
+            slugInput.value = slugify(this.value);
         });
     }
 })();
