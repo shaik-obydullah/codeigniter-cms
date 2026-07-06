@@ -69,7 +69,7 @@ $routes->group('/dashboard', ['filter' => 'admin-access'], static function ($rou
 
     $routes->get('skills', '\App\Controllers\Admin\Skills::index');
     $routes->post('skills', '\App\Controllers\Admin\Skills::store');
-    $routes->post('skills/(:num)', '\App\Controllers\Admin\Skills::update/$1');
+    $routes->match(['post', 'put'], 'skills/(:num)', '\App\Controllers\Admin\Skills::update/$1');
     $routes->post('skills/(:num)/delete', '\App\Controllers\Admin\Skills::delete/$1');
 
     $routes->get('media', '\App\Controllers\Admin\Media::index');

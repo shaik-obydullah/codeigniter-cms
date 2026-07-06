@@ -10,5 +10,5 @@ class SkillModel extends Model
     protected $primaryKey    = 'id';
     protected $returnType    = 'object';
     protected $useTimestamps = true;
-    protected $allowedFields = ['name', 'icon', 'description'];
+    protected $allowedFields = ['name', 'icon', 'description', 'serial'];
 }

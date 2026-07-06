@@ -6,7 +6,7 @@ class Skills extends BaseController
 {
     public function index()
     {
-        $skills = model('SkillModel')->orderBy('name', 'ASC')->findAll();
+        $skills = model('SkillModel')->orderBy('serial', 'ASC')->orderBy('name', 'ASC')->findAll();
 
         return $this->adminView('skills', [
             'pageTitle' => 'Skills',
@@ -28,6 +28,7 @@ class Skills extends BaseController
             'name'        => $this->request->getPost('name'),
             'icon'        => $this->request->getPost('icon'),
             'description' => $this->request->getPost('description'),
+            'serial'      => $this->request->getPost('serial') ?? 0,
         ]);
 
         return redirect()->to('/dashboard/skills')->with('message', 'Skill created successfully.');
@@ -53,6 +54,7 @@ class Skills extends BaseController
             'name'        => $this->request->getPost('name'),
             'icon'        => $this->request->getPost('icon'),
             'description' => $this->request->getPost('description'),
+            'serial'      => $this->request->getPost('serial') ?? 0,
         ]);
 
         return redirect()->to('/dashboard/skills')->with('message', 'Skill updated successfully.');

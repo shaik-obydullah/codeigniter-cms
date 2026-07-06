@@ -40,9 +40,12 @@
                         <div class="w-12 h-12 bg-lime-500/10 rounded-lg flex items-center justify-center text-xl text-lime-400 shrink-0"><i class="<?= esc($skill->icon ?? 'fas fa-code') ?>"></i></div>
                         <div class="min-w-0 flex-1">
                             <div class="flex items-start justify-between gap-2">
-                                <div>
-                                    <h4 class="text-white font-medium text-sm"><?= esc($skill->name) ?></h4>
-                                    <p class="text-xs text-gray-400 mt-0.5 line-clamp-2"><?= esc($skill->description ?? '') ?></p>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-gray-500 font-mono">#<?= esc($skill->serial ?? 0) ?></span>
+                                    <div>
+                                        <h4 class="text-white font-medium text-sm"><?= esc($skill->name) ?></h4>
+                                        <p class="text-xs text-gray-400 mt-0.5 line-clamp-2"><?= esc($skill->description ?? '') ?></p>
+                                    </div>
                                 </div>
                                 <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition shrink-0">
                                     <button type="button" class="p-1.5 text-gray-500 hover:text-lime-400 rounded-lg hover:bg-gray-700 transition" title="Edit"
@@ -50,7 +53,8 @@
                                         data-id="<?= $skill->id ?>"
                                         data-name="<?= esc($skill->name) ?>"
                                         data-icon="<?= esc($skill->icon ?? '') ?>"
-                                        data-description="<?= esc($skill->description ?? '') ?>"><i class="fas fa-pen text-xs"></i></button>
+                                        data-description="<?= esc($skill->description ?? '') ?>"
+                                        data-serial="<?= esc($skill->serial ?? 0) ?>"><i class="fas fa-pen text-xs"></i></button>
                                     <form method="post" action="<?= site_url('/dashboard/skills/' . $skill->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
                                         <?= csrf_field() ?>
                                         <button type="submit" class="p-1.5 text-gray-500 hover:text-red-400 rounded-lg hover:bg-gray-700 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
@@ -68,8 +72,13 @@
 
                 <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
                     <h3 class="text-white font-semibold text-sm mb-4">Add New Skill</h3>
-                    <form method="post" action="<?= site_url('/dashboard/skills') ?>" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <form method="post" action="<?= site_url('/dashboard/skills') ?>" class="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <?= csrf_field() ?>
+                        <div>
+                            <label for="serial" class="block text-sm font-medium text-gray-300 mb-1.5">Serial</label>
+                            <input type="number" id="serial" name="serial" placeholder="0"
+                                class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
+                        </div>
                         <div>
                             <label for="icon" class="block text-sm font-medium text-gray-300 mb-1.5">Icon</label>
                             <input type="text" id="icon" name="icon" placeholder="fab fa-laravel"
@@ -86,7 +95,7 @@
                             <textarea id="description" name="description" rows="1" placeholder="PHP framework for web artisans..."
                                 class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500 resize-none"></textarea>
                         </div>
-                        <div class="md:col-span-3 flex items-center gap-3 pt-2">
+                        <div class="md:col-span-4 flex items-center gap-3 pt-2">
                             <button type="submit" class="bg-lime-500 text-gray-900 font-semibold px-6 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm">Save Skill</button>
                             <button type="reset" class="bg-gray-700 text-gray-300 font-medium px-6 py-2.5 rounded-lg hover:bg-gray-600 transition text-sm">Reset</button>
                         </div>
@@ -105,6 +114,11 @@
             <form method="post" action="" id="editSkillForm" class="space-y-4">
                 <?= csrf_field() ?>
                 <input type="hidden" name="_method" value="PUT">
+                <div>
+                    <label for="edit-serial" class="block text-sm font-medium text-gray-300 mb-1.5">Serial</label>
+                    <input type="number" id="edit-serial" name="serial" placeholder="0"
+                        class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
+                </div>
                 <div>
                     <label for="edit-icon" class="block text-sm font-medium text-gray-300 mb-1.5">Icon</label>
                     <input type="text" id="edit-icon" name="icon" placeholder="fab fa-laravel"
@@ -136,6 +150,7 @@
         const nameInput = document.getElementById('edit-name');
         const iconInput = document.getElementById('edit-icon');
         const descInput = document.getElementById('edit-description');
+        const serialInput = document.getElementById('edit-serial');
 
         function openModal(btn) {
             const id = btn.dataset.id;
@@ -143,6 +158,7 @@
             nameInput.value = btn.dataset.name || '';
             iconInput.value = btn.dataset.icon || '';
             descInput.value = btn.dataset.description || '';
+            serialInput.value = btn.dataset.serial || '0';
             modal.classList.remove('hidden');
         }
 
