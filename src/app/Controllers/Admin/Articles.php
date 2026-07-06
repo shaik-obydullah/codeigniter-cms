@@ -26,6 +26,16 @@ class Articles extends BaseController
 
         $articles = $model->orderBy('serial', 'ASC')->paginate(15);
 
+        if (!empty($articles)) {
+            $articleIds = array_map(function ($a) {
+                return $a->id;
+            }, $articles);
+            $categories = $model->getCategoriesForArticles($articleIds);
+            foreach ($articles as $article) {
+                $article->category_name = $categories[$article->id] ?? '';
+            }
+        }
+
         $pager = $model->pager;
         $pager->only(['status', 'search']);
 
@@ -185,15 +195,15 @@ class Articles extends BaseController
             'serial'           => $this->request->getPost('serial') ?? 0,
         ]);
 
-        $categories = $this->request->getPost('categories');
-        if (is_array($categories)) {
-            $articleModel->syncCategories($id, $categories);
-        }
+        $articleModel->syncCategories(
+            $id,
+            $this->request->getPost('categories') ?? []
+        );
 
-        $tags = $this->request->getPost('tags');
-        if (is_array($tags)) {
-            $articleModel->syncTags($id, $tags);
-        }
+        $articleModel->syncTags(
+            $id,
+            $this->request->getPost('tags') ?? []
+        );
 
         $this->activityModel->log(
             auth()->id(),

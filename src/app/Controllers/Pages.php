@@ -14,38 +14,76 @@ class Pages extends BaseController
 
     public function projects()
     {
-        $projects = model(ProjectModel::class)->where('status', 'published')->orderBy('serial', 'ASC')->paginate(12);
+        $projectModel = model(ProjectModel::class);
+        $projects = $projectModel->where('status', 'published')->orderBy('serial', 'ASC')->paginate(12);
+
+        if (!empty($projects)) {
+            $projectIds = array_map(function ($p) {
+                return $p->id;
+            }, $projects);
+            $categories = $projectModel->getCategoriesForProjects($projectIds);
+            $tags       = $projectModel->getTagsForProjects($projectIds);
+            foreach ($projects as $project) {
+                $project->category_name = $categories[$project->id] ?? '';
+                $project->tags_str      = $tags[$project->id] ?? '';
+            }
+        }
+
+        $allCategories = model('CategoryModel')->orderBy('name', 'ASC')->findAll();
+        $allTags       = model('TagModel')->orderBy('name', 'ASC')->findAll();
 
         return view('projects', [
-            'projects' => $projects,
-            'pager'    => model(ProjectModel::class)->pager,
+            'projects'    => $projects,
+            'categories'  => $allCategories,
+            'tags'        => $allTags,
+            'pager'       => $projectModel->pager,
         ]);
     }
 
     public function projectDetails($slug = null)
     {
-        $project = model(ProjectModel::class)->where('slug', $slug)->first();
+        $projectModel = model(ProjectModel::class);
+        $project = $projectModel->where('slug', $slug)->first();
 
         if (!$project) {
             return redirect()->to('/projects')->with('error', 'Project not found.');
         }
 
+        $projectCats = $projectModel->getCategories($project->id);
+        $projectTags = $projectModel->getTags($project->id);
+
         return view('project_details', [
-            'project' => $project,
+            'project'     => $project,
+            'projectCats' => $projectCats,
+            'projectTags' => $projectTags,
         ]);
     }
 
     public function articles()
     {
-        $articles    = model(ArticleModel::class)->where('status', 'published')->orderBy('serial', 'ASC')->paginate(12);
-        $categories  = model('CategoryModel')->orderBy('name', 'ASC')->findAll();
-        $tags        = model('TagModel')->orderBy('name', 'ASC')->findAll();
+        $articleModel = model(ArticleModel::class);
+        $articles     = $articleModel->where('status', 'published')->orderBy('serial', 'ASC')->paginate(12);
+
+        if (!empty($articles)) {
+            $articleIds = array_map(function ($a) {
+                return $a->id;
+            }, $articles);
+            $categories = $articleModel->getCategoriesForArticles($articleIds);
+            $tags       = $articleModel->getTagsForArticles($articleIds);
+            foreach ($articles as $article) {
+                $article->category_name = $categories[$article->id] ?? '';
+                $article->tags_str      = $tags[$article->id] ?? '';
+            }
+        }
+
+        $allCategories = model('CategoryModel')->orderBy('name', 'ASC')->findAll();
+        $allTags       = model('TagModel')->orderBy('name', 'ASC')->findAll();
 
         return view('articles', [
             'articles'   => $articles,
-            'categories' => $categories,
-            'tags'       => $tags,
-            'pager'      => model(ArticleModel::class)->pager,
+            'categories' => $allCategories,
+            'tags'       => $allTags,
+            'pager'      => $articleModel->pager,
         ]);
     }
 

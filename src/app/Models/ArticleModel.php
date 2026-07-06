@@ -64,6 +64,52 @@ class ArticleModel extends Model
         }
     }
 
+    public function getCategoriesForArticles(array $articleIds): array
+    {
+        if (empty($articleIds)) {
+            return [];
+        }
+
+        $result = $this->db->table('article_categories')
+            ->select('article_categories.article_id, categories.name')
+            ->join('categories', 'categories.id = article_categories.category_id')
+            ->whereIn('article_categories.article_id', $articleIds)
+            ->get()
+            ->getResult();
+
+        $categories = [];
+        foreach ($result as $row) {
+            $categories[$row->article_id][] = $row->name;
+        }
+
+        return array_map(function ($names) {
+            return implode(', ', $names);
+        }, $categories);
+    }
+
+    public function getTagsForArticles(array $articleIds): array
+    {
+        if (empty($articleIds)) {
+            return [];
+        }
+
+        $result = $this->db->table('article_tags')
+            ->select('article_tags.article_id, tags.name')
+            ->join('tags', 'tags.id = article_tags.tag_id')
+            ->whereIn('article_tags.article_id', $articleIds)
+            ->get()
+            ->getResult();
+
+        $tags = [];
+        foreach ($result as $row) {
+            $tags[$row->article_id][] = $row->name;
+        }
+
+        return array_map(function ($names) {
+            return implode(', ', $names);
+        }, $tags);
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\UserModel', 'user_id');

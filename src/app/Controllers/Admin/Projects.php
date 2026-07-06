@@ -185,15 +185,15 @@ class Projects extends BaseController
             'serial'           => $this->request->getPost('serial') ?? 0,
         ]);
 
-        $categories = $this->request->getPost('categories');
-        if (is_array($categories)) {
-            $projectModel->syncCategories($id, $categories);
-        }
+        $projectModel->syncCategories(
+            $id,
+            $this->request->getPost('categories') ?? []
+        );
 
-        $tags = $this->request->getPost('tags');
-        if (is_array($tags)) {
-            $projectModel->syncTags($id, $tags);
-        }
+        $projectModel->syncTags(
+            $id,
+            $this->request->getPost('tags') ?? []
+        );
 
         $this->activityModel->log(
             auth()->id(),

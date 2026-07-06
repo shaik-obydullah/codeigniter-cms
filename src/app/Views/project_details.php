@@ -12,9 +12,20 @@
                     <span class="text-gray-300"><?= esc($project->title) ?></span>
                 </nav>
                 <h1 class="text-4xl md:text-5xl font-bold text-white mb-4"><?= esc($project->title) ?></h1>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <?php if (!empty($projectCats)): ?>
+                        <?php foreach ($projectCats as $cat): ?>
+                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm"><?= esc($cat->name) ?></span>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <?php if (!empty($projectTags)): ?>
+                        <?php foreach ($projectTags as $tag): ?>
+                        <span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm"><?= esc($tag->name) ?></span>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
                 <div class="flex items-center text-gray-400 text-sm mb-8 flex-wrap gap-x-4">
                     <span><i class="far fa-calendar-alt mr-2"></i><?= date('M j, Y', strtotime($project->created_at)) ?></span>
-                    <span><i class="fas fa-code mr-2"></i><?= esc($project->category ?? 'Project') ?></span>
                 </div>
                 <?php if ($project->featured_image): ?>
                 <img src="<?= esc($project->featured_image) ?>" alt="<?= esc($project->title) ?>" class="w-full h-72 md:h-96 object-cover rounded-xl mb-8" />
@@ -28,7 +39,9 @@
                     <div class="bg-gray-800 rounded-xl p-5">
                         <h3 class="text-lg font-semibold text-white mb-4">Project Info</h3>
                         <ul class="space-y-3 text-sm">
-                            <li class="flex justify-between"><span class="text-gray-400">Category</span><span class="text-white"><?= esc($project->category ?? 'N/A') ?></span></li>
+                            <?php if (!empty($projectCats)): ?>
+                            <li class="flex justify-between"><span class="text-gray-400">Categories</span><span class="text-white"><?= esc(implode(', ', array_map(function($c) { return $c->name; }, $projectCats))) ?></span></li>
+                            <?php endif; ?>
                             <?php if ($project->url): ?>
                             <li class="flex justify-between"><span class="text-gray-400">Live URL</span><a href="<?= esc($project->url) ?>" target="_blank" class="text-lime-500 hover:text-lime-400 truncate max-w-[160px]"><?= esc($project->url) ?></a></li>
                             <?php endif; ?>

@@ -21,7 +21,7 @@
         <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php if (!empty($articles)): ?>
                 <?php foreach ($articles as $article): ?>
-                <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="">
+                <article class="article-card bg-gray-700 rounded-lg shadow-lg border-l-4 border-lime-500 hover:border-lime-400 transition-colors hover:shadow-xl hover:scale-105 transform transition-transform" data-tags="<?= esc($article->tags_str ?? '') ?>">
                     <div class="p-6">
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="bg-gray-600 text-white px-3 py-1 rounded-full text-sm"><?= esc($article->category_name ?? 'Article') ?></span>

@@ -63,4 +63,50 @@ class ProjectModel extends Model
             $this->db->table('project_tags')->insertBatch($data);
         }
     }
+
+    public function getCategoriesForProjects(array $projectIds): array
+    {
+        if (empty($projectIds)) {
+            return [];
+        }
+
+        $result = $this->db->table('project_categories')
+            ->select('project_categories.project_id, categories.name')
+            ->join('categories', 'categories.id = project_categories.category_id')
+            ->whereIn('project_categories.project_id', $projectIds)
+            ->get()
+            ->getResult();
+
+        $categories = [];
+        foreach ($result as $row) {
+            $categories[$row->project_id][] = $row->name;
+        }
+
+        return array_map(function ($names) {
+            return implode(', ', $names);
+        }, $categories);
+    }
+
+    public function getTagsForProjects(array $projectIds): array
+    {
+        if (empty($projectIds)) {
+            return [];
+        }
+
+        $result = $this->db->table('project_tags')
+            ->select('project_tags.project_id, tags.name')
+            ->join('tags', 'tags.id = project_tags.tag_id')
+            ->whereIn('project_tags.project_id', $projectIds)
+            ->get()
+            ->getResult();
+
+        $tags = [];
+        foreach ($result as $row) {
+            $tags[$row->project_id][] = $row->name;
+        }
+
+        return array_map(function ($names) {
+            return implode(', ', $names);
+        }, $tags);
+    }
 }

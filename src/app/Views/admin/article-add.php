@@ -175,7 +175,7 @@ function slugify(text) {
 (function() {
     let titleInput = document.getElementById('title');
     let slugInput = document.getElementById('slug');
-    let slugEdited = slugInput.value.length > 0;
+    let slugEdited = false;
 
     if (titleInput && slugInput) {
         slugInput.addEventListener('input', function() {

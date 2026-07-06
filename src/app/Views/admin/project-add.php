@@ -55,7 +55,7 @@
 
                         <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
                             <label for="content" class="block text-sm font-medium text-gray-300 mb-1.5">Description</label>
-                            <textarea id="content" name="content"><?= old('content', $editProject->content ?? '') ?></textarea>
+                            <textarea id="content" name="content"><?= old('content', $editProject->description ?? '') ?></textarea>
                         </div>
 
                         <div class="bg-gray-800 rounded-xl border border-gray-700 p-5">
