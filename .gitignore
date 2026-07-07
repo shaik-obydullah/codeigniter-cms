@@ -3,4 +3,4 @@ src/vendor/
 src/writable/
 db_data/
 src/public/uploads/*
-refactor/
+codeigniter.sql
