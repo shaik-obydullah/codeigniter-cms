@@ -26,7 +26,7 @@
                 <div class="mb-4 px-4 py-3 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm"><?= esc(session('message')) ?></div>
             <?php endif; ?>
 
-            <form action="<?= site_url('magic-link') ?>" method="post" class="space-y-5">
+            <form action="<?= route_to('magic-link') ?>" method="post" class="space-y-5">
                 <?= csrf_field() ?>
 
                 <div>
@@ -45,7 +45,7 @@
             </form>
 
             <p class="text-center text-gray-500 text-sm mt-6">
-                <a href="<?= site_url('login') ?>" class="text-lime-500 hover:text-lime-400 transition font-medium">Back to Login</a>
+                <a href="<?= route_to('login') ?>" class="text-lime-500 hover:text-lime-400 transition font-medium">Back to Login</a>
             </p>
         </div>
 

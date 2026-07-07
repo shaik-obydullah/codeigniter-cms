@@ -23,11 +23,17 @@
     <div class="container mx-auto px-6 py-4 flex items-center justify-between">
         <a href="/" class="text-xl font-bold text-white">Shaik Obydullah</a>
         <ul class="hidden md:flex space-x-8 text-gray-300 font-medium">
-            <li><a href="/about" class="<?= $activeNav === 'about' ? 'text-lime-500' : 'hover:text-white' ?> transition">About</a></li>
+            <li><a href="/about" class="<?= ($activeNav ?? '') === 'about' ? 'text-lime-500' : 'hover:text-white' ?> transition">About</a></li>
             <li><a href="/#skills" class="hover:text-white transition">Skills</a></li>
-            <li><a href="/projects" class="<?= $activeNav === 'projects' ? 'text-lime-500' : 'hover:text-white' ?> transition">Projects</a></li>
-            <li><a href="/articles" class="<?= $activeNav === 'articles' ? 'text-lime-500' : 'hover:text-white' ?> transition">Articles</a></li>
+            <li><a href="/projects" class="<?= ($activeNav ?? '') === 'projects' ? 'text-lime-500' : 'hover:text-white' ?> transition">Projects</a></li>
+            <li><a href="/articles" class="<?= ($activeNav ?? '') === 'articles' ? 'text-lime-500' : 'hover:text-white' ?> transition">Articles</a></li>
             <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+            <?php if (auth()->loggedIn()): ?>
+            <li><a href="/dashboard" class="text-lime-500 hover:text-lime-400 transition font-semibold">Dashboard</a></li>
+            <?php else: ?>
+            <li><a href="/user-login" class="hover:text-white transition">Login</a></li>
+            <li><a href="/user-register" class="bg-lime-500 text-gray-900 px-4 py-1.5 rounded-lg hover:bg-lime-400 transition font-semibold">Register</a></li>
+            <?php endif; ?>
         </ul>
         <button id="menu-toggle" class="md:hidden text-white focus:outline-none relative w-6 h-6" aria-label="Toggle menu">
             <span class="menu-bar top"></span>
@@ -37,11 +43,17 @@
     </div>
     <div id="mobile-menu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50">
         <ul class="flex flex-col items-center space-y-4 py-6 text-gray-300 font-medium">
-            <li><a href="/about" class="<?= $activeNav === 'about' ? 'text-lime-500' : 'hover:text-white' ?> transition">About</a></li>
+            <li><a href="/about" class="<?= ($activeNav ?? '') === 'about' ? 'text-lime-500' : 'hover:text-white' ?> transition">About</a></li>
             <li><a href="/#skills" class="hover:text-white transition">Skills</a></li>
-            <li><a href="/projects" class="<?= $activeNav === 'projects' ? 'text-lime-500' : 'hover:text-white' ?> transition">Projects</a></li>
-            <li><a href="/articles" class="<?= $activeNav === 'articles' ? 'text-lime-500' : 'hover:text-white' ?> transition">Articles</a></li>
+            <li><a href="/projects" class="<?= ($activeNav ?? '') === 'projects' ? 'text-lime-500' : 'hover:text-white' ?> transition">Projects</a></li>
+            <li><a href="/articles" class="<?= ($activeNav ?? '') === 'articles' ? 'text-lime-500' : 'hover:text-white' ?> transition">Articles</a></li>
             <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+            <?php if (auth()->loggedIn()): ?>
+            <li><a href="/dashboard" class="text-lime-500 transition">Dashboard</a></li>
+            <?php else: ?>
+            <li><a href="/user-login" class="hover:text-white transition">Login</a></li>
+            <li><a href="/user-register" class="hover:text-white transition">Register</a></li>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>

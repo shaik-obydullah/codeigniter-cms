@@ -11,16 +11,19 @@ class Comments extends BaseController
         $commentModel = model(CommentModel::class);
         $status       = $this->request->getGet('status');
 
-        if ($status) {
-            $commentModel->where('status', $status);
+        if ($status && !in_array($status, ['pending', 'approved', 'spam'])) {
+            $status = null;
         }
 
-        $comments = $commentModel->orderBy('created_at', 'DESC')->paginate(20);
+        $comments = $commentModel->getPaginatedComments($status, 20);
+
+        $pager = $commentModel->pager;
+        $pager->only(['status']);
 
         return $this->adminView('comments', [
             'pageTitle' => 'Comments',
             'comments'  => $comments,
-            'pager'     => $commentModel->pager,
+            'pager'     => $pager,
             'status'    => $status,
         ]);
     }

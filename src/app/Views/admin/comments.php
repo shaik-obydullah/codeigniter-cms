@@ -24,10 +24,10 @@
                 <?php endif; ?>
 
                 <div class="flex flex-wrap items-center gap-2 mb-6">
-                    <button class="px-3 py-1.5 rounded-lg bg-lime-500 text-gray-900 text-sm font-medium">All</button>
-                    <button class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm border border-gray-700">Pending</button>
-                    <button class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm border border-gray-700">Approved</button>
-                    <button class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 transition text-sm border border-gray-700">Spam</button>
+                    <a href="/dashboard/comments" class="px-3 py-1.5 rounded-lg text-sm font-medium <?= $status === null ? 'bg-lime-500 text-gray-900' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700' ?>">All</a>
+                    <a href="/dashboard/comments?status=pending" class="px-3 py-1.5 rounded-lg text-sm font-medium <?= $status === 'pending' ? 'bg-lime-500 text-gray-900' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700' ?>">Pending</a>
+                    <a href="/dashboard/comments?status=approved" class="px-3 py-1.5 rounded-lg text-sm font-medium <?= $status === 'approved' ? 'bg-lime-500 text-gray-900' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700' ?>">Approved</a>
+                    <a href="/dashboard/comments?status=spam" class="px-3 py-1.5 rounded-lg text-sm font-medium <?= $status === 'spam' ? 'bg-lime-500 text-gray-900' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700' ?>">Spam</a>
                 </div>
 
                 <div class="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
@@ -45,20 +45,26 @@
                                 <?php $statusColors = ['pending' => 'bg-yellow-500/10 text-yellow-400', 'approved' => 'bg-green-500/10 text-green-400', 'spam' => 'bg-red-500/10 text-red-400']; ?>
                                 <span class="px-2 py-0.5 rounded text-xs <?= $statusColors[$comment->status] ?? 'bg-gray-500/10 text-gray-400' ?> shrink-0"><?= esc(ucfirst($comment->status)) ?></span>
                             </div>
-                            <p class="text-sm text-gray-300 mb-2"><?= esc($comment->content) ?></p>
-                            <div class="flex items-center justify-between">
-                                <a href="<?= site_url('/articles/' . $comment->article_id) ?>" class="text-xs text-lime-500 hover:text-lime-400 transition">on <?= esc($comment->article_title) ?></a>
+                            <div class="mb-2">
+                                <?php if ($comment->article_id && isset($comment->article_title)): ?>
+                                    <a href="<?= site_url('/articles/' . $comment->article_id) ?>" class="text-xs text-lime-400 hover:text-lime-300 transition"><i class="fas fa-file-lines mr-1"></i><?= esc($comment->article_title) ?></a>
+                                <?php elseif ($comment->project_id): ?>
+                                    <span class="text-xs text-gray-500"><i class="fas fa-folder mr-1"></i>on a project</span>
+                                <?php endif; ?>
+                            </div>
+                            <p class="text-sm text-gray-300 mb-3"><?= esc($comment->content) ?></p>
+                            <div class="flex items-center justify-between border-t border-gray-700/50 pt-2">
+                                <span class="text-xs text-gray-600"><i class="far fa-clock mr-1"></i><?= time_elapsed_string($comment->created_at) ?></span>
                                 <div class="flex items-center gap-2">
-                                    <span class="text-xs text-gray-600"><?= time_elapsed_string($comment->created_at) ?></span>
                                     <?php if ($comment->status === 'pending'): ?>
                                     <form method="post" action="<?= site_url('/dashboard/comments/' . $comment->id . '/approve') ?>" class="inline">
                                         <?= csrf_field() ?>
-                                        <button type="submit" class="p-1 text-gray-500 hover:text-green-400 transition" title="Approve"><i class="fas fa-check text-xs"></i></button>
+                                        <button type="submit" class="px-2 py-1 text-xs bg-green-500/10 text-green-400 rounded hover:bg-green-500/20 transition" title="Approve"><i class="fas fa-check mr-1"></i>Approve</button>
                                     </form>
                                     <?php endif; ?>
                                     <form method="post" action="<?= site_url('/dashboard/comments/' . $comment->id . '/delete') ?>" onsubmit="return confirm('Are you sure?')" class="inline">
                                         <?= csrf_field() ?>
-                                        <button type="submit" class="p-1 text-gray-500 hover:text-red-400 transition" title="Delete"><i class="fas fa-trash text-xs"></i></button>
+                                        <button type="submit" class="px-2 py-1 text-xs bg-red-500/10 text-red-400 rounded hover:bg-red-500/20 transition" title="Delete"><i class="fas fa-trash mr-1"></i>Delete</button>
                                     </form>
                                 </div>
                             </div>

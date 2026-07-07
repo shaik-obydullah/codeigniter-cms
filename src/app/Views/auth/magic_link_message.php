@@ -16,8 +16,8 @@
             </div>
             <h1 class="text-2xl font-bold text-white mb-2">Check Your Email</h1>
             <p class="text-gray-400 text-sm">We've sent a magic login link to your email. Please check your inbox and click the link to sign in.</p>
-            <p class="text-gray-500 text-xs mt-4">Didn't receive the email? <a href="<?= site_url('magic-link') ?>" class="text-lime-500 hover:text-lime-400 transition">Resend</a></p>
-            <p class="mt-6"><a href="<?= site_url('login') ?>" class="text-lime-500 hover:text-lime-400 transition text-sm font-medium">Back to Login</a></p>
+            <p class="text-gray-500 text-xs mt-4">Didn't receive the email? <a href="<?= route_to('magic-link') ?>" class="text-lime-500 hover:text-lime-400 transition">Resend</a></p>
+            <p class="mt-6"><a href="<?= route_to('login') ?>" class="text-lime-500 hover:text-lime-400 transition text-sm font-medium">Back to Login</a></p>
         </div>
     </div>
 

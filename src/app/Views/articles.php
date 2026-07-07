@@ -78,6 +78,9 @@
 <script id="all-articles-data" type="application/json">
 <?= json_encode($allArticles ?? []) ?>
 </script>
+<script id="filter-maps" type="application/json">
+<?= json_encode(['catMap' => array_column($categories ?? [], 'name', 'slug'), 'tagMap' => array_column($tags ?? [], 'name', 'slug')]) ?>
+</script>
 
 <?= view('layout/footer', ['extraScripts' => '
 <script>
@@ -123,5 +126,27 @@ function applyFilters() {
 document.querySelectorAll(".cat-filter, .tag-filter").forEach(cb => {
     cb.addEventListener("change", applyFilters);
 });
+
+(function initFiltersFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const catSlug = params.get("category");
+    const tagSlug = params.get("tag");
+
+    if (catSlug || tagSlug) {
+        const maps = JSON.parse(document.getElementById("filter-maps").textContent);
+        const catMap = maps.catMap;
+        const tagMap = maps.tagMap;
+
+        if (catSlug && catMap[catSlug]) {
+            const cb = document.querySelector(`.cat-filter[value="${catMap[catSlug]}"]`);
+            if (cb) cb.checked = true;
+        }
+        if (tagSlug && tagMap[tagSlug]) {
+            const cb = document.querySelector(`.tag-filter[value="${tagMap[tagSlug]}"]`);
+            if (cb) cb.checked = true;
+        }
+        applyFilters();
+    }
+})();
 </script>
 ']) ?>

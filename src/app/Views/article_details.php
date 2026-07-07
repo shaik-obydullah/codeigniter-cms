@@ -1,4 +1,4 @@
-<?= view('layout/header', ['title' => esc($article->title) . ' - Shaik Obydullah', 'metaKeywords' => 'articles, tutorials', 'activeNav' => 'articles']) ?>
+<?= view('layout/header', ['title' => esc($article->title) . ' - Shaik Obydullah', 'activeNav' => 'articles']) ?>
 
 <section class="pt-28 pb-20 bg-gray-900 min-h-screen overflow-x-hidden">
     <div class="w-full max-w-7xl mx-auto px-6">
@@ -40,16 +40,66 @@
                     <a href="https://twitter.com/intent/tweet?url=<?= urlencode(current_url()) ?>" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
                     <a href="https://facebook.com/sharer/sharer.php?u=<?= urlencode(current_url()) ?>" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
                 </div>
+
+                <div class="mt-12 pt-8 border-t border-gray-700">
+                    <h3 class="text-2xl font-bold text-white mb-6">Comments</h3>
+
+                    <?php if (session('message')): ?>
+                    <div class="mb-4 px-4 py-3 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm"><?= esc(session('message')) ?></div>
+                    <?php endif; ?>
+                    <?php if (session('errors')): ?>
+                    <div class="mb-4 px-4 py-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm"><?= implode('<br>', session('errors')) ?></div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($comments)): ?>
+                    <div class="space-y-4 mb-8">
+                        <?php foreach ($comments as $comment): ?>
+                        <div class="bg-gray-800 rounded-lg p-5">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-8 h-8 rounded-full bg-lime-500 flex items-center justify-center text-gray-900 font-bold text-sm"><?= strtoupper(substr(esc($comment->author_name), 0, 1)) ?></div>
+                                <div>
+                                    <span class="text-white font-medium text-sm"><?= esc($comment->author_name) ?></span>
+                                    <span class="text-gray-500 text-xs ml-2"><?= date('M j, Y', strtotime($comment->created_at)) ?></span>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-sm"><?= nl2br(esc($comment->content)) ?></p>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php else: ?>
+                    <p class="text-gray-500 mb-8">No comments yet. Be the first to comment!</p>
+                    <?php endif; ?>
+
+                    <?php if (auth()->loggedIn()): ?>
+                    <div class="bg-gray-800 rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-white mb-4">Leave a Comment</h4>
+                        <form action="/comment" method="post">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="article_id" value="<?= $article->id ?>">
+
+                            <div class="mb-4">
+                                <label for="content" class="block text-sm font-medium text-gray-300 mb-1">Comment</label>
+                                <textarea id="content" name="content" rows="4" required
+                                    class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 placeholder-gray-500"><?= old('content') ?></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="bg-lime-500 text-gray-900 font-semibold px-6 py-2.5 rounded-lg hover:bg-lime-400 transition shadow-lg shadow-lime-500/25 text-sm">
+                                <i class="fas fa-paper-plane mr-2"></i> Submit Comment
+                            </button>
+                        </form>
+                    </div>
+                    <?php else: ?>
+                    <div class="bg-gray-800 rounded-xl p-6 text-center">
+                        <i class="fas fa-comment-dots text-4xl text-gray-600 mb-3"></i>
+                        <h4 class="text-lg font-semibold text-white mb-2">Join the Discussion</h4>
+                        <p class="text-gray-400 text-sm mb-4">Please <a href="/user-login" class="text-lime-500 hover:text-lime-400 font-medium">sign in</a> or <a href="/user-register" class="text-lime-500 hover:text-lime-400 font-medium">create an account</a> to leave a comment.</p>
+                    </div>
+                    <?php endif; ?>
+                </div>
             </div>
             <aside class="w-full lg:w-80 shrink-0">
                 <div class="sticky top-28 space-y-8">
-                    <div class="bg-gray-800 rounded-xl p-5">
-                        <h3 class="text-lg font-semibold text-white mb-4">Search</h3>
-                        <div class="relative">
-                            <input type="text" placeholder="Search articles..." class="w-full bg-gray-700 text-white rounded-lg px-4 py-2.5 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 placeholder-gray-400" />
-                            <i class="fas fa-search absolute right-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                        </div>
-                    </div>
                     <div class="bg-gray-800 rounded-xl p-5">
                         <h3 class="text-lg font-semibold text-white mb-4">Categories</h3>
                         <ul class="space-y-2">

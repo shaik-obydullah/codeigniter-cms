@@ -22,7 +22,7 @@ class SiteSettings extends BaseController
     public function update()
     {
         $settingsModel = model('SettingsModel');
-        $keys = ['site_name', 'site_tagline', 'site_email', 'site_description', 'github_url', 'linkedin_url', 'twitter_url', 'youtube_url', 'theme_mode', 'items_per_page', 'maintenance_mode', 'allow_registration'];
+        $keys = ['site_name', 'site_tagline', 'site_email', 'site_description', 'github_url', 'linkedin_url', 'twitter_url', 'youtube_url', 'theme_mode', 'items_per_page', 'maintenance_mode', 'allow_registration', 'time_format', 'date_format', 'time_zone', 'website_cache'];
 
         foreach ($keys as $key) {
             $value = $this->request->getPost($key);

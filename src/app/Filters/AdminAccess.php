@@ -11,7 +11,7 @@ class AdminAccess implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         if (!auth()->loggedIn()) {
-            return redirect()->to('/login');
+            return redirect()->to('/user-login');
         }
 
         $user = auth()->user();

@@ -87,7 +87,7 @@
                                 <?php foreach ($groups as $group => $info): ?>
                                 <label class="flex items-center gap-3 cursor-pointer">
                                     <input type="radio" name="group" value="<?= $group ?>"
-                                        <?= (isset($userGroups) && in_array($group, $userGroups)) ? 'checked' : ($group === 'user' ? 'checked' : '') ?>
+                                        <?= (old('group') ? old('group') === $group : (isset($userGroups) && in_array($group, $userGroups) ?: !isset($editUser) && $group === 'user')) ? 'checked' : '' ?>
                                         class="w-4 h-4 bg-gray-700 border-gray-600 text-lime-500 focus:ring-lime-500 focus:ring-offset-0 cursor-pointer" />
                                     <div><p class="text-sm text-white"><?= esc($info['title'] ?? $group) ?></p><p class="text-xs text-gray-500"><?= esc($info['description'] ?? '') ?></p></div>
                                 </label>

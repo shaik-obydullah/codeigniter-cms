@@ -12,7 +12,7 @@ class ProjectModel extends Model
     protected $useTimestamps = true;
     protected $allowedFields = [
         'user_id', 'title', 'slug', 'description', 'excerpt',
-        'url', 'featured_image', 'status', 'published_at',
+        'url', 'github_url', 'featured_image', 'status', 'published_at',
         'meta_title', 'meta_description', 'serial',
     ];
 

@@ -67,9 +67,30 @@
     </div>
 </section>
 
+<script id="all-projects-data" type="application/json">
+<?= json_encode($allProjects ?? []) ?>
+</script>
+<script id="filter-maps" type="application/json">
+<?= json_encode(['catMap' => array_column($categories ?? [], 'name', 'slug'), 'tagMap' => array_column($tags ?? [], 'name', 'slug')]) ?>
+</script>
+
 <?= view('layout/footer', ['extraScripts' => '
 <script>
-const projectCards = document.querySelectorAll(".project-card");
+const grid = document.getElementById("projects-grid");
+const pagination = document.getElementById("pagination");
+const allProjects = JSON.parse(document.getElementById("all-projects-data").textContent);
+
+function renderCards(items) {
+    grid.innerHTML = items.length
+        ? items.map(p => `<div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform"><div class="p-6"><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">${escHtml(p.category_name || "Project")}</span></div><h3 class="text-xl font-semibold text-white mb-2">${escHtml(p.title)}</h3><p class="text-gray-300 mb-4">${escHtml(p.excerpt || p.description || "")}</p><a href="/projects/${escHtml(p.slug)}" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a></div></div>`).join("")
+        : `<div class="col-span-full text-center text-gray-500 py-12">No projects match your filters.</div>`;
+}
+
+function escHtml(str) {
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+}
 
 function applyFilters() {
     const selectedCats = [...document.querySelectorAll(".cat-filter:checked")].map(cb => cb.value);
@@ -77,23 +98,47 @@ function applyFilters() {
     const hasCatFilter = selectedCats.length > 0;
     const hasTagFilter = selectedTags.length > 0;
 
-    projectCards.forEach((card) => {
-        const projectCats = (card.dataset.category || "").split(", ");
-        const projectTags = (card.dataset.tags || "").split(", ");
-        const catMatch = !hasCatFilter || projectCats.some(c => selectedCats.includes(c));
-        const tagMatch = !hasTagFilter || projectTags.some(t => selectedTags.includes(t));
-        card.classList.toggle("hidden", !(catMatch && tagMatch));
+    if (!hasCatFilter && !hasTagFilter) {
+        location.reload();
+        return;
+    }
+
+    const filtered = allProjects.filter(p => {
+        const cats = (p.category_name || "").split(", ");
+        const tags = (p.tags_str || "").split(", ");
+        const catMatch = !hasCatFilter || cats.some(c => selectedCats.includes(c));
+        const tagMatch = !hasTagFilter || tags.some(t => selectedTags.includes(t));
+        return catMatch && tagMatch;
     });
+
+    renderCards(filtered);
+    if (pagination) pagination.classList.add("hidden");
 }
 
-const pagination = document.getElementById("pagination");
-
 document.querySelectorAll(".cat-filter, .tag-filter").forEach(cb => {
-    cb.addEventListener("change", () => {
-        applyFilters();
-        const hasFilter = [...document.querySelectorAll(".cat-filter:checked, .tag-filter:checked")].length > 0;
-        if (pagination) pagination.classList.toggle("hidden", hasFilter);
-    });
+    cb.addEventListener("change", applyFilters);
 });
+
+(function initFiltersFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const catSlug = params.get("category");
+    const tagSlug = params.get("tag");
+
+    if (catSlug || tagSlug) {
+        const maps = JSON.parse(document.getElementById("filter-maps").textContent);
+        const catMap = maps.catMap;
+        const tagMap = maps.tagMap;
+
+        if (catSlug && catMap[catSlug]) {
+            const cb = document.querySelector(`.cat-filter[value="${catMap[catSlug]}"]`);
+            if (cb) cb.checked = true;
+        }
+        if (tagSlug && tagMap[tagSlug]) {
+            const cb = document.querySelector(`.tag-filter[value="${tagMap[tagSlug]}"]`);
+            if (cb) cb.checked = true;
+        }
+        applyFilters();
+    }
+})();
 </script>
-']) ?>
+'])?>
