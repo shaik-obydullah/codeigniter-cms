@@ -21,8 +21,12 @@
 }
 
 @keyframes gradientBackground {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 .header-overlay {
@@ -62,10 +66,22 @@
 }
 
 @keyframes fadeToWhite {
-  0%   { background: rgba(0,0,0,1);     box-shadow: 0 0 0 rgba(255,255,255,0); }
-  33%  { background: rgba(0,0,0,1);     box-shadow: 0 0 0 rgba(255,255,255,0); }
-  66%  { background: rgba(255,255,255,0.5); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
-  100% { background: rgba(255,255,255,0.5); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+  0% {
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  33% {
+    background: rgba(0, 0, 0, 1);
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  66% {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
 }
 
 /* ======================================================
@@ -92,8 +108,13 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* ======================================================
@@ -101,8 +122,12 @@
 ====================================================== */
 
 @keyframes moveBackground {
-  0%   { background-position: 0 0; }
-  100% { background-position: 100% 100%; }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
 }
 
 .animate-moveBackground {
@@ -126,8 +151,14 @@ details[open] summary .chevron {
 ====================================================== */
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in-up {
@@ -149,10 +180,12 @@ details[open] summary .chevron {
 .prose h2 {
   margin-top: 2.5rem !important;
   margin-bottom: 1rem !important;
+  font-weight: 600;
+  font-size: 1.4rem;
 }
 
 .prose h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-top: 2.25rem !important;
   margin-bottom: 0.75rem !important;
 }
@@ -248,9 +281,16 @@ details[open] summary .chevron {
   transition: all 0.3s ease;
 }
 
-.menu-bar.top { top: 2px; }
-.menu-bar.middle { top: 50%; transform: translateY(-50%); }
-.menu-bar.bottom { bottom: 2px; }
+.menu-bar.top {
+  top: 2px;
+}
+.menu-bar.middle {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.menu-bar.bottom {
+  bottom: 2px;
+}
 
 #menu-toggle.active .menu-bar.top {
   top: 50%;
