@@ -65,7 +65,7 @@
                     </div>
                     <h3 class="text-xl font-semibold text-white mb-2"><?= esc($project->title) ?></h3>
                     <p class="text-gray-300 mb-4"><?= esc($project->excerpt ?? $project->description ?? '') ?></p>
-                    <a href="/projects/<?= esc($project->slug) ?>"
+                    <a href="/project/<?= esc($project->slug) ?>"
                         class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2"><?= esc($article->title) ?></h3>
                     <p class="text-gray-300 mb-4"><?= esc($article->excerpt ?? '') ?></p>
-                    <a href="/articles/<?= esc($article->slug) ?>"
+                    <a href="/article/<?= esc($article->slug) ?>"
                         class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More &rarr;</a>
                 </div>
             </article>

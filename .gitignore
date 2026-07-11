@@ -1,6 +1,7 @@
+.vscode/*
 .env
 src/vendor/
 src/writable/
 db_data/
 src/public/uploads/*
-codeigniter.sql
+obydullah.com/*

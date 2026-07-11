@@ -20,7 +20,7 @@
                             </div>
                             <h3 class="text-2xl font-bold text-white mb-2"><?= esc($article->title) ?></h3>
                             <p class="text-gray-300 mb-4"><?= esc($article->excerpt ?? '') ?></p>
-                            <a href="/articles/<?= esc($article->slug) ?>"
+                            <a href="/article/<?= esc($article->slug) ?>"
                                 class="text-lime-500 hover:text-lime-400 font-semibold inline-block">Read More
                                 &rarr;</a>
                         </div>
