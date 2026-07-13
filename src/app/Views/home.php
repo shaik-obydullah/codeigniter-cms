@@ -9,10 +9,10 @@
     </div>
     <div class="header-content container mx-auto px-6 relative z-20">
         <h1 class="text-5xl font-bold mb-4">Shaik Obydullah</h1>
-        <p class="text-xl mb-8 typed-text">Software Engineer | Laravel | Next.js | MySQL</p>
-        <a href="/projects"
-            class="bg-white text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition">View My
-            Work</a>
+        <?php $tagline = setting('site.site_tagline'); ?>
+        <?php if (!empty(trim($tagline))): ?>
+        <p class="text-xl mb-8 typed-text"><?= esc($tagline) ?></p>
+        <?php endif; ?>
     </div>
 </header>
 
@@ -20,13 +20,11 @@
     <canvas id="matrix-canvas"></canvas>
     <div class="container mx-auto px-6 text-center max-w-4xl relative z-10">
         <h2 class="text-4xl font-bold text-white mb-6">About Me</h2>
-        <p class="text-lg text-gray-300 leading-relaxed bg-gray-800/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg">I am
-            a Full Stack Software Engineer and Cloud Computing specialist with expertise in designing and implementing
-            scalable, business-driven solutions. With a strong foundation in PHP, JavaScript frameworks, and database
-            management, I specialize in building end-to-end web applications while analyzing business requirements to
-            deliver efficient systems. My experience in cloud platforms allows me to design and deploy modern,
-            cost-effective infrastructure. I am passionate about leveraging technology to solve complex problems and
-            drive business growth. </p>
+        <?php $description = setting('site.site_description'); ?>
+        <?php if (!empty(trim($description))): ?>
+        <p class="text-lg text-gray-300 leading-relaxed bg-gray-800/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg">
+            <?= esc(nl2br($description)) ?></p>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -126,18 +124,27 @@
             explore job opportunities, or just chat about ideas. Reach out, and let's create something extraordinary
             together!</p>
         <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-            <a href="mailto:contact@obydullah.com"
-                class="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition transform hover:scale-105 shadow-lg">Email
-                Me</a>
+            <a href="/contact"
+                class="bg-white text-gray-900 px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition transform hover:scale-105 shadow-lg">Get
+                In Touch</a>
             <a href="/projects"
                 class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition transform hover:scale-105">View
                 My Work</a>
         </div>
         <div class="mt-12 flex justify-center space-x-6">
-            <a href="#" class="text-gray-300 hover:text-white transition"><i
-                    class="fab fa-linkedin-in text-2xl"></i></a>
-            <a href="#" class="text-gray-300 hover:text-white transition"><i class="fab fa-github text-2xl"></i></a>
-            <a href="#" class="text-gray-300 hover:text-white transition"><i class="fab fa-twitter text-2xl"></i></a>
+            <?php
+            $contactSocials = [
+                'social.linkedin' => 'fab fa-linkedin-in',
+                'social.github'   => 'fab fa-github',
+                'social.twitter'  => 'fab fa-twitter',
+                'social.youtube'  => 'fab fa-youtube',
+            ];
+            foreach ($contactSocials as $key => $icon) {
+                $val = trim(setting($key) ?? '');
+                if ($val !== ''): ?>
+            <a href="<?= esc($val) ?>" target="_blank" class="text-gray-300 hover:text-white transition"><i
+                    class="<?= $icon ?> text-2xl"></i></a>
+            <?php endif; } ?>
         </div>
     </div>
 </section>

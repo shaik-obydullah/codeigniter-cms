@@ -5,15 +5,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="Shaik Obydullah" />
-    <meta name="description"
-        content="<?= $metaDescription ?? 'Shaik Obydullah - Software Engineer specializing in Laravel, Next.js, and MySQL.' ?>" />
-    <meta name="keywords" content="<?= $metaKeywords ?? 'portfolio, software engineer, Laravel, Next.js, MySQL' ?>" />
-    <title><?= $title ?? 'Shaik Obydullah - Portfolio' ?></title>
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="stylesheet" href="/assets/frontend/css/tailwind.css" />
+    <meta name="description" content="<?= $metaDescriptio ?? '' ?>" />
+    <meta name="keywords" content="<?= $metaKeywords ?? '' ?>" />
+    <title><?= $title ?? '' ?></title>
+    <link rel="icon" type="image/svg+xml" href="<?= base_url('public/assets/images/favicon/favicon.svg') ?>" />
+    <link rel="stylesheet" href="<?= base_url('public/assets/frontend/css/tailwind.css') ?>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="/assets/frontend/css/base.css" />
-    <link rel="stylesheet" href="/assets/frontend/css/theme.css" />
+    <link rel="stylesheet" href="<?= base_url('public/assets/frontend/css/base.css') ?>" />
+    <link rel="stylesheet"
+        href="<?= base_url('public/assets/frontend/css/theme.css') . '?v=' . filemtime(FCPATH . 'assets/frontend/css/theme.css') ?>" />
+
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="<?= base_url('public/assets/images/favicon/apple-touch-icon.png') ?>">
+    <link rel="icon" type="image/png" sizes="512x512"
+        href="<?= base_url('public/assets/images/favicon/android-chrome-512x512.png') ?>">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="<?= base_url('public/assets/images/favicon/android-chrome-192x192.png') ?>">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="<?= base_url('public/assets/images/favicon/favicon-32x32.png') ?>">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="<?= base_url('public/assets/images/favicon/favicon-16x16.png') ?>">
+    <link rel="manifest" href="<?= base_url('public/assets/images/favicon/site.webmanifest') ?>">
+    <link rel="shortcut icon" href="<?= base_url('public/assets/images/favicon/favicon.ico') ?>">
 </head>
 
 <body class="bg-gray-900 text-gray-100 font-sans">
@@ -37,10 +50,14 @@
                 <li><a href="/articles"
                         class="<?= ($activeNav ?? '') === 'articles' ? 'text-lime-500' : 'hover:text-white' ?> transition">Articles</a>
                 </li>
-                <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+                <li><a href="/documentation"
+                        class="<?= ($activeNav ?? '') === 'documentation' ? 'text-lime-500' : 'hover:text-white' ?> transition">Documentation</a>
+                </li>
+                <li><a href="/contact"
+                        class="<?= ($activeNav ?? '') === 'contact' ? 'text-lime-500' : 'hover:text-white' ?> transition">Contact</a>
+                </li>
                 <?php if (auth()->loggedIn()): ?>
-                <li><a href="/dashboard"
-                        class="text-lime-500 hover:text-lime-400 transition font-semibold">Dashboard</a></li>
+                <li><a href="/dashboard" class="font-semibold">Dashboard</a></li>
                 <?php else: ?>
                 <li><a href="/user-login" class="hover:text-white transition">Login</a></li>
                 <li><a href="/user-register"
@@ -68,9 +85,14 @@
                 <li><a href="/articles"
                         class="<?= ($activeNav ?? '') === 'articles' ? 'text-lime-500' : 'hover:text-white' ?> transition">Articles</a>
                 </li>
-                <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+                <li><a href="/documentation"
+                        class="<?= ($activeNav ?? '') === 'documentation' ? 'text-lime-500' : 'hover:text-white' ?> transition">Documentation</a>
+                </li>
+                <li><a href="/contact"
+                        class="<?= ($activeNav ?? '') === 'contact' ? 'text-lime-500' : 'hover:text-white' ?> transition">Contact</a>
+                </li>
                 <?php if (auth()->loggedIn()): ?>
-                <li><a href="/dashboard" class="text-lime-500 transition">Dashboard</a></li>
+                <li><a href="/dashboard" class="transition">Dashboard</a></li>
                 <?php else: ?>
                 <li><a href="/user-login" class="hover:text-white transition">Login</a></li>
                 <li><a href="/user-register" class="hover:text-white transition">Register</a></li>

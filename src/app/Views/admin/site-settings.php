@@ -42,22 +42,22 @@
                                 <div class="space-y-4">
                                     <div class="flex items-center gap-3">
                                         <span class="w-8 text-gray-500 text-center"><i class="fab fa-github"></i></span>
-                                        <input type="url" name="github_url" value="<?= old('github_url', $settings['github_url'] ?? '') ?>" placeholder="https://github.com/username"
+                                        <input type="url" name="github_url" value="<?= old('github_url', $settings['github'] ?? '') ?>" placeholder="https://github.com/username"
                                             class="flex-1 bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <span class="w-8 text-gray-500 text-center"><i class="fab fa-linkedin-in"></i></span>
-                                        <input type="url" name="linkedin_url" value="<?= old('linkedin_url', $settings['linkedin_url'] ?? '') ?>" placeholder="https://linkedin.com/in/username"
+                                        <input type="url" name="linkedin_url" value="<?= old('linkedin_url', $settings['linkedin'] ?? '') ?>" placeholder="https://linkedin.com/in/username"
                                             class="flex-1 bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <span class="w-8 text-gray-500 text-center"><i class="fab fa-twitter"></i></span>
-                                        <input type="url" name="twitter_url" value="<?= old('twitter_url', $settings['twitter_url'] ?? '') ?>" placeholder="https://twitter.com/username"
+                                        <input type="url" name="twitter_url" value="<?= old('twitter_url', $settings['twitter'] ?? '') ?>" placeholder="https://twitter.com/username"
                                             class="flex-1 bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
                                     </div>
                                     <div class="flex items-center gap-3">
                                         <span class="w-8 text-gray-500 text-center"><i class="fab fa-youtube"></i></span>
-                                        <input type="url" name="youtube_url" value="<?= old('youtube_url', $settings['youtube_url'] ?? '') ?>" placeholder="https://youtube.com/@channel"
+                                        <input type="url" name="youtube_url" value="<?= old('youtube_url', $settings['youtube'] ?? '') ?>" placeholder="https://youtube.com/@channel"
                                             class="flex-1 bg-gray-700 border border-gray-600 text-white rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
                                     </div>
                                 </div>
@@ -159,20 +159,52 @@
                                         <select id="time_zone" name="time_zone"
                                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent">
                                             <option value="UTC" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'UTC') ? 'selected' : '' ?>>UTC</option>
-                                            <option value="America/New_York" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/New_York') ? 'selected' : '' ?>>America/New_York (EST/EDT)</option>
-                                            <option value="America/Chicago" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Chicago') ? 'selected' : '' ?>>America/Chicago (CST/CDT)</option>
-                                            <option value="America/Denver" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Denver') ? 'selected' : '' ?>>America/Denver (MST/MDT)</option>
-                                            <option value="America/Los_Angeles" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Los_Angeles') ? 'selected' : '' ?>>America/Los_Angeles (PST/PDT)</option>
-                                            <option value="Europe/London" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/London') ? 'selected' : '' ?>>Europe/London (GMT/BST)</option>
-                                            <option value="Europe/Paris" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Paris') ? 'selected' : '' ?>>Europe/Paris (CET/CEST)</option>
-                                            <option value="Europe/Berlin" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Berlin') ? 'selected' : '' ?>>Europe/Berlin (CET/CEST)</option>
-                                            <option value="Asia/Dubai" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Dubai') ? 'selected' : '' ?>>Asia/Dubai (GST)</option>
-                                            <option value="Asia/Kolkata" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Kolkata') ? 'selected' : '' ?>>Asia/Kolkata (IST)</option>
-                                            <option value="Asia/Dhaka" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Dhaka') ? 'selected' : '' ?>>Asia/Dhaka (BST)</option>
-                                            <option value="Asia/Singapore" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Singapore') ? 'selected' : '' ?>>Asia/Singapore (SGT)</option>
-                                            <option value="Asia/Tokyo" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Tokyo') ? 'selected' : '' ?>>Asia/Tokyo (JST)</option>
-                                            <option value="Australia/Sydney" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Australia/Sydney') ? 'selected' : '' ?>>Australia/Sydney (AEST/AEDT)</option>
-                                            <option value="Pacific/Auckland" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Pacific/Auckland') ? 'selected' : '' ?>>Pacific/Auckland (NZST/NZDT)</option>
+                                            <optgroup label="United Kingdom">
+                                                <option value="Europe/London" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/London') ? 'selected' : '' ?>>London (GMT/BST)</option>
+                                            </optgroup>
+                                            <optgroup label="United States">
+                                                <option value="America/New_York" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/New_York') ? 'selected' : '' ?>>New York (EST/EDT)</option>
+                                                <option value="America/Chicago" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Chicago') ? 'selected' : '' ?>>Chicago (CST/CDT)</option>
+                                                <option value="America/Denver" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Denver') ? 'selected' : '' ?>>Denver (MST/MDT)</option>
+                                                <option value="America/Los_Angeles" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Los_Angeles') ? 'selected' : '' ?>>Los Angeles (PST/PDT)</option>
+                                            </optgroup>
+                                            <optgroup label="Europe">
+                                                <option value="Europe/Paris" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Paris') ? 'selected' : '' ?>>Paris (CET/CEST)</option>
+                                                <option value="Europe/Berlin" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Berlin') ? 'selected' : '' ?>>Berlin (CET/CEST)</option>
+                                                <option value="Europe/Amsterdam" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Amsterdam') ? 'selected' : '' ?>>Amsterdam (CET/CEST)</option>
+                                                <option value="Europe/Madrid" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Madrid') ? 'selected' : '' ?>>Madrid (CET/CEST)</option>
+                                                <option value="Europe/Rome" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Rome') ? 'selected' : '' ?>>Rome (CET/CEST)</option>
+                                                <option value="Europe/Istanbul" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Istanbul') ? 'selected' : '' ?>>Istanbul (TRT)</option>
+                                                <option value="Europe/Moscow" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Europe/Moscow') ? 'selected' : '' ?>>Moscow (MSK)</option>
+                                            </optgroup>
+                                            <optgroup label="Asia">
+                                                <option value="Asia/Dubai" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Dubai') ? 'selected' : '' ?>>Dubai (GST)</option>
+                                                <option value="Asia/Kolkata" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Kolkata') ? 'selected' : '' ?>>Kolkata (IST)</option>
+                                                <option value="Asia/Dhaka" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Dhaka') ? 'selected' : '' ?>>Dhaka (BST)</option>
+                                                <option value="Asia/Singapore" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Singapore') ? 'selected' : '' ?>>Singapore (SGT)</option>
+                                                <option value="Asia/Hong_Kong" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Hong_Kong') ? 'selected' : '' ?>>Hong Kong (HKT)</option>
+                                                <option value="Asia/Shanghai" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Shanghai') ? 'selected' : '' ?>>Shanghai (CST)</option>
+                                                <option value="Asia/Tokyo" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Tokyo') ? 'selected' : '' ?>>Tokyo (JST)</option>
+                                                <option value="Asia/Seoul" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Seoul') ? 'selected' : '' ?>>Seoul (KST)</option>
+                                                <option value="Asia/Karachi" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Karachi') ? 'selected' : '' ?>>Karachi (PKT)</option>
+                                                <option value="Asia/Jakarta" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Asia/Jakarta') ? 'selected' : '' ?>>Jakarta (WIB)</option>
+                                            </optgroup>
+                                            <optgroup label="Africa">
+                                                <option value="Africa/Cairo" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Africa/Cairo') ? 'selected' : '' ?>>Cairo (EET)</option>
+                                                <option value="Africa/Lagos" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Africa/Lagos') ? 'selected' : '' ?>>Lagos (WAT)</option>
+                                                <option value="Africa/Nairobi" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Africa/Nairobi') ? 'selected' : '' ?>>Nairobi (EAT)</option>
+                                                <option value="Africa/Johannesburg" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Africa/Johannesburg') ? 'selected' : '' ?>>Johannesburg (SAST)</option>
+                                            </optgroup>
+                                            <optgroup label="South America">
+                                                <option value="America/Sao_Paulo" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Sao_Paulo') ? 'selected' : '' ?>>Sao Paulo (BRT)</option>
+                                                <option value="America/Buenos_Aires" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Buenos_Aires') ? 'selected' : '' ?>>Buenos Aires (ART)</option>
+                                                <option value="America/Bogota" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'America/Bogota') ? 'selected' : '' ?>>Bogota (COT)</option>
+                                            </optgroup>
+                                            <optgroup label="Oceania">
+                                                <option value="Australia/Sydney" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Australia/Sydney') ? 'selected' : '' ?>>Sydney (AEST/AEDT)</option>
+                                                <option value="Australia/Melbourne" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Australia/Melbourne') ? 'selected' : '' ?>>Melbourne (AEST/AEDT)</option>
+                                                <option value="Pacific/Auckland" <?= (old('time_zone', $settings['time_zone'] ?? 'UTC') == 'Pacific/Auckland') ? 'selected' : '' ?>>Auckland (NZST/NZDT)</option>
+                                            </optgroup>
                                         </select>
                                     </div>
                                 </div>

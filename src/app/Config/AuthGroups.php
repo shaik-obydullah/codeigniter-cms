@@ -90,6 +90,7 @@ class AuthGroups extends ShieldAuthGroups
         'categories.manage'   => 'Manage Categories',
         'tags.manage'         => 'Manage Tags',
         'comments.manage'     => 'Manage Comments',
+        'messages.manage'     => 'Manage Messages',
         'settings.manage'     => 'Manage Settings',
         'skills.manage'       => 'Manage Skills',
     ];
@@ -112,6 +113,7 @@ class AuthGroups extends ShieldAuthGroups
             'categories.*',
             'tags.*',
             'comments.*',
+            'messages.*',
             'settings.*',
             'skills.*',
         ],
@@ -132,6 +134,7 @@ class AuthGroups extends ShieldAuthGroups
             'categories.manage',
             'tags.manage',
             'comments.manage',
+            'messages.manage',
             'settings.manage',
             'skills.manage',
         ],

@@ -281,23 +281,77 @@ class Pages extends BaseController
             ];
 
             if (!$this->validate($rules)) {
+                if ($this->request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest') {
+                    return $this->response->setJSON([
+                        'success' => false,
+                        'errors'  => $this->validator->getErrors(),
+                    ]);
+                }
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
 
-            $email = \Config\Services::email();
-            $email->setFrom($this->request->getPost('email'), $this->request->getPost('name'));
-            $email->setTo(setting('site_email') ?? 'contact@obydullah.com');
-            $email->setSubject('Contact Form: ' . $this->request->getPost('subject'));
-            $email->setMessage($this->request->getPost('message'));
+            $model = new \App\Models\MessagesModel();
+            $saved = $model->save([
+                'name'    => $this->request->getPost('name'),
+                'email'   => $this->request->getPost('email'),
+                'subject' => $this->request->getPost('subject'),
+                'message' => $this->request->getPost('message'),
+            ]);
 
-            if ($email->send()) {
-                return redirect()->to('/contact')->with('message', 'Your message has been sent. Thank you!');
+            if (!$saved) {
+                if ($this->request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest') {
+                    return $this->response->setJSON([
+                        'success' => false,
+                        'error'   => 'Failed to save message. Please try again.',
+                    ]);
+                }
+                return redirect()->back()->with('error', 'Failed to save message.');
             }
 
-            return redirect()->back()->with('error', 'Failed to send message. Please try again.');
+            $name    = $this->request->getPost('name');
+            $subject = $this->request->getPost('subject');
+            $userId  = auth()->id() ?? 1;
+
+            try {
+                $notifModel = new \App\Models\NotificationModel();
+                $notifModel->save([
+                    'user_id' => $userId,
+                    'type'    => 'message',
+                    'title'   => 'New message from ' . $name,
+                    'message' => $subject,
+                    'link'    => '/dashboard/messages',
+                    'is_read' => 0,
+                ]);
+            } catch (\Exception $e) {
+                // notification failed, continue silently
+            }
+
+            if ($this->request->getHeaderLine('X-Requested-With') === 'XMLHttpRequest') {
+                return $this->response->setJSON([
+                    'success' => true,
+                    'message' => 'Your message has been sent. Thank you!',
+                ]);
+            }
+
+            return redirect()->to('/contact')->with('message', 'Your message has been sent. Thank you!');
         }
 
         return view('contact');
+    }
+
+    public function documentation()
+    {
+        return view('documentation');
+    }
+
+    public function docLimeCss()
+    {
+        return view('doc/lime_css_framework');
+    }
+
+    public function docRestaurantPos()
+    {
+        return view('doc/wordpress_restaurant_pos_lite_plugin');
     }
 
     public function privacy()

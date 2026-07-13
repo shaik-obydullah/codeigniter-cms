@@ -39,7 +39,7 @@
 }
 
 .header-wrapper {
-  margin-top: 3rem;
+  margin-top: 3.9rem;
 }
 
 /* ======================================================
@@ -186,8 +186,16 @@ details[open] summary .chevron {
 
 .prose h3 {
   font-size: 1.2rem;
+  font-weight: 600;
   margin-top: 2.25rem !important;
   margin-bottom: 0.75rem !important;
+}
+
+.prose h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 2rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
 .prose p {
@@ -256,10 +264,40 @@ details[open] summary .chevron {
 }
 
 .prose table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--prose-spacing) !important;
+  margin-bottom: var(--prose-spacing) !important;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.prose table thead {
+  background: #1e293b;
+}
+
+.prose table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #e2e8f0;
+  border-bottom: 2px solid #475569;
+  white-space: nowrap;
+}
+
+.prose table td {
+  padding: 0.65rem 1rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid #334155;
+}
+
+.prose table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose table tbody tr:hover {
+  background: rgba(132, 204, 22, 0.05);
 }
 
 /* ======================================================

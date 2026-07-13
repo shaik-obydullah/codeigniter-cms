@@ -12,6 +12,9 @@ $routes->get('/articles', 'Pages::articles');
 $routes->get('/article/(:any)', 'Pages::articleDetails/$1');
 $routes->match(['get', 'post'], '/contact', 'Pages::contact');
 $routes->post('comment', 'Pages::submitComment');
+$routes->get('/documentation', 'Pages::documentation');
+$routes->get('/documentation/lime-css-framework', 'Pages::docLimeCss');
+$routes->get('/documentation/wordpress-restaurant-pos-lite-plugin', 'Pages::docRestaurantPos');
 $routes->get('/privacy', 'Pages::privacy');
 $routes->get('/terms', 'Pages::terms');
 
@@ -67,6 +70,11 @@ $routes->group('/dashboard', ['filter' => 'admin-access'], static function ($rou
     $routes->get('comments', '\App\Controllers\Admin\Comments::index');
     $routes->post('comments/(:num)/approve', '\App\Controllers\Admin\Comments::approve/$1');
     $routes->post('comments/(:num)/delete', '\App\Controllers\Admin\Comments::delete/$1');
+
+    $routes->get('messages', '\App\Controllers\Admin\Messages::index');
+    $routes->get('messages/(:num)/edit', '\App\Controllers\Admin\Messages::edit/$1');
+    $routes->post('messages/(:num)', '\App\Controllers\Admin\Messages::update/$1');
+    $routes->post('messages/(:num)/delete', '\App\Controllers\Admin\Messages::delete/$1');
 
     $routes->get('site-settings', '\App\Controllers\Admin\SiteSettings::index');
     $routes->post('site-settings', '\App\Controllers\Admin\SiteSettings::update');

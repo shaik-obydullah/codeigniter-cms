@@ -11,9 +11,9 @@ class SettingsSeeder extends Seeder
         $settings = [
             ['class' => 'site', 'key' => 'site_name', 'value' => 'Shaik Obydullah', 'type' => 'string', 'context' => null],
             ['class' => 'site', 'key' => 'site_tagline', 'value' => 'Software Engineer | Laravel | Next.js | MySQL', 'type' => 'string', 'context' => null],
-            ['class' => 'site', 'key' => 'site_email', 'value' => 'contact@obydullah.com', 'type' => 'string', 'context' => null],
+            ['class' => 'site', 'key' => 'site_email', 'value' => 'sk.obydullah@gmail.com', 'type' => 'string', 'context' => null],
             ['class' => 'site', 'key' => 'site_description', 'value' => 'Shaik Obydullah - Software Engineer specializing in Laravel, Next.js, and MySQL.', 'type' => 'string', 'context' => null],
-            ['class' => 'social', 'key' => 'github', 'value' => '', 'type' => 'string', 'context' => null],
+            ['class' => 'social', 'key' => 'github', 'value' => 'https://github.com/shaik-obydullah', 'type' => 'string', 'context' => null],
             ['class' => 'social', 'key' => 'linkedin', 'value' => '', 'type' => 'string', 'context' => null],
             ['class' => 'social', 'key' => 'twitter', 'value' => '', 'type' => 'string', 'context' => null],
             ['class' => 'social', 'key' => 'youtube', 'value' => '', 'type' => 'string', 'context' => null],
