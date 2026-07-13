@@ -109,4 +109,11 @@ class ProjectModel extends Model
             return implode(', ', $names);
         }, $tags);
     }
+
+    public function reorder(array $orders): void
+    {
+        foreach ($orders as $item) {
+            $this->update($item['id'], ['serial' => $item['serial']]);
+        }
+    }
 }

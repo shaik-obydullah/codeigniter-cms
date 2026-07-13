@@ -45,6 +45,8 @@ $routes->group('/dashboard', ['filter' => 'admin-access'], static function ($rou
     $routes->post('articles/(:num)/delete', '\App\Controllers\Admin\Articles::delete/$1');
 
     $routes->get('projects', '\App\Controllers\Admin\Projects::index');
+    $routes->get('projects/reorder', '\App\Controllers\Admin\Projects::sort');
+    $routes->post('projects/reorder', '\App\Controllers\Admin\Projects::reorder');
     $routes->get('projects/create', '\App\Controllers\Admin\Projects::create');
     $routes->post('projects', '\App\Controllers\Admin\Projects::store');
     $routes->get('projects/(:num)/edit', '\App\Controllers\Admin\Projects::edit/$1');

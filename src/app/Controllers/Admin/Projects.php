@@ -231,6 +231,40 @@ class Projects extends BaseController
         return null;
     }
 
+    public function sort()
+    {
+        $model     = model(ProjectModel::class);
+        $projects  = $model->orderBy('serial', 'ASC')->findAll();
+
+        return $this->adminView('sort-projects', [
+            'pageTitle' => 'Sort Projects',
+            'projects'  => $projects,
+        ]);
+    }
+
+    public function reorder()
+    {
+        $raw = file_get_contents('php://input');
+        $orders = json_decode($raw, true);
+
+        if (!is_array($orders)) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Invalid data.']);
+        }
+
+        $model = model(ProjectModel::class);
+        $model->reorder($orders);
+
+        $this->activityModel->log(
+            auth()->id(),
+            'projects.reordered',
+            'Reordered projects',
+            'projects',
+            null
+        );
+
+        return $this->response->setJSON(['success' => true, 'message' => 'Order saved.']);
+    }
+
     public function delete(int $id)
     {
         $projectModel = model(ProjectModel::class);

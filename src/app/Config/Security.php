@@ -83,4 +83,17 @@ class Security extends BaseConfig
      * @see https://codeigniter4.github.io/userguide/libraries/security.html#redirection-on-failure
      */
     public bool $redirect = (ENVIRONMENT === 'production');
+
+    /**
+     * --------------------------------------------------------------------------
+     * CSRF Exclude URIs
+     * --------------------------------------------------------------------------
+     *
+     * URIs to exclude from CSRF protection.
+     *
+     * @var array
+     */
+    public array $csrfExcludeURIs = [
+        'dashboard/projects/reorder',
+    ];
 }
