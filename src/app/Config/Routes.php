@@ -12,7 +12,6 @@ $routes->get('/articles', 'Pages::articles');
 $routes->get('/article/(:any)', 'Pages::articleDetails/$1');
 $routes->match(['get', 'post'], '/contact', 'Pages::contact');
 $routes->post('comment', 'Pages::submitComment');
-$routes->get('/faq', 'Pages::faq');
 $routes->get('/privacy', 'Pages::privacy');
 $routes->get('/terms', 'Pages::terms');
 

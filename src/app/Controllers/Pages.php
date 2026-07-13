@@ -300,11 +300,6 @@ class Pages extends BaseController
         return view('contact');
     }
 
-    public function faq()
-    {
-        return view('faq');
-    }
-
     public function privacy()
     {
         return view('privacy');
