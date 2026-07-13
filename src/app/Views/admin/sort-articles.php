@@ -14,8 +14,6 @@
                     </div>
                 </div>
 
-                <div id="toast" class="hidden fixed top-4 right-4 z-50 px-4 py-3 rounded-lg text-sm font-medium shadow-lg"></div>
-
                 <div id="articleList" class="space-y-2 max-w-3xl">
                     <?php foreach ($articles as $article): ?>
                     <div class="article-item flex items-center gap-4 bg-gray-800 border border-gray-700 rounded-xl px-5 py-4 cursor-grab active:cursor-grabbing hover:border-gray-600 transition" data-id="<?= $article->id ?>">

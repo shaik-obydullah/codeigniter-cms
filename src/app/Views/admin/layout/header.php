@@ -10,6 +10,8 @@
 </head>
 <body class="bg-gray-900 text-gray-100 font-sans">
 
+    <div id="toast" class="hidden fixed top-4 right-4 z-50 px-4 py-3 rounded-lg text-sm font-medium shadow-lg"></div>
+
     <div class="flex h-screen overflow-hidden">
         <?= view('admin/layout/sidebar', ['currentPage' => $currentPage]) ?>
 
