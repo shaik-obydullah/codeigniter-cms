@@ -38,6 +38,8 @@ $routes->group('/dashboard', ['filter' => 'admin-access'], static function ($rou
     $routes->get('activities', '\App\Controllers\Admin\Activities::index');
 
     $routes->get('articles', '\App\Controllers\Admin\Articles::index');
+    $routes->get('articles/reorder', '\App\Controllers\Admin\Articles::sort');
+    $routes->post('articles/reorder', '\App\Controllers\Admin\Articles::reorder');
     $routes->get('articles/create', '\App\Controllers\Admin\Articles::create');
     $routes->post('articles', '\App\Controllers\Admin\Articles::store');
     $routes->get('articles/(:num)/edit', '\App\Controllers\Admin\Articles::edit/$1');
@@ -71,6 +73,8 @@ $routes->group('/dashboard', ['filter' => 'admin-access'], static function ($rou
     $routes->post('site-settings', '\App\Controllers\Admin\SiteSettings::update');
 
     $routes->get('skills', '\App\Controllers\Admin\Skills::index');
+    $routes->get('skills/reorder', '\App\Controllers\Admin\Skills::sort');
+    $routes->post('skills/reorder', '\App\Controllers\Admin\Skills::reorder');
     $routes->post('skills', '\App\Controllers\Admin\Skills::store');
     $routes->match(['post', 'put'], 'skills/(:num)', '\App\Controllers\Admin\Skills::update/$1');
     $routes->post('skills/(:num)/delete', '\App\Controllers\Admin\Skills::delete/$1');

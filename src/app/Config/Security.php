@@ -95,5 +95,7 @@ class Security extends BaseConfig
      */
     public array $csrfExcludeURIs = [
         'dashboard/projects/reorder',
+        'dashboard/articles/reorder',
+        'dashboard/skills/reorder',
     ];
 }

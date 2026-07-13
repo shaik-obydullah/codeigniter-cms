@@ -241,6 +241,40 @@ class Articles extends BaseController
         return null;
     }
 
+    public function sort()
+    {
+        $model    = model(ArticleModel::class);
+        $articles = $model->orderBy('serial', 'ASC')->findAll();
+
+        return $this->adminView('sort-articles', [
+            'pageTitle' => 'Sort Articles',
+            'articles'  => $articles,
+        ]);
+    }
+
+    public function reorder()
+    {
+        $raw   = file_get_contents('php://input');
+        $orders = json_decode($raw, true);
+
+        if (!is_array($orders)) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Invalid data.']);
+        }
+
+        $model = model(ArticleModel::class);
+        $model->reorder($orders);
+
+        $this->activityModel->log(
+            auth()->id(),
+            'articles.reordered',
+            'Reordered articles',
+            'articles',
+            null
+        );
+
+        return $this->response->setJSON(['success' => true, 'message' => 'Order saved.']);
+    }
+
     public function delete(int $id)
     {
         $articleModel = model(ArticleModel::class);

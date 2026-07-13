@@ -110,6 +110,13 @@ class ArticleModel extends Model
         }, $tags);
     }
 
+    public function reorder(array $orders): void
+    {
+        foreach ($orders as $item) {
+            $this->update($item['id'], ['serial' => $item['serial']]);
+        }
+    }
+
     public function user()
     {
         return $this->belongsTo('App\Models\UserModel', 'user_id');

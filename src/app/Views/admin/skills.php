@@ -32,6 +32,9 @@
                         <input type="text" placeholder="Search skills..."
                             class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
                     </div>
+                    <a href="<?= site_url('/dashboard/skills/reorder') ?>" class="flex items-center gap-2 bg-gray-800 text-gray-300 border border-gray-700 px-4 py-2.5 rounded-lg hover:text-white hover:bg-gray-700 transition text-sm shrink-0">
+                        <i class="fas fa-arrows-up-down"></i> Sort
+                    </a>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">

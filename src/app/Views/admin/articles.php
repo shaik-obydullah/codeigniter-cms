@@ -29,7 +29,12 @@
                         <input type="text" name="search" placeholder="Search articles..." value="<?= esc($search ?? '') ?>"
                             class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-transparent placeholder-gray-500" />
                     </form>
-                    <a href="<?= site_url('/dashboard/articles/create') ?>" class="flex items-center gap-2 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm shrink-0"><i class="fas fa-plus"></i> New Article</a>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <a href="<?= site_url('/dashboard/articles/reorder') ?>" class="flex items-center gap-2 bg-gray-800 text-gray-300 border border-gray-700 px-4 py-2.5 rounded-lg hover:text-white hover:bg-gray-700 transition text-sm">
+                            <i class="fas fa-arrows-up-down"></i> Sort
+                        </a>
+                        <a href="<?= site_url('/dashboard/articles/create') ?>" class="flex items-center gap-2 bg-lime-500 text-gray-900 font-semibold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition text-sm"><i class="fas fa-plus"></i> New Article</a>
+                    </div>
                 </div>
 
                 <?php $allActive = !$currentStatus ? 'bg-lime-500 text-gray-900' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-700'; ?>

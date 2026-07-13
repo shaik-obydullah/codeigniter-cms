@@ -60,6 +60,39 @@ class Skills extends BaseController
         return redirect()->to('/dashboard/skills')->with('message', 'Skill updated successfully.');
     }
 
+    public function sort()
+    {
+        $skills = model('SkillModel')->orderBy('serial', 'ASC')->findAll();
+
+        return $this->adminView('sort-skills', [
+            'pageTitle' => 'Sort Skills',
+            'skills'    => $skills,
+        ]);
+    }
+
+    public function reorder()
+    {
+        $raw   = file_get_contents('php://input');
+        $orders = json_decode($raw, true);
+
+        if (!is_array($orders)) {
+            return $this->response->setJSON(['success' => false, 'message' => 'Invalid data.']);
+        }
+
+        $model = model('SkillModel');
+        $model->reorder($orders);
+
+        $this->activityModel->log(
+            auth()->id(),
+            'skills.reordered',
+            'Reordered skills',
+            'skills',
+            null
+        );
+
+        return $this->response->setJSON(['success' => true, 'message' => 'Order saved.']);
+    }
+
     public function delete(int $id)
     {
         $skill = model('SkillModel')->find($id);
