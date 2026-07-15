@@ -194,12 +194,54 @@ function removeFeaturedImage(btn) {
 tinymce.init({
     selector: '#content',
     plugins: 'code table link image lists',
-    toolbar: 'undo redo | styles | bold italic underline | bullist numlist | alignleft aligncenter alignright | link image | code',
+    toolbar: 'undo redo | blocks | bold italic underline strikethrough | bullist numlist | alignleft aligncenter alignright alignjustify | link image | code | removeformat',
     skin: 'oxide-dark',
     content_css: 'dark',
+    content_style: 'body { font-family: Inter, sans-serif; font-size: 16px; line-height: 1.8; color: #e5e5e5; background: #111827; padding: 16px; margin: 0; } body > *:first-child { margin-top: 0; }',
     height: 500,
     branding: false,
     promotion: false,
+    entity_encoding: 'named',
+    convert_urls: false,
+    relative_urls: false,
+    remove_script_host: false,
+    document_base_url: '<?= site_url('/') ?>',
+    block_formats: 'Paragraph=p; Heading 2=h2; Heading 3=h3; Heading 4=h4; Preformatted=pre; Blockquote=blockquote',
+    formats: {
+        bold: { inline: 'strong' },
+        italic: { inline: 'em' },
+        strikethrough: { inline: 'del' },
+        underline: { inline: 'u' },
+        h2: { block: 'h2', classes: '' },
+        h3: { block: 'h3', classes: '' },
+        h4: { block: 'h4', classes: '' },
+        pre: { block: 'pre', classes: '', wrapper: true },
+        blockquote: { block: 'blockquote', classes: '', wrapper: true },
+        alignleft: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: { textAlign: 'left' } },
+        aligncenter: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: { textAlign: 'center' } },
+        alignright: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: { textAlign: 'right' } },
+        alignjustify: { selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: { textAlign: 'justify' } }
+    },
+    style_formats: [
+        { title: 'Headings', items: [
+            { title: 'Heading 2', format: 'h2' },
+            { title: 'Heading 3', format: 'h3' },
+            { title: 'Heading 4', format: 'h4' }
+        ]},
+        { title: 'Blocks', items: [
+            { title: 'Paragraph', format: 'p' },
+            { title: 'Preformatted', format: 'pre' },
+            { title: 'Blockquote', format: 'blockquote' }
+        ]}
+    ],
+    valid_styles: {
+        '*': 'text-align'
+    },
+    extended_valid_elements: 'img[class|src|border=0|alt|title|width|height]',
+    invalid_styles: 'color font-family font-size background',
+    forced_root_block: 'p',
+    forced_root_block_attrs: { 'class': '' },
+    remove_empty_nodes: true,
     file_picker_callback: function (callback, value, meta) {
         if (meta.filetype === 'image') {
             let url = '<?= site_url('/dashboard/media/browse') ?>';

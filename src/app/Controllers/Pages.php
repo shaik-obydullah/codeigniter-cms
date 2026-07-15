@@ -11,7 +11,15 @@ class Pages extends BaseController
 {
     public function about()
     {
-        return view('about');
+        $categories = model('CategoryModel')->orderBy('name', 'ASC')->findAll();
+        $tags       = model('TagModel')->orderBy('name', 'ASC')->findAll();
+        $projects   = model(ProjectModel::class)->where('status', 'published')->orderBy('created_at', 'DESC')->findAll(4);
+
+        return view('about', [
+            'categories' => $categories,
+            'tags'       => $tags,
+            'projects'   => $projects,
+        ]);
     }
 
     public function projects()

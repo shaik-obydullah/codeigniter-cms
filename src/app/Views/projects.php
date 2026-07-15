@@ -90,7 +90,7 @@ const allProjects = JSON.parse(document.getElementById("all-projects-data").text
 
 function renderCards(items) {
     grid.innerHTML = items.length
-        ? items.map(p => `<div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform"><div class="p-6"><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">${escHtml(p.category_name || "Project")}</span></div><h3 class="text-xl font-semibold text-white mb-2">${escHtml(p.title)}</h3><p class="text-gray-300 mb-4">${escHtml(p.excerpt || p.description || "")}</p><a href="/projects/${escHtml(p.slug)}" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a></div></div>`).join("")
+        ? items.map(p => `<div class="project-card bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow hover:scale-105 transform transition-transform"><div class="p-6"><div class="flex flex-wrap gap-2 mb-4"><span class="bg-gray-700 text-white px-3 py-1 rounded-full text-sm">${escHtml(p.category_name || "Project")}</span></div><h3 class="text-xl font-semibold text-white mb-2">${escHtml(p.title)}</h3><p class="text-gray-300 mb-4">${escHtml(p.excerpt || p.description || "")}</p><a href="/project/${escHtml(p.slug)}" class="text-lime-500 hover:text-lime-400 font-semibold inline-block">View Project &rarr;</a></div></div>`).join("")
         : `<div class="col-span-full text-center text-gray-500 py-12">No projects match your filters.</div>`;
 }
 

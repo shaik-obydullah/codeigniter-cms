@@ -8,21 +8,21 @@
     <meta name="description" content="<?= $metaDescriptio ?? '' ?>" />
     <meta name="keywords" content="<?= $metaKeywords ?? '' ?>" />
     <title><?= $title ?? '' ?></title>
-    <link rel="icon" type="image/svg+xml" href="<?= base_url('public/assets/images/favicon/favicon.svg') ?>" />
-    <link rel="stylesheet" href="<?= base_url('public/assets/frontend/css/tailwind.css') ?>" />
+    <link rel="icon" type="image/svg+xml" href="<?= base_url('assets/images/favicon/favicon.svg') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/frontend/css/tailwind.css') . '?v=' . filemtime(FCPATH . 'assets/frontend/css/tailwind.css') ?>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <link rel="stylesheet" href="<?= base_url('public/assets/frontend/css/base.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/frontend/css/base.css') . '?v=' . filemtime(FCPATH . 'assets/frontend/css/base.css') ?>" />
     <link rel="stylesheet"
-        href="<?= base_url('public/assets/frontend/css/theme.css') . '?v=' . filemtime(FCPATH . 'assets/frontend/css/theme.css') ?>" />
+        href="<?= base_url('assets/frontend/css/theme.css') . '?v=' . filemtime(FCPATH . 'assets/frontend/css/theme.css') ?>" />
 
     <link rel="apple-touch-icon" sizes="180x180"
-        href="<?= base_url('public/assets/images/favicon/apple-touch-icon.png') ?>">
+        href="<?= base_url('assets/images/favicon/apple-touch-icon.png') ?>">
     <link rel="icon" type="image/png" sizes="32x32"
-        href="<?= base_url('public/assets/images/favicon/favicon-32x32.png') ?>">
+        href="<?= base_url('assets/images/favicon/favicon-32x32.png') ?>">
     <link rel="icon" type="image/png" sizes="16x16"
-        href="<?= base_url('public/assets/images/favicon/favicon-16x16.png') ?>">
-    <link rel="manifest" href="<?= base_url('public/assets/images/favicon/site.webmanifest') ?>">
-    <link rel="shortcut icon" href="<?= base_url('public/assets/images/favicon/favicon.ico') ?>">
+        href="<?= base_url('assets/images/favicon/favicon-16x16.png') ?>">
+    <link rel="manifest" href="<?= base_url('assets/images/favicon/site.webmanifest') ?>">
+    <link rel="shortcut icon" href="<?= base_url('assets/images/favicon/favicon.ico') ?>">
 </head>
 
 <body class="bg-gray-900 text-gray-100 font-sans">
