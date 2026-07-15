@@ -17,10 +17,6 @@
 
     <link rel="apple-touch-icon" sizes="180x180"
         href="<?= base_url('public/assets/images/favicon/apple-touch-icon.png') ?>">
-    <link rel="icon" type="image/png" sizes="512x512"
-        href="<?= base_url('public/assets/images/favicon/android-chrome-512x512.png') ?>">
-    <link rel="icon" type="image/png" sizes="192x192"
-        href="<?= base_url('public/assets/images/favicon/android-chrome-192x192.png') ?>">
     <link rel="icon" type="image/png" sizes="32x32"
         href="<?= base_url('public/assets/images/favicon/favicon-32x32.png') ?>">
     <link rel="icon" type="image/png" sizes="16x16"
