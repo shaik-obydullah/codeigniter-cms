@@ -30,12 +30,16 @@ class Filters extends BaseFilters
         'session'       => SessionAuth::class,
         'chain'         => ChainAuth::class,
         'admin-access'  => \App\Filters\AdminAccess::class,
+        'maintenance'   => \App\Filters\MaintenanceMode::class,
+        'website-cache' => \App\Filters\WebsiteCache::class,
     ];
 
     public array $required = [
         'before' => [
             'forcehttps',
+            'maintenance',
             'pagecache',
+            'website-cache',
         ],
         'after' => [
             'pagecache',
