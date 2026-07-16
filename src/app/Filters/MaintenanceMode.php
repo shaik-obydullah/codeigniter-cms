@@ -30,7 +30,11 @@ class MaintenanceMode implements FilterInterface
                 }
             }
 
-            return view('maintenance');
+            $response = service('response');
+            $response->setStatusCode(503);
+            $response->setBody(view('maintenance'));
+
+            return $response;
         }
     }
 
