@@ -2,9 +2,19 @@
 
 A personal portfolio CMS built with **CodeIgniter 4**, **CodeIgniter Shield**, **Tailwind CSS**, and **MariaDB**.
 
+![PHP](https://img.shields.io/badge/PHP-8.2-777BB4?logo=php&logoColor=white&style=flat-square)
+![CodeIgniter](https://img.shields.io/badge/CodeIgniter-4.7-EE4323?logo=codeigniter&logoColor=white&style=flat-square)
+![Shield](https://img.shields.io/badge/Shield-1.3-FF0E00?style=flat-square)
+![MariaDB](https://img.shields.io/badge/MariaDB-10.11-003545?logo=mariadb&logoColor=white&style=flat-square)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38BDF8?logo=tailwindcss&logoColor=white&style=flat-square)
+![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white&style=flat-square)
+![PHPUnit](https://img.shields.io/badge/PHPUnit-10.5-1B7E39?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-brightgreen?style=flat-square)
+
 ## Features
 
 ### Public Frontend
+
 - **Homepage** with latest projects and articles
 - **About page** — personal bio and introduction
 - **Portfolio projects** — paginated listing with category/tag filtering and detail pages
@@ -14,6 +24,7 @@ A personal portfolio CMS built with **CodeIgniter 4**, **CodeIgniter Shield**, *
 - **Static pages** — FAQ, Privacy Policy, Terms of Service
 
 ### Admin Dashboard
+
 - **Dashboard overview** — stats cards (users, articles, projects, skills, comments) + recent activity feed + quick actions
 - **User management** — create, edit, delete users with status control
 - **Role & permission management** — granular RBAC with matrix-based editor (5 groups, 20+ permissions)
@@ -29,6 +40,7 @@ A personal portfolio CMS built with **CodeIgniter 4**, **CodeIgniter Shield**, *
 - **Notifications** — real-time admin alerts (e.g., new comments) with mark-read / mark-all-read
 
 ### Authentication (CodeIgniter Shield)
+
 - User registration and login
 - Passwordless magic link login
 - Remember-me tokens
@@ -36,25 +48,25 @@ A personal portfolio CMS built with **CodeIgniter 4**, **CodeIgniter Shield**, *
 
 ## Tech Stack
 
-| Component | Technology |
-|-----------|-----------|
-| **Language** | PHP ^8.2 |
-| **Framework** | CodeIgniter 4.7 |
-| **Auth** | CodeIgniter Shield 1.3 |
-| **Database** | MariaDB 10.11 |
-| **Frontend** | Tailwind CSS 3.4, Font Awesome 6, Vanilla JS |
-| **Testing** | PHPUnit 10.5 |
+| Component           | Technology                                           |
+| ------------------- | ---------------------------------------------------- |
+| **Language**        | PHP ^8.2                                             |
+| **Framework**       | CodeIgniter 4.7                                      |
+| **Auth**            | CodeIgniter Shield 1.3                               |
+| **Database**        | MariaDB 10.11                                        |
+| **Frontend**        | Tailwind CSS 3.4, Font Awesome 6, Vanilla JS         |
+| **Testing**         | PHPUnit 10.5                                         |
 | **Dev Environment** | Docker Compose (PHP-FPM, Nginx, MariaDB, phpMyAdmin) |
 
 ## Permissions & Roles
 
-| Role | Description |
-|------|-------------|
-| `superadmin` | Full system control |
-| `admin` | Day-to-day administration |
-| `developer` | Site development access |
-| `user` | Default registered user |
-| `beta` | Beta feature access |
+| Role         | Description               |
+| ------------ | ------------------------- |
+| `superadmin` | Full system control       |
+| `admin`      | Day-to-day administration |
+| `developer`  | Site development access   |
+| `user`       | Default registered user   |
+| `beta`       | Beta feature access       |
 
 Permissions cover: admin access, settings, user management, articles, projects, categories, tags, comments, skills, and beta features.
 
@@ -68,6 +80,7 @@ docker compose exec app php spark db:seed DatabaseSeeder  # Seed data
 ```
 
 Services:
+
 - **App**: `http://localhost:8083`
 - **phpMyAdmin**: `http://localhost:8090`
 
