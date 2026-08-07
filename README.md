@@ -70,6 +70,20 @@ A personal portfolio CMS built with **CodeIgniter 4**, **CodeIgniter Shield**, *
 
 Permissions cover: admin access, settings, user management, articles, projects, categories, tags, comments, skills, and beta features.
 
+## Screenshots
+
+| Dashboard | Role & Permissions |
+| --------- | ------------------ |
+| ![Dashboard](screenshots/Dashboard.png) | ![Role & Permissions](screenshots/Role_and_Permissions.png) |
+
+| Content Sorting | Media Library |
+| --------------- | ------------- |
+| ![Content Sorting](screenshots/Content_Sorting.png) | ![Media Library](screenshots/Media_Library.png) |
+
+| Notifications | Site Settings |
+| ------------- | ------------- |
+| ![Notifications](screenshots/Notifications.png) | ![Site Settings](screenshots/Site_Settings.png) |
+
 ## Quick Start (Docker)
 
 ```bash
